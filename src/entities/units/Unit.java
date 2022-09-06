@@ -1,4 +1,6 @@
 package entities.units;
 
-public class Unit {
+import entities.Entity;
+
+public class Unit extends Entity {
 }

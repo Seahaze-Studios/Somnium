@@ -3,21 +3,24 @@ package gamestates;
 import core.Main;
 import entities.Entity;
 import entities.units.player.Player;
+import gamestates.types.AdvancedGameState;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.particles.Particle;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
-public class Game extends BasicGameState {
+public class Game extends AdvancedGameState {
     private final int id;
     private static GameContainer gc;
 
     private Entity entity;
     public static final Queue<Entity> entities = new ConcurrentLinkedQueue<>();
+    public static final Queue<Particle> particles = new ConcurrentLinkedQueue<>();
 
     public Game(int id) {
         this.id = id;
