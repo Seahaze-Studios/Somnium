@@ -24,6 +24,14 @@ public class Main extends StateBasedGame
 
 	public static Configuration config = new Configuration();
 
+	public static int width() {
+		return config.RESOLUTION_X;
+	}
+
+	public static int height() {
+		return config.RESOLUTION_Y;
+	}
+
     
 	public Main(String name) 
 	{

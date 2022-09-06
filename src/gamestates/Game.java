@@ -1,5 +1,6 @@
 package gamestates;
 
+import core.Main;
 import entities.Entity;
 import entities.units.player.Player;
 import org.newdawn.slick.GameContainer;
@@ -31,6 +32,7 @@ public class Game extends BasicGameState {
 
     public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
         entities.forEach(Entity::render);
+        g.drawLine(Main.width() / 2, 0, Main.width() / 2, Main.height());
     }
 
     public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
@@ -41,6 +43,7 @@ public class Game extends BasicGameState {
     public void enter(GameContainer gc, StateBasedGame sbg) throws SlickException {
         // This code happens when you enter a gameState.
         //entity.setPos(400, 400);
+        gc.getGraphics().setBackground(org.newdawn.slick.Color.black);
     }
 
     public void leave(GameContainer gc, StateBasedGame sbg) {
