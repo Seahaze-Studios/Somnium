@@ -1,50 +1,35 @@
-package entities;
+package graphics.particle;
 
+import entities.Entity;
 import gamestates.Game;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
-import org.newdawn.slick.Image;
-import org.newdawn.slick.SpriteSheet;
-import org.newdawn.slick.geom.Rectangle;
 import util.Vector2f;
 
-import java.io.Serializable;
-
-public abstract class Entity implements Serializable {
+public class Particle {
     protected Vector2f pos;
     protected Vector2f speed;
-    protected Image sprite;
-    protected SpriteSheet sheet;
-    protected transient Rectangle hitbox;
-    protected float width;
-    protected float height;
     protected GameContainer gc;
     protected Graphics g;
-    protected int frame;
 
-    protected Entity() {
+    public Particle(Vector2f pos) {
         this.gc = Game.getGc();
         this.g = gc.getGraphics();
-        pos = new Vector2f(0, 0);
-        speed = new Vector2f(0, 0);
-        width = 1;
-        height = 1;
-        init();
+        this.pos = pos;
     }
 
-    public void init() {
-        hitbox = new Rectangle(pos.x - width / 2, pos.y - height / 2, width, height);
+    public Particle(Vector2f pos, Vector2f speed) {
+        this.gc = Game.getGc();
+        this.g = gc.getGraphics();
+        this.pos = pos;
+        this.speed = speed;
     }
 
-    public void update() {
-        move();
-        Game.entities.forEach(e -> {
-           if (e.getHitbox().intersects(this.hitbox)) collide(e);
-        });
-    }
-
-    public void render() {
-        frame++;
+    public Particle(int x, int y) {
+        this.gc = Game.getGc();
+        this.g = gc.getGraphics();
+        this.pos.x = x;
+        this.pos.y = y;
     }
 
     public void applyForce(Vector2f f){speed.add(f);}
@@ -63,10 +48,6 @@ public abstract class Entity implements Serializable {
 
     public Vector2f getSpeed() {
         return speed;
-    }
-
-    public Rectangle getHitbox() {
-        return hitbox;
     }
 
     public void setPos(Vector2f pos) {
