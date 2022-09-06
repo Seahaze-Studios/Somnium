@@ -16,13 +16,15 @@ public final class KeyManager implements Predicate<Integer> {
 
 	private KeyManager() { throw new IllegalStateException("Utility class"); }
 
-	private final Player player;
+	private Player player1;
+	private Player player2;
 	private final Input input;
 	//private final GameMap map;
 	
 	public KeyManager(Input input, Game game) {
 		this.input = input;
-		this.player = new Player();
+		player1 = new Player();
+		player2 = new Player();
 		//this.map = new GameMap("lol");
 		/*this.player = game.getPlayer();
 		this.map = game.getOverworld();*/
@@ -30,6 +32,25 @@ public final class KeyManager implements Predicate<Integer> {
 	
 	public boolean test(Integer i) {
 		return input.isKeyDown(i);
+	}
+
+	public void keyDown(int key) {
+		boolean temp = false;
+		switch(key)	{
+			case Input.KEY_W ->	{
+				//for(){}
+
+			}
+			case Input.KEY_A ->	{
+
+			}
+			case Input.KEY_S -> {
+
+			}
+			case Input.KEY_D -> {
+
+			}
+		}
 	}
 
 	/*public void keyDown(int key) {
