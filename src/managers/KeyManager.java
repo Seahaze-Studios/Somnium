@@ -4,6 +4,7 @@ import entities.units.player.Player;
 import gamestates.Game;
 import map.GameMap;
 import org.newdawn.slick.Input;
+import org.newdawn.slick.geom.Shape;
 
 import java.util.HashSet;
 import java.util.List;
@@ -38,17 +39,37 @@ public final class KeyManager implements Predicate<Integer> {
 		boolean temp = false;
 		switch(key)	{
 			case Input.KEY_W ->	{
-				//for(){}
+				for(Shape s:MapManager.hitbox1){
+
+				}
+				for(Shape s:MapManager.hitbox2){
+
+				}
 
 			}
 			case Input.KEY_A ->	{
+				for(Shape s:MapManager.hitbox1){
 
+				}
+				for(Shape s:MapManager.hitbox2){
+
+				}
 			}
 			case Input.KEY_S -> {
+				for(Shape s:MapManager.hitbox1){
 
+				}
+				for(Shape s:MapManager.hitbox2){
+
+				}
 			}
 			case Input.KEY_D -> {
+				for(Shape s:MapManager.hitbox1){
 
+				}
+				for(Shape s:MapManager.hitbox2){
+
+				}
 			}
 		}
 	}
