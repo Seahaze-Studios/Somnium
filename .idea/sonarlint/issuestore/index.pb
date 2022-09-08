@@ -1,0 +1,35 @@
+
+@
+src/core/UI.java,2\b\2bb3753d6c60aaac0bcfe7fea344e327f5e53e20
+F
+src/util/Vector2d.java,0\e\0e4a903dd018ad0b4654f91c5cee557acae801a0
+F
+src/util/Vector2f.java,e\e\eeef49b3f6304daa41195112ef814c8ac681a971
+S
+#src/graphics/ui/menu/BasicMenu.java,c\f\cf2ee11eb55b4993cffa8ef25b3b104f2fbe89d8
+F
+src/map/tile/Tile.java,9\2\9277d2d7b4161358f2e1756e0c0d040bec827c3d
+P
+ src/map/tile/obstacle/Slope.java,f\5\f5e41859fdc6b7cc9f39ffa712a42c203106887a
+P
+ src/map/tile/obstacle/Block.java,a\4\a4c04cc9a2dd26a9c5eabd603062ee6d588cd3fc
+S
+#src/map/tile/obstacle/Obstacle.java,9\b\9b32ce0564900ac0ce128b25ba46f5b0efc6025a
+\
+,src/map/tile/interactable/hazard/Hazard.java,a\c\ac8c37999cb263f0e1eb20153a53c843bc3051d9
+Z
+*src/map/tile/interactable/hazard/Lava.java,1\e\1eb04c508d64e352b44c99fd25a739b5b5a3d6ca
+[
++src/map/tile/interactable/Interactable.java,4\a\4a7397390fea36d56e2173ebfe8f9f0acde25233
+[
++src/map/tile/interactable/hazard/Spike.java,7\f\7f54943dc33a3a843715a35c1e3a5cd930a130fd
+R
+"src/managers/AnimationManager.java,d\1\d103a9f2030cee0fb01420e4cebdba50f8e7d459
+H
+src/entities/Entity.java,7\7\77408e3b0917e084a14145fce18d7cd2f7eccc2d
+P
+ src/managers/DisplayManager.java,e\e\ee8afc168c9f7253472a04b1a7f389a5e9c8cb5e
+U
+%src/map/tile/interactable/Portal.java,7\e\7e4565dfd59c0136c4a0941b509888cc5e77dd4b
+^
+.src/map/tile/interactable/utility/Utility.java,9\b\9b0b2eb3088c94f1cb96e8555b1b0996aaa18b77
