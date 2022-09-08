@@ -4,6 +4,7 @@ package gamestates;
 
 import core.Main;
 import gamestates.types.AdvancedGameState;
+import managers.SoundManager;
 import org.lwjgl.opengl.GL11;
 import org.newdawn.slick.*;
 import org.newdawn.slick.state.StateBasedGame;
@@ -60,6 +61,7 @@ public class IntroCredit extends AdvancedGameState {
         g.setBackground(Color.white);
         logo.setImageColor(1, 1, 1, 1 * ((float) counter / (100 * Main.config.FRAMES_PER_SECOND / 60)));
         if (counter > 200 * Main.config.FRAMES_PER_SECOND / 60) logo.setImageColor(1, 1, 1, 1 * ((float) --counter2 / (100 * Main.config.FRAMES_PER_SECOND / 60)));
+        if (counter == 300) SoundManager.overrideBackgroundMusic(new Sound("res/audio/music/title.wav"));
         if (counter > 300 * Main.config.FRAMES_PER_SECOND / 60) {
             //sbg.enterState(Main.LOADING_ID, new FadeOutTransition(), new FadeInTransition());
             fade -= 3;
