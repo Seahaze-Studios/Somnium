@@ -1,10 +1,12 @@
 package gamestates;
 
+import core.Constants;
 import core.Main;
 import entities.Entity;
 import entities.units.player.Player;
 import gamestates.types.AdvancedGameState;
 import managers.KeyManager;
+import managers.MapManager;
 import managers.SoundManager;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -13,6 +15,7 @@ import org.newdawn.slick.Sound;
 import org.newdawn.slick.particles.Particle;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
+import org.newdawn.slick.tiled.TiledMap;
 
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
@@ -20,6 +23,8 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 public class Game extends AdvancedGameState {
     private final int id;
     private static GameContainer gc;
+
+    private static MapManager mapMan;
 
     private Entity entity;
     // Managers
@@ -39,6 +44,7 @@ public class Game extends AdvancedGameState {
         // This code happens when you enter a game state for the *first time.*
         gc.setShowFPS(true);
         this.gc = gc;
+        mapMan = new MapManager(Constants.LEVEL_1_ID);
         // Initialize Managers
         keyDown = new KeyManager(gc.getInput(), this);
         System.out.println("[VERBOSE] KeyManager initialized");
@@ -47,7 +53,8 @@ public class Game extends AdvancedGameState {
 
     public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
         entities.forEach(Entity::render);
-        g.drawLine(Main.width() / 2, 0, Main.width() / 2, Main.height());
+        //g.drawLine(Main.width() / 2, 0, Main.width() / 2, Main.height());
+        mapMan.render(g);
     }
 
     public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {

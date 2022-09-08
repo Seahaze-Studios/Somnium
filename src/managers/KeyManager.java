@@ -3,6 +3,7 @@ package managers;
 import entities.units.player.Player;
 import gamestates.Game;
 import map.GameMap;
+import map.tile.Tile;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.geom.Shape;
 
@@ -39,35 +40,35 @@ public final class KeyManager implements Predicate<Integer> {
 		boolean temp = false;
 		switch(key)	{
 			case Input.KEY_W ->	{
-				for(Shape s:MapManager.hitbox1){
+				for(Tile s:MapManager.mapL.getTileList()){
 
 				}
-				for(Shape s:MapManager.hitbox2){
+				for(Tile s:MapManager.mapL.getTileList())	{
 
 				}
 
 			}
 			case Input.KEY_A ->	{
-				for(Shape s:MapManager.hitbox1){
+				for(Tile s:MapManager.mapL.getTileList()){
 
 				}
-				for(Shape s:MapManager.hitbox2){
+				for(Tile s:MapManager.mapL.getTileList()){
 
 				}
 			}
 			case Input.KEY_S -> {
-				for(Shape s:MapManager.hitbox1){
+				for(Tile s:MapManager.mapL.getTileList()){
 
 				}
-				for(Shape s:MapManager.hitbox2){
+				for(Tile s:MapManager.mapL.getTileList()){
 
 				}
 			}
 			case Input.KEY_D -> {
-				for(Shape s:MapManager.hitbox1){
+				for(Tile s:MapManager.mapL.getTileList()){
 
 				}
-				for(Shape s:MapManager.hitbox2){
+				for(Tile s:MapManager.mapL.getTileList()){
 
 				}
 			}
