@@ -20,6 +20,7 @@ public class IntroCredit extends AdvancedGameState {
 
     private int counter = 0;
     private int counter2 = 100;
+    private int fade = 255;
 
     public IntroCredit(int id)
     {
@@ -59,7 +60,11 @@ public class IntroCredit extends AdvancedGameState {
         g.setBackground(Color.white);
         logo.setImageColor(1, 1, 1, 1 * ((float) counter / (100 * Main.config.FRAMES_PER_SECOND / 60)));
         if (counter > 200 * Main.config.FRAMES_PER_SECOND / 60) logo.setImageColor(1, 1, 1, 1 * ((float) --counter2 / (100 * Main.config.FRAMES_PER_SECOND / 60)));
-        if (counter > 300 * Main.config.FRAMES_PER_SECOND / 60) sbg.enterState(Main.LOADING_ID, new FadeOutTransition(), new FadeInTransition());
+        if (counter > 300 * Main.config.FRAMES_PER_SECOND / 60) {
+            //sbg.enterState(Main.LOADING_ID, new FadeOutTransition(), new FadeInTransition());
+            fade -= 3;
+            g.setBackground(new Color(fade, fade, fade));
+        }
         logo.drawCentered(Main.getScreenWidth() / 2, Main.getScreenHeight() / 2);
         super.render(gc, sbg, g);
     }

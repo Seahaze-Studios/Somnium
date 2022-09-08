@@ -1,14 +1,10 @@
 
-E
-src/core/Console.java,9\d\9d5481fbaa222edd7e7ae5f4f4c5f700501b0bb9
 @
 src/core/UI.java,2\b\2bb3753d6c60aaac0bcfe7fea344e327f5e53e20
 F
 src/util/Vector2d.java,0\e\0e4a903dd018ad0b4654f91c5cee557acae801a0
 F
 src/util/Vector2f.java,e\e\eeef49b3f6304daa41195112ef814c8ac681a971
-G
-src/core/Constants.java,4\9\499b05d514433296431f0625e1b08c422fc35866
 S
 #src/graphics/ui/menu/BasicMenu.java,c\f\cf2ee11eb55b4993cffa8ef25b3b104f2fbe89d8
 F
