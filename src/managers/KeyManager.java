@@ -13,7 +13,6 @@ import java.util.function.Predicate;
 public final class KeyManager implements Predicate<Integer> {
 	private static final float PLAYER_ACCELERATION = 1f;
 	public static final List<Integer> KEY_DOWN_LIST = List.of(Input.KEY_W, Input.KEY_S, Input.KEY_A, Input.KEY_D);
-	public static final List<Integer> AMOGUS_LIST = List.of(Input.KEY_A, Input.KEY_M, Input.KEY_O, Input.KEY_G, Input.KEY_U, Input.KEY_S);
 
 	private KeyManager() { throw new IllegalStateException("Utility class"); }
 

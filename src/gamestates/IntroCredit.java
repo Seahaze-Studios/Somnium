@@ -7,6 +7,8 @@ import gamestates.types.AdvancedGameState;
 import org.lwjgl.opengl.GL11;
 import org.newdawn.slick.*;
 import org.newdawn.slick.state.StateBasedGame;
+import org.newdawn.slick.state.transition.FadeInTransition;
+import org.newdawn.slick.state.transition.FadeOutTransition;
 
 import static org.lwjgl.opengl.GL11.GL_RENDERER;
 
@@ -57,7 +59,7 @@ public class IntroCredit extends AdvancedGameState {
         g.setBackground(Color.white);
         logo.setImageColor(1, 1, 1, 1 * ((float) counter / (100 * Main.config.FRAMES_PER_SECOND / 60)));
         if (counter > 200 * Main.config.FRAMES_PER_SECOND / 60) logo.setImageColor(1, 1, 1, 1 * ((float) --counter2 / (100 * Main.config.FRAMES_PER_SECOND / 60)));
-        if (counter > 300 * Main.config.FRAMES_PER_SECOND / 60) sbg.enterState(Main.GAME_ID);
+        if (counter > 300 * Main.config.FRAMES_PER_SECOND / 60) sbg.enterState(Main.LOADING_ID, new FadeOutTransition(), new FadeInTransition());
         logo.drawCentered(Main.getScreenWidth() / 2, Main.getScreenHeight() / 2);
         super.render(gc, sbg, g);
     }
