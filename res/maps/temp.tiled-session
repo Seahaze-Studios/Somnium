@@ -1,0 +1,48 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "",
+    "expandedProjectPaths": [
+    ],
+    "fileStates": {
+        "temp.tsx": {
+            "scaleInEditor": 1
+        },
+        "temp1.tmx": {
+            "scale": 0.5,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 788,
+                "y": 530
+            }
+        },
+        "temp2.tmx": {
+            "scale": 0.5,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 578,
+                "y": 658
+            }
+        }
+    },
+    "last.imagePath": "C:/Users/AH458/Pictures",
+    "map.lastUsedFormat": "tmx",
+    "map.layerDataFormat": null,
+    "map.width": 15,
+    "openFiles": [
+    ],
+    "project": "temp.tiled-project",
+    "property.type": "string",
+    "recentFiles": [
+        "temp.tsx",
+        "temp1.tmx",
+        "temp2.tmx"
+    ],
+    "tileset.lastUsedFormat": "tsx",
+    "tileset.tileSize": {
+        "height": 64,
+        "width": 64
+    }
+}
