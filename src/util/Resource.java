@@ -24,6 +24,7 @@ public record Resource(File file) implements DeferredResource {
                 case "png":
                     ImageManager.Images.put(split[0], new Image(path));
                     break;
+                case "wav":
                 case "ogg":
                     SoundManager.Sounds.put(split[0], new Sound(path));
                     break;
