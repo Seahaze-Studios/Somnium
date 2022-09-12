@@ -20,6 +20,9 @@ public abstract class AdvancedGameState extends BasicGameState {
         });
     }
 
+    public void debugRender(GameContainer gc){
+    }
+
     @Override
     public void keyPressed(int key, char c) {
         if (key == Input.KEY_F2) {
@@ -40,9 +43,10 @@ public abstract class AdvancedGameState extends BasicGameState {
 
             //Main.menus.add(new DialogBox(700, 400, "Screenshot", "Screenshot saved in screenshots/ folder.", new CloseButton("Got it")));
         }
-//        if (key == Input.KEY_F3) {
-//            Main.debug = !Main.debug;
-//        }
+        if (key == Input.KEY_F3) {
+            Main.debug = !Main.debug;
+
+        }
 //        if (key == Input.KEY_ESCAPE && !Main.paused) {
 //            Main.menus.add(new PauseMenu());
 //            Main.paused = true;

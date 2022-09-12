@@ -44,75 +44,65 @@ public final class KeyManager implements Predicate<Integer> {
 		boolean temp = false;
 		switch(key)	{
 			case Input.KEY_W ->	{
-				playerL.applyForce(new Vector2f(0, -Constants.PLAYER_MAX_SPEED));
-				playerR.applyForce(new Vector2f(0, -Constants.PLAYER_MAX_SPEED));
-				playerL.move();
-				playerR.move();
+				playerL.move(new Vector2f(0, -Constants.PLAYER_MAX_SPEED));
+				playerR.move(new Vector2f(0, -Constants.PLAYER_MAX_SPEED));
+
 				for(Tile s:MapManager.mapL.getTileList()){
 					if(playerL.getHitbox().intersects(s.getHitbox()))	{
-						playerL.applyForce(new Vector2f(0, Constants.PLAYER_MAX_SPEED));
-						playerL.move();
+						playerL.move(new Vector2f(0, Constants.PLAYER_MAX_SPEED));
+
 					}
 				}
 				for(Tile s:MapManager.mapR.getTileList())	{
-					if(playerL.getHitbox().intersects(s.getHitbox()))	{
-						playerR.applyForce(new Vector2f(0, Constants.PLAYER_MAX_SPEED));
-						playerR.move();
+					if(playerR.getHitbox().intersects(s.getHitbox()))	{
+						playerR.move(new Vector2f(0, Constants.PLAYER_MAX_SPEED));
+
 					}
 				}
 
 			}
 			case Input.KEY_A ->	{
-				playerL.applyForce(new Vector2f(-Constants.PLAYER_MAX_SPEED, 0));
-				playerR.applyForce(new Vector2f(-Constants.PLAYER_MAX_SPEED, 0));
-				playerL.move();
-				playerR.move();
+				playerL.move(new Vector2f(-Constants.PLAYER_MAX_SPEED, 0));
+				playerR.move(new Vector2f(-Constants.PLAYER_MAX_SPEED, 0));
+
 				for(Tile s:MapManager.mapL.getTileList()){
 					if(playerL.getHitbox().intersects(s.getHitbox()))	{
-						playerL.applyForce(new Vector2f(Constants.PLAYER_MAX_SPEED, 0));
-						playerL.move();
+						playerL.move(new Vector2f(Constants.PLAYER_MAX_SPEED, 0));
 					}
 				}
 				for(Tile s:MapManager.mapR.getTileList()){
-					if(playerL.getHitbox().intersects(s.getHitbox()))	{
-						playerR.applyForce(new Vector2f(Constants.PLAYER_MAX_SPEED, 0));
-						playerR.move();
+					if(playerR.getHitbox().intersects(s.getHitbox()))	{
+						playerR.move(new Vector2f(Constants.PLAYER_MAX_SPEED, 0));
+
 					}
 				}
 			}
 			case Input.KEY_S -> {
-				playerL.applyForce(new Vector2f(0, Constants.PLAYER_MAX_SPEED));
-				playerR.applyForce(new Vector2f(0, Constants.PLAYER_MAX_SPEED));
-				playerL.move();
-				playerR.move();
+				playerL.move(new Vector2f(0, Constants.PLAYER_MAX_SPEED));
+				playerR.move(new Vector2f(0, Constants.PLAYER_MAX_SPEED));
+
 				for(Tile s:MapManager.mapL.getTileList()){
 					if(playerL.getHitbox().intersects(s.getHitbox())) {
-						playerL.applyForce(new Vector2f(0, -Constants.PLAYER_MAX_SPEED));
-						playerL.move();
+						playerL.move(new Vector2f(0, -Constants.PLAYER_MAX_SPEED));
 					}
 				}
 				for(Tile s:MapManager.mapR.getTileList()){
-					if(playerL.getHitbox().intersects(s.getHitbox()))	{
-						playerR.applyForce(new Vector2f(0, -Constants.PLAYER_MAX_SPEED));
-						playerR.move();
+					if(playerR.getHitbox().intersects(s.getHitbox()))	{
+						playerR.move(new Vector2f(0, -Constants.PLAYER_MAX_SPEED));
 					}
 				}
 			}
 			case Input.KEY_D -> {
-				playerL.applyForce(new Vector2f(Constants.PLAYER_MAX_SPEED, 0));
-				playerR.applyForce(new Vector2f(Constants.PLAYER_MAX_SPEED, 0));
-				playerL.move();
-				playerR.move();
+				playerL.move(new Vector2f(Constants.PLAYER_MAX_SPEED, 0));
+				playerR.move(new Vector2f(Constants.PLAYER_MAX_SPEED, 0));
 				for(Tile s:MapManager.mapL.getTileList()){
 					if(playerL.getHitbox().intersects(s.getHitbox()))	{
-						playerL.applyForce(new Vector2f(-Constants.PLAYER_MAX_SPEED, 0));
-						playerL.move();
+						playerL.move(new Vector2f(-Constants.PLAYER_MAX_SPEED, 0));
 					}
 				}
 				for(Tile s:MapManager.mapR.getTileList()){
-					if(playerL.getHitbox().intersects(s.getHitbox()))	{
-						playerR.applyForce(new Vector2f(-Constants.PLAYER_MAX_SPEED, 0));
-						playerR.move();
+					if(playerR.getHitbox().intersects(s.getHitbox()))	{
+						playerR.move(new Vector2f(-Constants.PLAYER_MAX_SPEED, 0));
 					}
 				}
 			}

@@ -10,6 +10,7 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Polygon;
 import org.newdawn.slick.geom.Shape;
+import util.DrawUtilities;
 
 import java.util.ArrayList;
 
@@ -42,6 +43,9 @@ public class MapManager {
         mapR = m2;
         generateHitboxes(mapL);
         generateHitboxes(mapR);
+        for(Tile t:mapR.getTileList())  {
+            t.getHitbox().setX(t.getHitbox().getX() + Main.getScreenWidth()/2);
+        }
     }
     private void generateHitboxes(GameMap map) {
         for(int i = 0; i < Constants.MAP_WIDTH; i++)    {
@@ -53,7 +57,7 @@ public class MapManager {
 
     private void generateTile(int i, int j, GameMap map) {
         if(map.getTileId(i,j,0) != 0)   {
-            if(map.getTileProperty(map.getTileId(i,j,0), "type", "false").equals("true"))  {
+            if(map.getTileProperty(map.getTileId(i,j, 0), "type", "false").equals("block"))  {
                 map.getTileList().add(new Block(i * Constants.TILE_SIZE, j * Constants.TILE_SIZE));
             }
         }
@@ -66,5 +70,14 @@ public class MapManager {
     public void render(Graphics g)    {
         mapL.render(0,0);
         mapR.render(Main.getScreenWidth()/2, 0);
+    }
+
+    public void debugRender(Graphics g) {
+        for(Tile t: mapL.getTileList()) {
+            g.fill(t.getHitbox());
+        }
+        for(Tile t: mapR.getTileList()) {
+            g.fill(t.getHitbox());
+        }
     }
 }

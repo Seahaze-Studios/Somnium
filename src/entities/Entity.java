@@ -50,14 +50,19 @@ public abstract class Entity implements Serializable {
     }
 
     public void render() {
-        frame++;
+        sprite.drawCentered(pos.getX(), pos.getY());
     }
 
     public void applyForce(Vector2f f){speed.add(f);}
 
     public void move() {
-        pos.add(speed);
+        move(speed);
 
+    }
+    public void move(Vector2f disp)  {
+        pos.add(disp);
+        hitbox.setX(hitbox.getX() + disp.x);
+        hitbox.setY(hitbox.getY() + disp.y);
     }
 
     public void collide(Entity e) {

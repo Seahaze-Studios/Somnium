@@ -29,7 +29,7 @@ public class Main extends StateBasedGame
 	public static LoadingScreen loading;
 	public static TitleScreen title;
 	public static Game game;
-	
+	public static boolean debug;
 	public static final UI UI = new UI();
 	public static TrueTypeFont font;
 	public static Fonts fonts;
@@ -68,11 +68,12 @@ public class Main extends StateBasedGame
 
 	public void initStatesList(GameContainer gc) throws SlickException 
 	{
+		addState(game);
 		//addState(test);
 		addState(intro);
 		addState(loading);
 		addState(title);
-		addState(game);
+
 	}
 
 	public static void main(String[] args) 
@@ -87,6 +88,7 @@ public class Main extends StateBasedGame
 
 		try 
 		{
+			debug = false;
 			appgc = new AppGameContainer(new Main("Somnium"));
 			config.init(appgc);
 			System.setProperty("org.lwjgl.opengl.Window.undecorated", "true");

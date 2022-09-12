@@ -8,17 +8,17 @@ import gamestates.types.AdvancedGameState;
 import managers.KeyManager;
 import managers.MapManager;
 import managers.SoundManager;
-import org.newdawn.slick.GameContainer;
-import org.newdawn.slick.Graphics;
-import org.newdawn.slick.SlickException;
-import org.newdawn.slick.Sound;
+import org.newdawn.slick.*;
 import org.newdawn.slick.particles.Particle;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.tiled.TiledMap;
+import util.DrawUtilities;
 
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
+
+import static core.Main.debug;
 
 public class Game extends AdvancedGameState {
     private final int id;
@@ -58,7 +58,7 @@ public class Game extends AdvancedGameState {
 
     public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
         // This code happens when you enter a game state for the *first time.*
-        gc.setShowFPS(true);
+        gc.setShowFPS(debug);
         this.gc = gc;
         plrL = new Player();
         plrR = new Player();
@@ -71,8 +71,13 @@ public class Game extends AdvancedGameState {
 
     public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
         entities.forEach(Entity::render);
+        plrL.render();
+        plrR.render();
         //g.drawLine(Main.width() / 2, 0, Main.width() / 2, Main.height());
         mapMan.render(g);
+        if(debug) {
+            debugRender(gc);
+        }
     }
 
     public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
@@ -96,7 +101,7 @@ public class Game extends AdvancedGameState {
 
 
     public void keyPressed(int key, char c) {
-
+        super.keyPressed(key, c);
     }
 
     public void mousePressed(int button, int x, int y) {
@@ -111,6 +116,18 @@ public class Game extends AdvancedGameState {
 
     public static GameContainer getGc() {
         return gc;
+    }
+
+    public void debugRender(GameContainer gc)   {
+        gc.getGraphics().setColor(new Color(255,255,0,0.5f));
+        mapMan.debugRender(gc.getGraphics());
+        gc.getGraphics().fill(plrL.getHitbox());
+        gc.getGraphics().fill(plrR.getHitbox());
+        gc.getGraphics().setColor(Color.yellow);
+        DrawUtilities.drawStringCentered(gc.getGraphics(), "DEBUG MODE", 1000, 100);
+        gc.getGraphics().drawString( "PLR_R @ " + plrR.getPos().x + ", " + plrR.getPos().y, 0,100);
+        gc.getGraphics().drawString("PLR_L @ " + plrL.getPos().x + ", " + plrL.getPos().y, 0,130);
+        gc.getGraphics().drawString("hitboxes (" + plrL.getHitbox().getX() + ", " + plrL.getHitbox().getY() + ")", 0,50);
     }
 
     public Player getPlayer() {
