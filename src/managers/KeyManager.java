@@ -1,11 +1,13 @@
 package managers;
 
+import core.Constants;
 import entities.units.player.Player;
 import gamestates.Game;
 import map.GameMap;
 import map.tile.Tile;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.geom.Shape;
+import util.Vector2f;
 
 import java.util.HashSet;
 import java.util.List;
@@ -17,15 +19,18 @@ public final class KeyManager implements Predicate<Integer> {
 
 	private KeyManager() { throw new IllegalStateException("Utility class"); }
 
-	private Player player1;
-	private Player player2;
+	private Player playerL;
+	private Player playerR;
+
+	private MapManager mapMan;
 	private final Input input;
 	//private final GameMap map;
 	
 	public KeyManager(Input input, Game game) {
 		this.input = input;
-		player1 = new Player();
-		player2 = new Player();
+		playerL = game.getPlayerLeft();
+		playerR = game.getPlayerRight();
+		this.mapMan = game.getMapMan();
 		//this.map = new GameMap("lol");
 		/*this.player = game.getPlayer();
 		this.map = game.getOverworld();*/
@@ -39,36 +44,76 @@ public final class KeyManager implements Predicate<Integer> {
 		boolean temp = false;
 		switch(key)	{
 			case Input.KEY_W ->	{
+				playerL.applyForce(new Vector2f(0, -Constants.PLAYER_MAX_SPEED));
+				playerR.applyForce(new Vector2f(0, -Constants.PLAYER_MAX_SPEED));
+				playerL.move();
+				playerR.move();
 				for(Tile s:MapManager.mapL.getTileList()){
-
+					if(playerL.getHitbox().intersects(s.getHitbox()))	{
+						playerL.applyForce(new Vector2f(0, Constants.PLAYER_MAX_SPEED));
+						playerL.move();
+					}
 				}
-				for(Tile s:MapManager.mapL.getTileList())	{
-
+				for(Tile s:MapManager.mapR.getTileList())	{
+					if(playerL.getHitbox().intersects(s.getHitbox()))	{
+						playerR.applyForce(new Vector2f(0, Constants.PLAYER_MAX_SPEED));
+						playerR.move();
+					}
 				}
 
 			}
 			case Input.KEY_A ->	{
+				playerL.applyForce(new Vector2f(-Constants.PLAYER_MAX_SPEED, 0));
+				playerR.applyForce(new Vector2f(-Constants.PLAYER_MAX_SPEED, 0));
+				playerL.move();
+				playerR.move();
 				for(Tile s:MapManager.mapL.getTileList()){
-
+					if(playerL.getHitbox().intersects(s.getHitbox()))	{
+						playerL.applyForce(new Vector2f(Constants.PLAYER_MAX_SPEED, 0));
+						playerL.move();
+					}
 				}
-				for(Tile s:MapManager.mapL.getTileList()){
-
+				for(Tile s:MapManager.mapR.getTileList()){
+					if(playerL.getHitbox().intersects(s.getHitbox()))	{
+						playerR.applyForce(new Vector2f(Constants.PLAYER_MAX_SPEED, 0));
+						playerR.move();
+					}
 				}
 			}
 			case Input.KEY_S -> {
+				playerL.applyForce(new Vector2f(0, Constants.PLAYER_MAX_SPEED));
+				playerR.applyForce(new Vector2f(0, Constants.PLAYER_MAX_SPEED));
+				playerL.move();
+				playerR.move();
 				for(Tile s:MapManager.mapL.getTileList()){
-
+					if(playerL.getHitbox().intersects(s.getHitbox())) {
+						playerL.applyForce(new Vector2f(0, -Constants.PLAYER_MAX_SPEED));
+						playerL.move();
+					}
 				}
-				for(Tile s:MapManager.mapL.getTileList()){
-
+				for(Tile s:MapManager.mapR.getTileList()){
+					if(playerL.getHitbox().intersects(s.getHitbox()))	{
+						playerR.applyForce(new Vector2f(0, -Constants.PLAYER_MAX_SPEED));
+						playerR.move();
+					}
 				}
 			}
 			case Input.KEY_D -> {
+				playerL.applyForce(new Vector2f(Constants.PLAYER_MAX_SPEED, 0));
+				playerR.applyForce(new Vector2f(Constants.PLAYER_MAX_SPEED, 0));
+				playerL.move();
+				playerR.move();
 				for(Tile s:MapManager.mapL.getTileList()){
-
+					if(playerL.getHitbox().intersects(s.getHitbox()))	{
+						playerL.applyForce(new Vector2f(-Constants.PLAYER_MAX_SPEED, 0));
+						playerL.move();
+					}
 				}
-				for(Tile s:MapManager.mapL.getTileList()){
-
+				for(Tile s:MapManager.mapR.getTileList()){
+					if(playerL.getHitbox().intersects(s.getHitbox()))	{
+						playerR.applyForce(new Vector2f(-Constants.PLAYER_MAX_SPEED, 0));
+						playerR.move();
+					}
 				}
 			}
 		}

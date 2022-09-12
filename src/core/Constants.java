@@ -11,4 +11,6 @@ public final class Constants {
 
     public static final int LEVEL_1_ID = 1;
 
+    public static final float PLAYER_MAX_SPEED = 10;
+
 }

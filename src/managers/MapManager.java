@@ -25,7 +25,15 @@ public class MapManager {
     }
 
     public MapManager(int id) throws SlickException {
-        loadMaps(new GameMap("res/maps/temp1.tmx"), new GameMap("res/maps/temp2.tmx"));
+        loadStage(id);
+    }
+
+    public void loadStage(int id) throws SlickException {
+        switch(id)  {
+            case Constants.LEVEL_1_ID -> {
+                loadMaps(new GameMap("res/maps/temp1.tmx"), new GameMap("res/maps/temp2.tmx"));
+            }
+        }
 
     }
 

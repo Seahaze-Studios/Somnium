@@ -24,6 +24,8 @@ public class Game extends AdvancedGameState {
     private final int id;
     private static GameContainer gc;
 
+
+
     private static MapManager mapMan;
 
     private Entity entity;
@@ -32,6 +34,20 @@ public class Game extends AdvancedGameState {
     public static Sound music;
     public static final Queue<Entity> entities = new ConcurrentLinkedQueue<>();
     public static final Queue<Particle> particles = new ConcurrentLinkedQueue<>();
+
+    public Player getPlayerLeft() {
+        return plrL;
+    }
+
+    public Player getPlayerRight() {
+        return plrR;
+    }
+    public static MapManager getMapMan() {
+        return mapMan;
+    }
+
+    private Player plrL;
+    private Player plrR;
 
     public void keyInput() { KeyManager.KEY_DOWN_LIST.stream().filter(keyDown).forEach(keyDown::keyDown); }
 
@@ -44,6 +60,8 @@ public class Game extends AdvancedGameState {
         // This code happens when you enter a game state for the *first time.*
         gc.setShowFPS(true);
         this.gc = gc;
+        plrL = new Player();
+        plrR = new Player();
         mapMan = new MapManager(Constants.LEVEL_1_ID);
         // Initialize Managers
         keyDown = new KeyManager(gc.getInput(), this);
@@ -59,7 +77,8 @@ public class Game extends AdvancedGameState {
 
     public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
         keyInput();
-
+        plrL.update();
+        plrR.update();
         // This is where you put your game's logic that executes each frame that isn't about drawing
         entities.forEach(Entity::update);
     }

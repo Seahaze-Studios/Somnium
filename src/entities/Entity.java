@@ -1,10 +1,7 @@
 package entities;
 
 import gamestates.Game;
-import org.newdawn.slick.GameContainer;
-import org.newdawn.slick.Graphics;
-import org.newdawn.slick.Image;
-import org.newdawn.slick.SpriteSheet;
+import org.newdawn.slick.*;
 import org.newdawn.slick.geom.Rectangle;
 import util.Vector2f;
 
@@ -22,7 +19,7 @@ public abstract class Entity implements Serializable {
     protected Graphics g;
     protected int frame;
 
-    protected Entity() {
+    protected Entity() throws SlickException {
         this.gc = Game.getGc();
         this.g = gc.getGraphics();
         pos = new Vector2f(0, 0);
@@ -31,8 +28,17 @@ public abstract class Entity implements Serializable {
         height = 1;
         init();
     }
+    protected Entity(float x, float y) throws SlickException {
+        this.gc = Game.getGc();
+        this.g = gc.getGraphics();
+        pos = new Vector2f(x, y);
+        speed = new Vector2f(0, 0);
+        width = 1;
+        height = 1;
+        init();
+    }
 
-    public void init() {
+    public void init() throws SlickException {
         hitbox = new Rectangle(pos.x - width / 2, pos.y - height / 2, width, height);
     }
 
@@ -51,6 +57,7 @@ public abstract class Entity implements Serializable {
 
     public void move() {
         pos.add(speed);
+
     }
 
     public void collide(Entity e) {
