@@ -7,10 +7,10 @@ import util.Vector2f;
 
 public class Player extends Unit {
 
-    public Player(int x, int y) {
+    public Player(int x, int y) throws SlickException {
         super(x,y);
     }
-    public Player() {
+    public Player() throws SlickException {
         super();
     }
 

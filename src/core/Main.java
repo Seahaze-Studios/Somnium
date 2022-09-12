@@ -1,6 +1,7 @@
 package core;
 
 import gamestates.*;
+import graphics.ui.UIElement;
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
@@ -10,6 +11,8 @@ import org.newdawn.slick.state.StateBasedGame;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
+import java.util.AbstractQueue;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class Main extends StateBasedGame 
 {

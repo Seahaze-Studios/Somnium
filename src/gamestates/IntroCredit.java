@@ -41,6 +41,7 @@ public class IntroCredit extends AdvancedGameState {
         Main.sbg = sbg;
         String test = GL11.glGetString(GL_RENDERER);
         System.out.println(test);
+        logo = new Image("res/ui/start/logo.png");
     }
 
     @Override // Begin file loading upon entering the gamestate
@@ -67,6 +68,10 @@ public class IntroCredit extends AdvancedGameState {
             fade -= 3;
             g.setBackground(new Color(fade, fade, fade));
         }
+        if (counter > 500) {
+            logo.drawCentered(Main.width() / 2, Main.height() / 2);
+        }
+
         logo.drawCentered(Main.getScreenWidth() / 2, Main.getScreenHeight() / 2);
         super.render(gc, sbg, g);
     }

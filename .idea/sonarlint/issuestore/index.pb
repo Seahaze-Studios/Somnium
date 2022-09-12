@@ -1,12 +1,8 @@
 
-@
-src/core/UI.java,2\b\2bb3753d6c60aaac0bcfe7fea344e327f5e53e20
 F
 src/util/Vector2d.java,0\e\0e4a903dd018ad0b4654f91c5cee557acae801a0
 F
 src/util/Vector2f.java,e\e\eeef49b3f6304daa41195112ef814c8ac681a971
-S
-#src/graphics/ui/menu/BasicMenu.java,c\f\cf2ee11eb55b4993cffa8ef25b3b104f2fbe89d8
 F
 src/map/tile/Tile.java,9\2\9277d2d7b4161358f2e1756e0c0d040bec827c3d
 P
@@ -25,8 +21,6 @@ Z
 +src/map/tile/interactable/hazard/Spike.java,7\f\7f54943dc33a3a843715a35c1e3a5cd930a130fd
 R
 "src/managers/AnimationManager.java,d\1\d103a9f2030cee0fb01420e4cebdba50f8e7d459
-H
-src/entities/Entity.java,7\7\77408e3b0917e084a14145fce18d7cd2f7eccc2d
 P
  src/managers/DisplayManager.java,e\e\ee8afc168c9f7253472a04b1a7f389a5e9c8cb5e
 U

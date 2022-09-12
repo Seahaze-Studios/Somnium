@@ -1,9 +1,7 @@
-package graphics.ui.menu;/*package graphics.ui.menu;
+package graphics.ui.menu;
 
 import core.Main;
 import graphics.ui.UIElement;
-import graphics.ui.UserInterfaceable;
-import managers.SoundManager;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Font;
 import org.newdawn.slick.GameContainer;
@@ -13,7 +11,7 @@ import util.DrawUtilities;
 
 import java.util.Map;
 
-public abstract class BasicMenu extends UIElement {
+public abstract class Menu implements UIElement {
     public int getWidth() {
         return width;
     }
@@ -39,15 +37,15 @@ public abstract class BasicMenu extends UIElement {
     protected boolean initialPlay = false;
     protected Map<String, Font> fonts;
 
-    protected BasicMenu(int width, int height) {
+    protected Menu(int width, int height) {
         this.width = width;
         this.height = height;
-        this.x = Main.RESOLUTION_X / 2;
-        this.y = Main.RESOLUTION_Y / 2;
+        this.x = Main.width() / 2;
+        this.y = Main.height() / 2;
         this.initializeFonts();
     }
 
-    protected BasicMenu(int x, int y, int width, int height) {
+    protected Menu(int x, int y, int width, int height) {
         this.width = width;
         this.height = height;
         this.x = x;
@@ -56,12 +54,13 @@ public abstract class BasicMenu extends UIElement {
     }
 
     @Override
-    public void render(Graphics g, int mouseX, int mouseY) {
+    public void render(GameContainer gc) {
+        Graphics g = gc.getGraphics();
         if (!show) return;
-        if (!initialPlay) {
-            SoundManager.playSoundEffect("ping");
-            this.initialPlay = true;
-        }
+//        if (!initialPlay) {
+//            SoundManager.playSoundEffect("ping");
+//            this.initialPlay = true;
+//        }
         g.setColor(new Color(0, 0, 0, 170));
         DrawUtilities.fillShapeCentered(g, new RoundedRectangle(0, 0, width, height, RoundedRectangle.ALL), x, y);
         g.setColor(new Color(219, 202, 106));
@@ -76,9 +75,8 @@ public abstract class BasicMenu extends UIElement {
     public void toggle() { this.show ^= true; }
     public void open() { this.show = true; }
 
-    public void remove() { Main.menus.remove(this); }
+    public void remove() { Main.UI.menus.remove(this); }
 
     protected abstract void subrender(Graphics g);
     protected abstract void initializeFonts();
 }
-*/

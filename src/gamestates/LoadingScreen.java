@@ -64,11 +64,9 @@ public class LoadingScreen extends AdvancedGameState {
     public void init(GameContainer gc, StateBasedGame sbg) throws SlickException
     {
         gc.setShowFPS(false);
-        Main.fonts = new Fonts();
         try {
-            var temp = java.awt.Font.createFont(java.awt.Font.TRUETYPE_FONT, new File("res/font/Aileron-Light.otf")).deriveFont(java.awt.Font.PLAIN, 20);
-            Main.font = new TrueTypeFont(temp, true);
-            gc.setDefaultFont(new TrueTypeFont(temp, true));
+            Main.fonts = new Fonts();
+            gc.setDefaultFont(new TrueTypeFont(Main.fonts.generator.deriveFont(java.awt.Font.PLAIN, 20), true));
         } catch (IOException | FontFormatException e) {
             e.printStackTrace();
         }
