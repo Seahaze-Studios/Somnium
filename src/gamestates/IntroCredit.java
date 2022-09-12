@@ -70,7 +70,8 @@ public class IntroCredit extends AdvancedGameState {
             g.setBackground(new Color(fade, fade, fade));
         }
         if (counter > 500) {
-            titleLogo.drawCentered(Main.width() / 2, Main.height() / 2);
+            titleLogo.setImageColor(255, 255, 255, 1);
+            titleLogo.getScaledCopy(0.66f).drawCentered(Main.width() / 2, Main.height() / 2);
         }
 
         logo.drawCentered(Main.getScreenWidth() / 2, Main.getScreenHeight() / 2);

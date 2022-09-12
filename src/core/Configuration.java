@@ -27,8 +27,8 @@ public final class Configuration {
     public Configuration() {}
 
     public void init(AppGameContainer appgc) {
-        RESOLUTION_X = appgc.getScreenWidth();
-        RESOLUTION_Y = appgc.getScreenHeight();
+        RESOLUTION_X = 1920;
+        RESOLUTION_Y = 1080;
         FRAMES_PER_SECOND = 60;
         VSYNC = false;
         System.out.println(RESOLUTION_X + " " + RESOLUTION_Y +  " " + FRAMES_PER_SECOND + " " + VSYNC);
