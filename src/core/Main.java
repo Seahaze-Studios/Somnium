@@ -20,8 +20,8 @@ public class Main extends StateBasedGame
 	private static AppGameContainer appgc;
 
 	public static final int TEST_ID = 0;
-    public static final int INTRO_ID  = 1;
-	public static final int LOADING_ID = 2;
+	public static final int LOADING_ID = 1;
+    public static final int INTRO_ID  = 2;
 	public static final int TITLE_ID = 3;
 	public static final int GAME_ID = 4;
 	public static TestState test;
@@ -49,8 +49,8 @@ public class Main extends StateBasedGame
 	{
 		super(name);
 		test = new TestState(TEST_ID);
-		intro = new IntroCredit(INTRO_ID);
 		loading = new LoadingScreen(LOADING_ID);
+		intro = new IntroCredit(INTRO_ID);
 		title = new TitleScreen(TITLE_ID);
 		game = new Game(GAME_ID);
 	}
@@ -69,8 +69,8 @@ public class Main extends StateBasedGame
 	public void initStatesList(GameContainer gc) throws SlickException 
 	{
 		//addState(test);
-		addState(intro);
 		addState(loading);
+		addState(intro);
 		addState(title);
 		addState(game);
 	}

@@ -63,16 +63,17 @@ public class IntroCredit extends AdvancedGameState {
         g.setBackground(Color.white);
         logo.setImageColor(1, 1, 1, 1 * ((float) counter / (100 * Main.config.FRAMES_PER_SECOND / 60)));
         if (counter > 200 * Main.config.FRAMES_PER_SECOND / 60) logo.setImageColor(1, 1, 1, 1 * ((float) --counter2 / (100 * Main.config.FRAMES_PER_SECOND / 60)));
-        if (counter == 300) SoundManager.overrideBackgroundMusic(new Sound("res/audio/music/title.wav"));
+        if (counter == 300) SoundManager.playBackgroundMusic("title");
         if (counter > 300 * Main.config.FRAMES_PER_SECOND / 60) {
             //sbg.enterState(Main.LOADING_ID, new FadeOutTransition(), new FadeInTransition());
             fade -= 3;
             g.setBackground(new Color(fade, fade, fade));
         }
-        if (counter > 500) {
-            titleLogo.setImageColor(255, 255, 255, 1);
+        if (counter > 860 * Main.config.FRAMES_PER_SECOND / 60) {
+            titleLogo.setImageColor(1, 1, 1, (counter - 860 <= 40 ? (((float) counter - 860)/40) : (((960 - (float) counter)/40))));
             titleLogo.getScaledCopy(0.66f).drawCentered(Main.width() / 2, Main.height() / 2);
         }
+        //if (counter > 960) sbg.enterState(Main.TITLE_ID);
 
         logo.drawCentered(Main.getScreenWidth() / 2, Main.getScreenHeight() / 2);
         super.render(gc, sbg, g);

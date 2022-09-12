@@ -79,7 +79,7 @@ public class LoadingScreen extends AdvancedGameState {
 
     @Override // Begin file loading upon entering the gamestate
     public void enter(GameContainer gc, StateBasedGame sbg) throws SlickException {
-        SoundManager.overrideBackgroundMusic(music);
+        //SoundManager.overrideBackgroundMusic(music);
 
         // Set Loading List to Deferred
         LoadingList.setDeferredLoading(true);
@@ -110,7 +110,7 @@ public class LoadingScreen extends AdvancedGameState {
         // When loading is completed, automatically move to start menu
         else {
             // TextManager.initialize();
-            sbg.enterState(Main.TITLE_ID);
+            sbg.enterState(Main.INTRO_ID);
             System.out.println("Leaving Loading");
         }
     }
@@ -133,17 +133,17 @@ public class LoadingScreen extends AdvancedGameState {
 
        // background.renderPre(g, PERCENT_LOADED);
 
-        DrawUtilities.drawImageCentered(g, logo, Main.getScreenWidth() / 2, Main.getScreenHeight() / 3);
-        DrawUtilities.drawStringCentered(g, "Version " + Constants.VERSION, Main.getScreenWidth() / 2, Main.getScreenHeight() / 3 - 200);
+        //DrawUtilities.drawImageCentered(g, logo, Main.getScreenWidth() / 2, Main.getScreenHeight() / 3);
+        //DrawUtilities.drawStringCentered(g, "Version " + Constants.VERSION, Main.getScreenWidth() / 2, Main.getScreenHeight() / 3 - 200);
         g.setBackground(Color.black);
         //g.setBackground(new Color((int) (167 * PERCENT_LOADED), (int) (231 * PERCENT_LOADED), (int) (255 * PERCENT_LOADED)));
 
         // max loading bar
-        g.setColor(new Color(100, 75, 2));
+        g.setColor(new Color(0, 0, 0));
         g.fill(new RoundedRectangle(BAR_X, BAR_Y, BAR_WIDTH, BAR_HEIGHT, RoundedRectangle.ALL));
 
         // current loaded
-        g.setColor(new Color(255, 230, 2));
+        g.setColor(new Color(255, 255, 255));
         g.fill(new RoundedRectangle(BAR_X, BAR_Y, BAR_WIDTH * PERCENT_LOADED, BAR_HEIGHT, RoundedRectangle.ALL));
 
         // white outline
