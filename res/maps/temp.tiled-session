@@ -3,19 +3,21 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "",
+    "activeFile": "temp2.tmx",
     "expandedProjectPaths": [
+        "."
     ],
     "fileStates": {
         "temp.tsx": {
+            "scaleInDock": 1,
             "scaleInEditor": 1
         },
         "temp1.tmx": {
             "scale": 0.5,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 788,
-                "y": 530
+                "x": 480,
+                "y": 639
             }
         },
         "temp2.tmx": {
@@ -25,6 +27,10 @@
                 "x": 578,
                 "y": 658
             }
+        },
+        "temp2.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
         }
     },
     "last.imagePath": "C:/Users/AH458/Pictures",
@@ -32,13 +38,17 @@
     "map.layerDataFormat": null,
     "map.width": 15,
     "openFiles": [
+        "temp1.tmx",
+        "temp2.tmx",
+        "temp2.tsx"
     ],
     "project": "temp.tiled-project",
     "property.type": "string",
     "recentFiles": [
-        "temp.tsx",
         "temp1.tmx",
-        "temp2.tmx"
+        "temp2.tsx",
+        "temp2.tmx",
+        "temp.tsx"
     ],
     "tileset.lastUsedFormat": "tsx",
     "tileset.tileSize": {
