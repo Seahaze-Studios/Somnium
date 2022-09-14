@@ -17,6 +17,7 @@ public class Button implements UIElement {
     protected String text;
     protected Commandable command;
     protected Menu parent;
+    protected int onFrames;
 
     public Button(String text) {
         this.x = 0;
@@ -24,6 +25,7 @@ public class Button implements UIElement {
         this.width = Game.getGc().getGraphics().getFont().getWidth(text);
         this.height = Game.getGc().getGraphics().getFont().getHeight(text);
         this.text = text;
+        this.onFrames = 0;
     }
 
     public Button(String text, Commandable command) {
@@ -33,6 +35,7 @@ public class Button implements UIElement {
         this.height = Main.fonts.VariableWidth.P50.getHeight(text);
         this.text = text;
         this.command = command;
+        this.onFrames = 0;
     }
 
     public Button(float width, float height, String text) {
@@ -41,6 +44,7 @@ public class Button implements UIElement {
         this.width = width;
         this.height = height;
         this.text = text;
+        this.onFrames = 0;
     }
 
     public Button(float x, float y, String text, Commandable command) {
@@ -50,6 +54,7 @@ public class Button implements UIElement {
         this.height = Main.fonts.VariableWidth.P50.getHeight(text);
         this.text = text;
         this.command = command;
+        this.onFrames = 0;
     }
 
     public Button(float x, float y, float width, float height, String text) {
@@ -58,6 +63,7 @@ public class Button implements UIElement {
         this.width = width;
         this.height = height;
         this.text = text;
+        this.onFrames = 0;
     }
 
     // Draw the image centered
@@ -66,12 +72,12 @@ public class Button implements UIElement {
         int mouseX = gc.getInput().getMouseX();
         int mouseY = gc.getInput().getMouseY();
         if (onButton(mouseX, mouseY)) {
-            g.setColor(new Color(247, 168, 74));
-            DrawUtilities.drawStringCentered(g, "> " + text + " <", Main.fonts.VariableWidth.P53, x, y);
+            g.setColor(new Color(255, 255, 255));
+            DrawUtilities.drawStringCentered(g, "> " + text + " <", Main.fonts.VariableWidth.P35, x, y);
         }
         else {
-            g.setColor(Color.white);
-            DrawUtilities.drawStringCentered(g, text, Main.font, x, y);
+            g.setColor(new Color(180, 180, 180));
+            DrawUtilities.drawStringCentered(g, text, Main.fonts.VariableWidth.P35, x, y);
         }
         g.setColor(Color.white);
     }
@@ -86,6 +92,7 @@ public class Button implements UIElement {
     @Override
     public void update(GameContainer gc) {
         if (onButton(gc.getInput().getMouseX(), gc.getInput().getMouseY())) {
+            this.onFrames++;
             if (gc.getInput().isMousePressed(0)) {
                 SoundManager.playSoundEffect("click");
                 command.command();

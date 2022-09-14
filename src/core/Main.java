@@ -24,6 +24,7 @@ public class Main extends StateBasedGame
     public static final int INTRO_ID  = 2;
 	public static final int TITLE_ID = 3;
 	public static final int GAME_ID = 4;
+	public static final int SETTINGS_ID = 5;
 	public static TestState test;
 	public static IntroCredit intro;
 	public static LoadingScreen loading;

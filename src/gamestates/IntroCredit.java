@@ -56,7 +56,7 @@ public class IntroCredit extends AdvancedGameState {
         Main.sbg = sbg;
         String test = GL11.glGetString(GL_RENDERER);
         System.out.println(test);
-        titleLogo = new Image("res/ui/start/logo.png");
+        titleLogo = new Image("res/ui/start/logo.png").getScaledCopy(0.66f);
     }
 
     @Override // Begin file loading upon entering the gamestate
@@ -84,8 +84,9 @@ public class IntroCredit extends AdvancedGameState {
             g.setBackground(new Color(fade, fade, fade));
         }
         if (counter > 860 * Main.config.FRAMES_PER_SECOND / 60) {
+            //titleLogo.setImageColor(1, 1, 1, 1 * ((float) counter / (100 * Main.config.FRAMES_PER_SECOND / 60)));
             titleLogo.setImageColor(1f, 1f, 1f, 1 * ((float) (counter - 860) / (2f * Main.config.FRAMES_PER_SECOND / 60)));
-            titleLogo.getScaledCopy(0.66f).drawCentered(Main.width() / 2, Main.height() / 2);
+            titleLogo.drawCentered(Main.width() / 2, Main.height() / 2);
         }
         if (counter > 960 * Main.config.FRAMES_PER_SECOND / 60) {
             g.setColor(new Color(255, 255, 255, (float) (counter - 960) / 20));
@@ -100,6 +101,6 @@ public class IntroCredit extends AdvancedGameState {
     @Override
     public void keyPressed(int key, char c) {
         super.keyPressed(key, c);
-        if (counter > 960 * Main.config.FRAMES_PER_SECOND / 60) sbg.enterState(Main.TITLE_ID);
+        if (counter > 960 * Main.config.FRAMES_PER_SECOND / 60) sbg.enterState(Main.TITLE_ID, new FadeOutTransition(), new FadeInTransition());
     }
 }
