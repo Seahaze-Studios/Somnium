@@ -38,6 +38,17 @@ public abstract class Entity implements Serializable {
         init();
     }
 
+    protected Entity(Vector2f position) throws SlickException {
+        this.gc = Game.getGc();
+        this.g = gc.getGraphics();
+        pos = position;
+        speed = new Vector2f(0, 0);
+        width = 1;
+        height = 1;
+        init();
+    }
+
+
     public void init() throws SlickException {
         hitbox = new Rectangle(pos.x - width / 2, pos.y - height / 2, width, height);
     }

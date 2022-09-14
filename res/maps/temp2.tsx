@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.9" tiledversion="1.9.0" name="temp2" tilewidth="54" tileheight="54" tilecount="30" columns="6">
+<tileset version="1.9" tiledversion="1.9.0" name="temp2" tilewidth="54" tileheight="54" tilecount="36" columns="6">
  <grid orientation="orthogonal" width="64" height="64"/>
- <image source="gray-background-7131-98db5e6ffc4972baa4087760291cbc3e@1x.jpg" width="360" height="270"/>
+ <image source="gray-background-7131-98db5e6ffc4972baa4087760291cbc3e@1x.png" width="360" height="324"/>
  <tile id="0">
   <properties>
    <property name="type" value="block"/>
@@ -150,6 +150,36 @@
  <tile id="29">
   <properties>
    <property name="type" value="block"/>
+  </properties>
+ </tile>
+ <tile id="30">
+  <properties>
+   <property name="type" value="goal"/>
+  </properties>
+ </tile>
+ <tile id="31">
+  <properties>
+   <property name="type" value="player"/>
+  </properties>
+ </tile>
+ <tile id="32">
+  <properties>
+   <property name="type" value="player"/>
+  </properties>
+ </tile>
+ <tile id="33">
+  <properties>
+   <property name="type" value=""/>
+  </properties>
+ </tile>
+ <tile id="34">
+  <properties>
+   <property name="type" value=""/>
+  </properties>
+ </tile>
+ <tile id="35">
+  <properties>
+   <property name="type" value=""/>
   </properties>
  </tile>
 </tileset>

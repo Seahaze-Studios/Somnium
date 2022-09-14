@@ -4,6 +4,7 @@ import core.Constants;
 import core.Main;
 import map.GameMap;
 import map.tile.Tile;
+import map.tile.interactable.utility.Goal;
 import map.tile.obstacle.Block;
 import map.tile.obstacle.Obstacle;
 import org.newdawn.slick.Graphics;
@@ -11,6 +12,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Polygon;
 import org.newdawn.slick.geom.Shape;
 import util.DrawUtilities;
+import util.Vector2f;
 
 import java.util.ArrayList;
 
@@ -46,6 +48,7 @@ public class MapManager {
         for(Tile t:mapR.getTileList())  {
             t.getHitbox().setX(t.getHitbox().getX() + Main.getScreenWidth()/2);
         }
+        mapR.plrPos.add(new Vector2f(Main.getScreenWidth()/2,0));
     }
     private void generateHitboxes(GameMap map) {
         for(int i = 0; i < Constants.MAP_WIDTH; i++)    {
@@ -57,9 +60,21 @@ public class MapManager {
 
     private void generateTile(int i, int j, GameMap map) {
         if(map.getTileId(i,j,0) != 0)   {
-            if(map.getTileProperty(map.getTileId(i,j, 0), "type", "false").equals("block"))  {
-                map.getTileList().add(new Block(i * Constants.TILE_SIZE, j * Constants.TILE_SIZE));
+            switch(map.getTileProperty(map.getTileId(i,j,0),"type","false"))    {
+                case "block" ->     {
+                    map.getTileList().add(new Block(i * Constants.TILE_SIZE, j * Constants.TILE_SIZE));
+                }
+                case "player" ->    {
+                    map.plrPos = new Vector2f(i * Constants.TILE_SIZE, j * Constants.TILE_SIZE);
+                }
+                case "goal" -> {
+                    map.getTileList().add(new Goal(i * Constants.TILE_SIZE, j * Constants.TILE_SIZE));
+                }
             }
+            /*if(map.getTileProperty(map.getTileId(i,j, 0), "type", "false").equals("block"))  {
+                map.getTileList().add(new Block(i * Constants.TILE_SIZE, j * Constants.TILE_SIZE));
+            }*/
+
         }
     }
 
