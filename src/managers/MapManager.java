@@ -65,7 +65,7 @@ public class MapManager {
                     map.getTileList().add(new Block(i * Constants.TILE_SIZE, j * Constants.TILE_SIZE));
                 }
                 case "player" ->    {
-                    map.plrPos = new Vector2f(i * Constants.TILE_SIZE, j * Constants.TILE_SIZE);
+                    map.plrPos = new Vector2f((i + 0.5f) * Constants.TILE_SIZE, (j + 0.5f) * Constants.TILE_SIZE);
                 }
                 case "goal" -> {
                     map.getTileList().add(new Goal(i * Constants.TILE_SIZE, j * Constants.TILE_SIZE));

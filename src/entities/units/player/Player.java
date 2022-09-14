@@ -2,6 +2,7 @@ package entities.units.player;
 
 import core.Constants;
 import entities.units.Unit;
+import map.GameMap;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import util.Vector2f;
@@ -28,5 +29,9 @@ public class Player extends Unit {
         width = Constants.TILE_SIZE;
         height = Constants.TILE_SIZE;
         this.sprite = new Image("res/dev/placeholder.png").getScaledCopy(54,54);
+    }
+
+    public boolean collides(GameMap gm) {
+
     }
 }
