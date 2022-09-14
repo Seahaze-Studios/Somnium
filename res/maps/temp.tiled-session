@@ -14,19 +14,19 @@
             "scaleInEditor": 1
         },
         "temp1.tmx": {
-            "scale": 0.5,
+            "scale": 0.33,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 476,
-                "y": 638
+                "x": 809.0909090909092,
+                "y": 554.5454545454546
             }
         },
         "temp2.tmx": {
             "scale": 0.5,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 572,
-                "y": 656
+                "x": 106,
+                "y": 582
             }
         },
         "temp2.tsx": {
@@ -46,8 +46,8 @@
     "project": "temp.tiled-project",
     "property.type": "string",
     "recentFiles": [
-        "temp1.tmx",
         "temp2.tsx",
+        "temp1.tmx",
         "temp2.tmx",
         "temp.tsx"
     ],

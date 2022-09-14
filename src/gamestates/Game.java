@@ -60,9 +60,10 @@ public class Game extends AdvancedGameState {
         // This code happens when you enter a game state for the *first time.*
         gc.setShowFPS(debug);
         this.gc = gc;
-        plrL = new Player();
-        plrR = new Player();
+
         mapMan = new MapManager(Constants.LEVEL_1_ID);
+        plrL = new Player(MapManager.mapL.plrPos);
+        plrR = new Player(MapManager.mapR.plrPos);
         // Initialize Managers
         keyDown = new KeyManager(gc.getInput(), this);
         System.out.println("[VERBOSE] KeyManager initialized");
