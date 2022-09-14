@@ -84,7 +84,7 @@ public class IntroCredit extends AdvancedGameState {
             g.setBackground(new Color(fade, fade, fade));
         }
         if (counter > 860 * Main.config.FRAMES_PER_SECOND / 60) {
-            titleLogo.setImageColor(1, 1, 1, (counter - 860 <= 40 ? (((float) counter - 860)/40) : (((960 - (float) counter)/40))));
+            titleLogo.setImageColor(1f, 1f, 1f, 1 * ((float) (counter - 860) / (2f * Main.config.FRAMES_PER_SECOND / 60)));
             titleLogo.getScaledCopy(0.66f).drawCentered(Main.width() / 2, Main.height() / 2);
         }
         if (counter > 960 * Main.config.FRAMES_PER_SECOND / 60) {
@@ -95,5 +95,11 @@ public class IntroCredit extends AdvancedGameState {
 
         logo.drawCentered(Main.getScreenWidth() / 2, Main.getScreenHeight() / 2);
         super.render(gc, sbg, g);
+    }
+
+    @Override
+    public void keyPressed(int key, char c) {
+        super.keyPressed(key, c);
+        if (counter > 960 * Main.config.FRAMES_PER_SECOND / 60) sbg.enterState(Main.TITLE_ID);
     }
 }
