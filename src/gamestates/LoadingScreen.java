@@ -64,12 +64,6 @@ public class LoadingScreen extends AdvancedGameState {
     public void init(GameContainer gc, StateBasedGame sbg) throws SlickException
     {
         gc.setShowFPS(false);
-        try {
-            Main.fonts = new Fonts();
-            gc.setDefaultFont(new TrueTypeFont(Main.fonts.generator.deriveFont(java.awt.Font.PLAIN, 20), true));
-        } catch (IOException | FontFormatException e) {
-            e.printStackTrace();
-        }
 
         this.loadingList = LoadingList.get();
         background = new TitleBackground();

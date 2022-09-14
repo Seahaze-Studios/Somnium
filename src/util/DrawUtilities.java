@@ -1,5 +1,6 @@
 package util;
 
+import core.Main;
 import org.newdawn.slick.*;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.geom.Shape;
@@ -16,7 +17,7 @@ public final class DrawUtilities {
     /*================================================================*/
     /*                      CENTERING UTILITIES                       */
     /*================================================================*/
-    public static Font defaultFont = new TrueTypeFont(new java.awt.Font("Bahnschrift", java.awt.Font.PLAIN, 20), true);
+    public static Font defaultFont = Main.font;
     public static Rectangle createRectangleCentered(float x, float y, float width, float height) {
         return new Rectangle(x - width / 2, y - height / 2, width, height);
     }
@@ -46,6 +47,7 @@ public final class DrawUtilities {
         int height = font.getHeight(string);
         Rectangle r = createRectangleCentered(x, y, width, height);
 
+        g.setFont(font);
         g.drawString(string, (r.getX() + r.getWidth() / 2) - (width / 2),
                 (r.getY() + r.getHeight() / 2) - (height / 2));
     }
