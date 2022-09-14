@@ -34,8 +34,6 @@ public class TitleScreen extends AdvancedGameState {
 
     @Override
     public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
-        fade -= 3;
-        g.setBackground(new Color(fade, fade, fade));
         if (counter > 560 * Main.config.FRAMES_PER_SECOND / 60) {
             logo.setImageColor(1, 1, 1, (counter - 560 <= 40 ? (((float) counter - 560)/40) : (((960 - (float) counter)/40))));
             logo.getScaledCopy(0.66f).drawCentered(Main.width() / 2, Main.height() / 2);

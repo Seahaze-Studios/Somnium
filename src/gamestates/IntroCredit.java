@@ -2,14 +2,22 @@
 
 package gamestates;
 
+import core.Fonts;
 import core.Main;
 import gamestates.types.AdvancedGameState;
 import managers.SoundManager;
 import org.lwjgl.opengl.GL11;
 import org.newdawn.slick.*;
+import org.newdawn.slick.Color;
+import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.state.transition.FadeInTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
+import util.DrawUtilities;
+
+import java.awt.*;
+import java.io.IOException;
 
 import static org.lwjgl.opengl.GL11.GL_RENDERER;
 
@@ -37,6 +45,12 @@ public class IntroCredit extends AdvancedGameState {
     public void init(GameContainer gc, StateBasedGame sbg) throws SlickException
     {
         gc.setShowFPS(false);
+        try {
+            Main.fonts = new Fonts();
+            gc.setDefaultFont(new TrueTypeFont(Main.fonts.generator.deriveFont(java.awt.Font.PLAIN, 20), true));
+        } catch (IOException | FontFormatException e) {
+            e.printStackTrace();
+        }
         logo = new Image("res/ui/start/seahazestudios.png").getScaledCopy(700, 700);
         this.sbg = sbg;
         Main.sbg = sbg;
@@ -70,12 +84,22 @@ public class IntroCredit extends AdvancedGameState {
             g.setBackground(new Color(fade, fade, fade));
         }
         if (counter > 860 * Main.config.FRAMES_PER_SECOND / 60) {
-            titleLogo.setImageColor(1, 1, 1, (counter - 860 <= 40 ? (((float) counter - 860)/40) : (((960 - (float) counter)/40))));
+            titleLogo.setImageColor(1f, 1f, 1f, 1 * ((float) (counter - 860) / (2f * Main.config.FRAMES_PER_SECOND / 60)));
             titleLogo.getScaledCopy(0.66f).drawCentered(Main.width() / 2, Main.height() / 2);
+        }
+        if (counter > 960 * Main.config.FRAMES_PER_SECOND / 60) {
+            g.setColor(new Color(255, 255, 255, (float) (counter - 960) / 20));
+            DrawUtilities.drawStringCentered(g, "Press any key to start", Main.width() / 2, Main.height() / 2 + 200);
         }
         //if (counter > 960) sbg.enterState(Main.TITLE_ID);
 
         logo.drawCentered(Main.getScreenWidth() / 2, Main.getScreenHeight() / 2);
         super.render(gc, sbg, g);
+    }
+
+    @Override
+    public void keyPressed(int key, char c) {
+        super.keyPressed(key, c);
+        if (counter > 960 * Main.config.FRAMES_PER_SECOND / 60) sbg.enterState(Main.TITLE_ID);
     }
 }
