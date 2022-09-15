@@ -21,7 +21,7 @@ public class GlowEffect extends ImageParticle {
     }
 
     public void render() {
-        image.setImageColor(r, g, b, lifetime > 240 ? 1f - (lifetime - 240/240f) : (lifetime/240f));
+        image.setImageColor(r, g, b, lifetime > 240 ? 1f - ((lifetime - 240)/240f) : (lifetime/240f));
         image.draw(pos.x, pos.y);
     }
 
@@ -29,6 +29,4 @@ public class GlowEffect extends ImageParticle {
         lifetime++;
         render();
     }
-
-
 }
