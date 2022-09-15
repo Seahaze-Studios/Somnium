@@ -4,18 +4,21 @@ import entities.Entity;
 import gamestates.Game;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 import util.Vector2f;
 
-public class Particle {
+public abstract class Particle {
     protected Vector2f pos;
     protected Vector2f speed;
     protected GameContainer gc;
     protected Graphics g;
+    protected int lifetime;
 
     public Particle(Vector2f pos) {
         this.gc = Game.getGc();
         this.g = gc.getGraphics();
         this.pos = pos;
+        this.lifetime = 0;
     }
 
     public Particle(Vector2f pos, Vector2f speed) {
@@ -23,6 +26,7 @@ public class Particle {
         this.g = gc.getGraphics();
         this.pos = pos;
         this.speed = speed;
+        this.lifetime = 0;
     }
 
     public Particle(int x, int y) {
@@ -30,6 +34,7 @@ public class Particle {
         this.g = gc.getGraphics();
         this.pos.x = x;
         this.pos.y = y;
+        this.lifetime = 0;
     }
 
     public void applyForce(Vector2f f){speed.add(f);}
@@ -37,6 +42,8 @@ public class Particle {
     public void move() {
         pos.add(speed);
     }
+
+    public abstract void render();
 
     public void collide(Entity e) {
         pos.add(e.getSpeed());

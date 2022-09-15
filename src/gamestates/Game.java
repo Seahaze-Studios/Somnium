@@ -31,7 +31,6 @@ public class Game extends AdvancedGameState {
     private Entity entity;
     // Managers
     private KeyManager keyDown; // Key Manager
-    public static Sound music;
     public static final Queue<Entity> entities = new ConcurrentLinkedQueue<>();
     public static final Queue<Particle> particles = new ConcurrentLinkedQueue<>();
 
@@ -67,7 +66,6 @@ public class Game extends AdvancedGameState {
         // Initialize Managers
         keyDown = new KeyManager(gc.getInput(), this);
         System.out.println("[VERBOSE] KeyManager initialized");
-        music = new Sound("res/audio/music/title.wav");
     }
 
     public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
@@ -90,7 +88,6 @@ public class Game extends AdvancedGameState {
     }
 
     public void enter(GameContainer gc, StateBasedGame sbg) throws SlickException {
-        SoundManager.overrideBackgroundMusic(music);
         // This code happens when you enter a gameState.
         //entity.setPos(400, 400);
         gc.getGraphics().setBackground(org.newdawn.slick.Color.black);

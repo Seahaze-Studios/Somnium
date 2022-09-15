@@ -32,6 +32,6 @@ public class Player extends Unit {
     }
 
     public boolean collides(GameMap gm) {
-
+        return false;
     }
 }
