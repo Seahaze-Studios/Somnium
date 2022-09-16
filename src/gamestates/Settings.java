@@ -1,5 +1,6 @@
 package gamestates;
 
+import core.Configuration;
 import core.Main;
 import gamestates.types.AdvancedGameState;
 import graphics.ui.selection.ToggleBar;
@@ -49,18 +50,24 @@ public class Settings extends AdvancedGameState {
                 new Tab(
                         new RoundedRectangle(50, 50, Main.width() / 7 - 50, 50, 20, RoundedRectangle.TOP_LEFT),
                         "Graphics",
-                        new TabBody(new Bundle<String, ToggleBar>("Framerate (fps)", new ToggleBar(
-                                new Bundle<String, Commandable>("24", () -> {}),
-                                new Bundle<String, Commandable>("30", () -> {}),
-                                new Bundle<String, Commandable>("45", () -> {}),
-                                new Bundle<String, Commandable>("60", () -> {}),
-                                new Bundle<String, Commandable>("75", () -> {}),
-                                new Bundle<String, Commandable>("90", () -> {}),
-                                new Bundle<String, Commandable>("120", () -> {}),
-                                new Bundle<String, Commandable>("144", () -> {}),
-                                new Bundle<String, Commandable>("240", () -> {}),
-                                new Bundle<String, Commandable>("360", () -> {})
-                            ).setToggledIndex(3)))
+                        new TabBody(/*new Bundle<String, ToggleBar>("Graphics Quality Preset", new ToggleBar(
+                                new Bundle<String, Commandable>(Configuration.GraphicsQuality.LOW.name(), () -> {}),
+                                new Bundle<String, Commandable>(Configuration.GraphicsQuality.MEDIUM.name(), () -> {}),
+                                new Bundle<String, Commandable>(Configuration.GraphicsQuality.HIGH.name(), () -> {}),
+                                new Bundle<String, Commandable>(Configuration.GraphicsQuality.ULTRA.name(), () -> {})
+                            ).setToggledIndex(3)),*/
+                                new Bundle<>("Framerate (fps)", new ToggleBar(
+                                        new Bundle<>("24", () -> {}),
+                                        new Bundle<>("30", () -> {}),
+                                        new Bundle<>("45", () -> {}),
+                                        new Bundle<>("60", () -> {}),
+                                        new Bundle<>("75", () -> {}),
+                                        new Bundle<>("90", () -> {}),
+                                        new Bundle<>("120", () -> {}),
+                                        new Bundle<>("144", () -> {}),
+                                        new Bundle<>("240", () -> {}),
+                                        new Bundle<>("360", () -> {})
+                                ).setToggledIndex(3)))
                         ).setActive(true),
                 new Tab(
                         new Rectangle(50, 100, Main.width() / 7 - 50, 50),
