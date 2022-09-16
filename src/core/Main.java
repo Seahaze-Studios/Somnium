@@ -1,7 +1,6 @@
 package core;
 
 import gamestates.*;
-import graphics.ui.UIElement;
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
@@ -11,8 +10,6 @@ import org.newdawn.slick.state.StateBasedGame;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
-import java.util.AbstractQueue;
-import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class Main extends StateBasedGame 
 {
@@ -30,6 +27,7 @@ public class Main extends StateBasedGame
 	public static LoadingScreen loading;
 	public static TitleScreen title;
 	public static Game game;
+	public static Settings settings;
 	public static boolean debug;
 	public static final UI UI = new UI();
 	public static TrueTypeFont font;
@@ -54,6 +52,7 @@ public class Main extends StateBasedGame
 		intro = new IntroCredit(INTRO_ID);
 		title = new TitleScreen(TITLE_ID);
 		game = new Game(GAME_ID);
+		settings = new Settings(SETTINGS_ID);
 	}
 
 	public static int getScreenWidth()
@@ -74,6 +73,7 @@ public class Main extends StateBasedGame
 		addState(intro);
 		addState(title);
 		addState(game);
+		addState(settings);
 
 	}
 

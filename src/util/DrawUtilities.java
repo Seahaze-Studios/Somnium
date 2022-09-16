@@ -2,10 +2,12 @@ package util;
 
 import core.Main;
 import org.newdawn.slick.*;
+import org.newdawn.slick.geom.Line;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.geom.Shape;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 
@@ -120,5 +122,9 @@ public final class DrawUtilities {
     public static void fillShapeCentered(Graphics g, Shape shape, float x, float y) {
         centerShape(shape, x, y);
         g.fill(shape);
+    }
+
+    public static void animateLines(Graphics g, ArrayList<Line> lines, int counter) {
+        
     }
 }

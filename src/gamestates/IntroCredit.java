@@ -96,7 +96,7 @@ public class IntroCredit extends AdvancedGameState {
             paths.get(i).path.curveTo(thirdX, thirdY, firstX, firstY, secondX, secondY, 40);
         }
 
-        for (var i = 0; i < 100; i++) {
+        for (var i = 0; i < 10000; i++) {
             glows.add(new GlowEffect(new Vector2f(R.nextInt(0, Main.width()), R.nextInt(0, Main.height())), new Vector2f(R.nextInt(-2, 2), R.nextInt(-2, 2)), Color.white));
         }
     }
@@ -120,7 +120,7 @@ public class IntroCredit extends AdvancedGameState {
             g.setBackground(new Color(fade, fade, fade));
 //            g.setColor(paths.get(((counter - 300) / 60)).color);
 //            g.draw(paths.get(((counter - 300) / 60)).path);
-            if (R.nextInt(0, 5) == 4) glows.get(R.nextInt(0, glows.size() - 1)).inMotion = true;
+            if (R.nextInt(0, 15) == 4) glows.get(R.nextInt(0, glows.size() - 1)).inMotion = true;
             glows.stream().filter(p -> p.inMotion).forEach(GlowEffect::motion);
         }
         if (counter > 860 * Main.config.FRAMES_PER_SECOND / 60) {
