@@ -22,7 +22,7 @@ public class GameMap extends TiledMap {
 
     public GameMap(String ref) throws SlickException {
         super(ref);
-        plrPos = new Vector2f();
+        plrPos = new Vector2f(0,0);
         tiles = new ArrayList<>();
         color = Color.black;
     }

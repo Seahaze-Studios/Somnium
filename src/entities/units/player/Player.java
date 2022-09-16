@@ -4,6 +4,8 @@ import core.Constants;
 import core.Main;
 import entities.units.Unit;
 import map.GameMap;
+import map.tile.interactable.utility.Goal;
+import map.tile.obstacle.Block;
 import map.tile.obstacle.Obstacle;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
@@ -38,22 +40,32 @@ public class Player extends Unit {
     public boolean collides(GameMap gm) {
         AtomicBoolean returning = new AtomicBoolean(false);
         gm.getTileList().forEach(t -> {
-            if(t instanceof Obstacle && this.getHitbox().intersects(t.getHitbox())) {
+            if(t instanceof Block && this.getHitbox().intersects(t.getHitbox())) {
                 returning.set(true);
             }
         });
-        if(pos.getX() + width > Main.getScreenWidth()) {
+        if(pos.getX() + width/2 > Main.getScreenWidth()) {
             returning.set(true);
         }
-        else if(pos.getX() < 0) {
+        else if(pos.getX() - width/2 < 0) {
             returning.set(true);
         }
-        else if(pos.getY() + height > Main.getScreenHeight()) {
+        else if(pos.getY() + height/2 > Main.getScreenHeight()) {
             returning.set(true);
         }
-        else if(pos.getY() < 0) {
+        else if(pos.getY() - height/2 < 0) {
             returning.set(true);
         }
+        return returning.get();
+    }
+
+    public boolean enterGoal(GameMap gm)  {
+        AtomicBoolean returning = new AtomicBoolean(false);
+        gm.getTileList().forEach(t -> {
+            if(t instanceof Goal && this.getHitbox().intersects(t.getHitbox())) {
+                returning.set(true);
+            }
+        });
         return returning.get();
     }
 }

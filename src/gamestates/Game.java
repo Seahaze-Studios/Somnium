@@ -28,25 +28,20 @@ public class Game extends AdvancedGameState {
 
     private static MapManager mapMan;
 
+    public static int curLevelID;
+
     private Entity entity;
     // Managers
     private KeyManager keyDown; // Key Manager
     public static final Queue<Entity> entities = new ConcurrentLinkedQueue<>();
     public static final Queue<Particle> particles = new ConcurrentLinkedQueue<>();
 
-    public Player getPlayerLeft() {
-        return plrL;
-    }
-
-    public Player getPlayerRight() {
-        return plrR;
-    }
     public static MapManager getMapMan() {
         return mapMan;
     }
 
-    private Player plrL;
-    private Player plrR;
+    private static Player plrL;
+    private static Player plrR;
 
     public void keyInput() { KeyManager.KEY_DOWN_LIST.stream().filter(keyDown).forEach(keyDown::keyDown); }
 
@@ -60,9 +55,13 @@ public class Game extends AdvancedGameState {
         gc.setShowFPS(debug);
         this.gc = gc;
 
-        mapMan = new MapManager(Constants.LEVEL_1_ID);
+        curLevelID = Constants.LEVEL_1_ID;
+
+        mapMan = new MapManager(curLevelID);
+        System.out.println("[VERBOSE] MapManager initialized");
         plrL = new Player(MapManager.mapL.plrPos);
         plrR = new Player(MapManager.mapR.plrPos);
+
         // Initialize Managers
         keyDown = new KeyManager(gc.getInput(), this);
         System.out.println("[VERBOSE] KeyManager initialized");
@@ -74,6 +73,7 @@ public class Game extends AdvancedGameState {
         plrR.render();
         //g.drawLine(Main.width() / 2, 0, Main.width() / 2, Main.height());
         mapMan.render(g);
+
         if(debug) {
             debugRender(gc);
         }
@@ -128,7 +128,8 @@ public class Game extends AdvancedGameState {
         gc.getGraphics().drawString("hitboxes (" + plrL.getHitbox().getX() + ", " + plrL.getHitbox().getY() + ")", 0,50);
     }
 
-    public Player getPlayer() {
-        return null;
+    public static Player getPlayerL() {
+        return plrL;
     }
+    public static Player getPlayerR(){return plrR;}
 }
