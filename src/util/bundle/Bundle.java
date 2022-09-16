@@ -1,6 +1,6 @@
 package util.bundle;
 
-public abstract class Bundle<T, E> {
+public class Bundle<T, E> {
     public T object;
     public E element;
 

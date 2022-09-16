@@ -110,6 +110,7 @@ public final class DrawUtilities {
         int width = font.getWidth(string);
         int height = font.getHeight(string);
 
+        g.setFont(font);
         g.drawString(string, (r.getX() + r.getWidth() / 2) - (width / 2),
                 (r.getY() + r.getHeight() / 2) - (height / 2));
     }
@@ -124,7 +125,10 @@ public final class DrawUtilities {
         g.fill(shape);
     }
 
-    public static void animateLines(Graphics g, ArrayList<Line> lines, int counter) {
-        
+    public static void animateLines(Graphics g, ArrayList<Line> lines, int counter, double speed) {
+        for (var i = 0; i < lines.size() && i < counter; i++) {
+            //var line = lines.get(i).getEnd().equals(lines.get(i).getEnd().scale(0.001f * counter)) ? lines.get(i) : new Line(lines.get(i).getStart(), lines.get(i).getEnd().scale(0.001f * counter));
+            //g.draw(line);
+        }
     }
 }
