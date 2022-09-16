@@ -51,7 +51,7 @@ public class Settings extends AdvancedGameState {
     @Override
     public void enter(GameContainer container, StateBasedGame game) throws SlickException {
         counter = 0;
-        saveButton = new PaddedButton(Main.width() - 50 - 120, Main.height() - 50 - 50, Main.fonts.VariableWidth.P35.getWidth("Save and Exit") + 20, Main.fonts.VariableWidth.P35.getHeight() + 10, "Save and Exit", () -> game.enterState(Main.TITLE_ID, new FadeOutTransition(), new FadeInTransition()));
+        saveButton = new PaddedButton(Main.width() - 50 - 120, Main.height() - 50 - 40, Main.fonts.VariableWidth.P35.getWidth("Save and Exit") + 20, Main.fonts.VariableWidth.P35.getHeight() + 10, "Save and Exit", () -> game.enterState(Main.TITLE_ID, new FadeOutTransition(), new FadeInTransition()));
         tabber = new Tabber(
                 new Tab(
                         new RoundedRectangle(50, 50, Main.width() / 7 - 50, 50, 20, 25, RoundedRectangle.TOP_LEFT),
@@ -95,7 +95,7 @@ public class Settings extends AdvancedGameState {
         tabber.render(gc);
         g.draw(lines.get(0));
         saveButton.setX(Main.width() - 50 - 120);
-        saveButton.setY(Main.height() - 50 - 30);
+        saveButton.setY(Main.height() - 50 - 40);
         saveButton.render(gc);
 //        g.setColor(new Color(255, 255, 255));
 //        g.draw(box);
