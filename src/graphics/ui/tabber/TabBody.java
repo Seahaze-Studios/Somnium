@@ -20,9 +20,10 @@ public class TabBody {
         var g = gc.getGraphics();
         for (int i = 0; i < options.size(); i++) {
             var o = options.get(i);
+            System.out.println(o.object);
             g.setFont(Main.fonts.VariableWidth.P35);
-            g.drawString(o.object, x + 20, (width / 12 * i) + y + 20);
-            o.element.render(gc, x + 20 + Main.fonts.VariableWidth.P35.getWidth(o.object) + 20, (width / 12 * i) + y + 20);
+            g.drawString(o.object, x + 20, (height / 12 * i) + y + 20);
+            o.element.render(gc, x + 20 + Main.fonts.VariableWidth.P35.getWidth(o.object) + 20, (height / 12 * i) + y + 20);
         }
     }
 }
