@@ -22,6 +22,7 @@ public class ToggleBar {
         this.rectangles = new ArrayList<>();
         for (var i = 0; i < toggles.length; i++) {
             if (i == 0 || i == toggles.length - 1)
+                // TODO: make toggles dynamically sized based on longest text
                 rectangles.add(new RoundedRectangle(0, 0, 50, 30, 10, 25,
                         i == 0 ? RoundedRectangle.TOP_LEFT + RoundedRectangle.BOTTOM_LEFT : RoundedRectangle.TOP_RIGHT + RoundedRectangle.BOTTOM_RIGHT));
             else rectangles.add(new Rectangle(0, 0, 50, 30));
