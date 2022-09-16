@@ -41,13 +41,15 @@ public class PaddedButton extends Button implements UIElement {
         int mouseX = gc.getInput().getMouseX();
         int mouseY = gc.getInput().getMouseY();
         if (onButton(mouseX, mouseY)) {
-            g.setColor(new Color(255, 255, 255));
+            g.setColor(new Color(200, 200, 200));
             g.fill(rect);
             g.setColor(Color.black);
             DrawUtilities.drawStringCentered(g, "> " + text + " <", Main.fonts.VariableWidth.P35, x, y);
         }
         else {
-            g.setColor(new Color(180, 180, 180));
+            g.setColor(new Color(255, 255, 255));
+            g.fill(rect);
+            g.setColor(Color.black);
             DrawUtilities.drawStringCentered(g, text, Main.fonts.VariableWidth.P35, x, y);
         }
         g.setColor(Color.white);
