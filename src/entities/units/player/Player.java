@@ -1,6 +1,7 @@
 package entities.units.player;
 
 import core.Constants;
+import core.Main;
 import entities.units.Unit;
 import map.GameMap;
 import map.tile.obstacle.Obstacle;
@@ -41,6 +42,18 @@ public class Player extends Unit {
                 returning.set(true);
             }
         });
+        if(pos.getX() + width > Main.getScreenWidth()) {
+            returning.set(true);
+        }
+        else if(pos.getX() < 0) {
+            returning.set(true);
+        }
+        else if(pos.getY() + height > Main.getScreenHeight()) {
+            returning.set(true);
+        }
+        else if(pos.getY() < 0) {
+            returning.set(true);
+        }
         return returning.get();
     }
 }
