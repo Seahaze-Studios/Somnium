@@ -13,11 +13,13 @@ import java.io.IOException;
 
 public class Main extends StateBasedGame 
 {
+	public static boolean testMode = false;
+
 	public static StateBasedGame sbg;
 	private static AppGameContainer appgc;
 
-	public static final int TEST_ID = 0;
-	public static final int LOADING_ID = 1;
+	public static final int TEST_ID = 1;
+	public static final int LOADING_ID = 0;
     public static final int INTRO_ID  = 2;
 	public static final int TITLE_ID = 3;
 	public static final int GAME_ID = 4;
@@ -71,8 +73,8 @@ public class Main extends StateBasedGame
 
 	public void initStatesList(GameContainer gc) throws SlickException 
 	{
-		//addState(test);
 		addState(loading);
+		addState(test);
 		addState(intro);
 		addState(title);
 		addState(game);

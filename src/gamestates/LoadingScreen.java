@@ -104,7 +104,7 @@ public class LoadingScreen extends AdvancedGameState {
         // When loading is completed, automatically move to start menu
         else {
             // TextManager.initialize();
-            sbg.enterState(Main.INTRO_ID);
+            sbg.enterState(Main.testMode ? Main.TEST_ID : Main.INTRO_ID);
             System.out.println("Leaving Loading");
         }
     }

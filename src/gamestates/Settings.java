@@ -56,12 +56,12 @@ public class Settings extends AdvancedGameState {
                 new Tab(
                         new RoundedRectangle(50, 50, Main.width() / 7 - 50, 50, 20, 25, RoundedRectangle.TOP_LEFT),
                         "Graphics",
-                        new TabBody(/*new Bundle<String, ToggleBar>("Graphics Quality Preset", new ToggleBar(
-                                new Bundle<String, Commandable>(Configuration.GraphicsQuality.LOW.name(), () -> {}),
-                                new Bundle<String, Commandable>(Configuration.GraphicsQuality.MEDIUM.name(), () -> {}),
-                                new Bundle<String, Commandable>(Configuration.GraphicsQuality.HIGH.name(), () -> {}),
-                                new Bundle<String, Commandable>(Configuration.GraphicsQuality.ULTRA.name(), () -> {})
-                            ).setToggledIndex(3)),*/
+                        new TabBody(new Bundle<>("Graphics Quality Preset", new ToggleBar(
+                                new Bundle<>(Configuration.GraphicsQuality.LOW.name(), () -> {}),
+                                new Bundle<>(Configuration.GraphicsQuality.MEDIUM.name(), () -> {}),
+                                new Bundle<>(Configuration.GraphicsQuality.HIGH.name(), () -> {}),
+                                new Bundle<>(Configuration.GraphicsQuality.ULTRA.name(), () -> {})
+                            ).setToggledIndex(3)),
                                 new Bundle<>("Framerate (fps)", new ToggleBar(
                                         new Bundle<>("24", () -> {}),
                                         new Bundle<>("30", () -> {}),
@@ -78,7 +78,7 @@ public class Settings extends AdvancedGameState {
                 new Tab(
                         new Rectangle(50, 100, Main.width() / 7 - 50, 50),
                         "Audio",
-                        new TabBody(new Bundle<String, ToggleBar>("Volume", new ToggleBar(new Bundle<String, Commandable>("10", () -> {}))))
+                        new TabBody(new Bundle<>("Volume", new ToggleBar(new Bundle<>("10", () -> {}))))
                 )
         );
     }
