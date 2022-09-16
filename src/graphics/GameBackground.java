@@ -20,9 +20,7 @@ public class GameBackground {
 
     }
     public static void update(){
-       for(BackgroundEffect g : GameBackground){
-
-       }
+       //particles.forEach(p -> p.update(g);
     }
     public static void render(Graphics g){
         //p.render();
