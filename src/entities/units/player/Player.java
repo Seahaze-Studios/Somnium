@@ -3,9 +3,12 @@ package entities.units.player;
 import core.Constants;
 import entities.units.Unit;
 import map.GameMap;
+import map.tile.obstacle.Obstacle;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import util.Vector2f;
+
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class Player extends Unit {
 
@@ -32,6 +35,12 @@ public class Player extends Unit {
     }
 
     public boolean collides(GameMap gm) {
-        return false;
+        AtomicBoolean returning = new AtomicBoolean(false);
+        gm.getTileList().forEach(t -> {
+            if(t instanceof Obstacle && this.getHitbox().intersects(t.getHitbox())) {
+                returning.set(true);
+            }
+        });
+        return returning.get();
     }
 }

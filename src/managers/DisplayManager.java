@@ -1,10 +1,19 @@
 package managers;
 
 import gamestates.Game;
+import map.GameMap;
+import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import util.Vector2f;
 
 public final class DisplayManager {
+    private Graphics graphics;
+
+    public DisplayManager(Graphics g)   {
+        this.graphics = g;
+    }
+
+
 	/*private Graphics graphics;
 
 	private final Vector2f center; // The entity the camera will be rendered around
