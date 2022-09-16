@@ -1,6 +1,7 @@
 package graphics.ui.selection;
 
 import core.Main;
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.geom.RoundedRectangle;
@@ -12,8 +13,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ToggleBar {
-    public ArrayList<Bundle<String, Commandable>> toggles;
-    public ArrayList<Rectangle> rectangles;
+    private ArrayList<Bundle<String, Commandable>> toggles;
+    private ArrayList<Rectangle> rectangles;
+    private int toggledIndex;
 
     public ToggleBar(Bundle<String, Commandable>... toggles) {
         this.toggles = new ArrayList<>(List.of(toggles));
@@ -33,9 +35,21 @@ public class ToggleBar {
         for (var i = 0; i < toggles.size(); i++) {
             var rect = rectangles.get(i);
             rect.setX(x + 50 * i);
-            rect.setY(y);
-            g.draw(rect);
+            rect.setY(y + 5);
+            if (i == toggledIndex) {
+                g.setColor(Color.white);
+                g.fill(rect);
+                g.setColor(Color.black);
+            } else {
+                g.setColor(Color.white);
+                g.draw(rect);
+            }
             DrawUtilities.drawStringCentered(g, toggles.get(i).object, Main.font, rect);
         }
+    }
+
+    public ToggleBar setToggledIndex(int index) {
+        toggledIndex = index;
+        return this;
     }
 }

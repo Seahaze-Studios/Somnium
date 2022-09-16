@@ -49,17 +49,18 @@ public class Settings extends AdvancedGameState {
                 new Tab(
                         new RoundedRectangle(50, 50, Main.width() / 7 - 50, 50, 20, RoundedRectangle.TOP_LEFT),
                         "Graphics",
-                        new TabBody(new Bundle<String, ToggleBar>("Framerate", new ToggleBar(
+                        new TabBody(new Bundle<String, ToggleBar>("Framerate (fps)", new ToggleBar(
                                 new Bundle<String, Commandable>("24", () -> {}),
                                 new Bundle<String, Commandable>("30", () -> {}),
                                 new Bundle<String, Commandable>("45", () -> {}),
                                 new Bundle<String, Commandable>("60", () -> {}),
+                                new Bundle<String, Commandable>("75", () -> {}),
                                 new Bundle<String, Commandable>("90", () -> {}),
                                 new Bundle<String, Commandable>("120", () -> {}),
                                 new Bundle<String, Commandable>("144", () -> {}),
                                 new Bundle<String, Commandable>("240", () -> {}),
                                 new Bundle<String, Commandable>("360", () -> {})
-                            )))
+                            ).setToggledIndex(3)))
                         ).setActive(true),
                 new Tab(
                         new Rectangle(50, 100, Main.width() / 7 - 50, 50),
