@@ -24,7 +24,7 @@ public class GameBackground {
     }
     public static void render(Graphics g){
         //p.render();
-        g.fillRect();
+        //g.fillRect();
     }
 
 
