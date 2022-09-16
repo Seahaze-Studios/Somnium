@@ -7,6 +7,7 @@ import map.tile.Tile;
 import map.tile.interactable.utility.Goal;
 import map.tile.obstacle.Block;
 import map.tile.obstacle.Obstacle;
+import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Polygon;
@@ -78,13 +79,12 @@ public class MapManager {
         }
     }
 
-    private void generatePlayer(GameMap map)   {
-
-    }
 
     public void render(Graphics g)    {
         mapL.render(0,0);
         mapR.render(Main.getScreenWidth()/2, 0);
+        colorMap(mapL, g);
+        colorMap(mapR, g);
     }
 
     public void debugRender(Graphics g) {
@@ -94,5 +94,12 @@ public class MapManager {
         for(Tile t: mapR.getTileList()) {
             g.fill(t.getHitbox());
         }
+    }
+
+    public void colorMap(GameMap gm, Graphics g)  {
+        g.setColor(new Color(gm.getColor().getRed(), gm.getColor().getBlue(),gm.getColor().getGreen(),0.5f));
+        gm.getTileList().forEach(t ->{
+            g.fill(t.getHitbox());
+        });
     }
 }
