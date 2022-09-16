@@ -144,7 +144,7 @@ public class LoadingScreen extends AdvancedGameState {
         g.setColor(new Color(255, 255, 255));
         g.draw(new RoundedRectangle(BAR_X, BAR_Y, BAR_WIDTH, BAR_HEIGHT, RoundedRectangle.ALL));
 
-        DrawUtilities.drawStringCentered(g, "Loading resource: " + lastResource + "...", Main.getScreenWidth() / 2, BAR_Y + BAR_HEIGHT + 25f);
+        DrawUtilities.drawStringCentered(g, "Loading resource: " + lastResource + "...", Main.width() / 2, BAR_Y + BAR_HEIGHT + 25f);
         super.render(gc, sbg, g);
     }
 }
