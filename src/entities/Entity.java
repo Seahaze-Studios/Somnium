@@ -107,4 +107,8 @@ public abstract class Entity implements Serializable {
     public void setY(float y) {
         this.pos.set(this.pos.x, y);
     }
+
+    public void setSprite(Image sprite) {
+        this.sprite = sprite;
+    }
 }

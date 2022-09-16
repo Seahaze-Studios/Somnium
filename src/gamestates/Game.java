@@ -5,6 +5,7 @@ import core.Main;
 import entities.Entity;
 import entities.units.player.Player;
 import gamestates.types.AdvancedGameState;
+import managers.ImageManager;
 import managers.KeyManager;
 import managers.MapManager;
 import managers.SoundManager;
@@ -73,6 +74,8 @@ public class Game extends AdvancedGameState {
         plrR.render();
         //g.drawLine(Main.width() / 2, 0, Main.width() / 2, Main.height());
         mapMan.render(g);
+        g.setColor(Color.white);
+        g.drawLine(Main.width() / 2, 0, Main.width() / 2, Main.height());
 
         if(debug) {
             debugRender(gc);
@@ -91,6 +94,8 @@ public class Game extends AdvancedGameState {
         // This code happens when you enter a gameState.
         //entity.setPos(400, 400);
         gc.getGraphics().setBackground(org.newdawn.slick.Color.black);
+        plrL.setSprite(ImageManager.getImage("1a").getScaledCopy(54, 54));
+        plrR.setSprite(ImageManager.getImage("2").getScaledCopy(54, 54));
     }
 
     public void leave(GameContainer gc, StateBasedGame sbg) {
@@ -117,15 +122,16 @@ public class Game extends AdvancedGameState {
     }
 
     public void debugRender(GameContainer gc)   {
-        gc.getGraphics().setColor(new Color(255,255,0,0.5f));
+        var g = gc.getGraphics();
+        g.setColor(new Color(255,255,0,0.5f));
         mapMan.debugRender(gc.getGraphics());
-        gc.getGraphics().fill(plrL.getHitbox());
-        gc.getGraphics().fill(plrR.getHitbox());
-        gc.getGraphics().setColor(Color.yellow);
+        g.fill(plrL.getHitbox());
+        g.fill(plrR.getHitbox());
+        g.setColor(Color.yellow);
         DrawUtilities.drawStringCentered(gc.getGraphics(), "DEBUG MODE", 1000, 100);
-        gc.getGraphics().drawString( "PLR_R @ " + plrR.getPos().x + ", " + plrR.getPos().y, 0,100);
-        gc.getGraphics().drawString("PLR_L @ " + plrL.getPos().x + ", " + plrL.getPos().y, 0,130);
-        gc.getGraphics().drawString("hitboxes (" + plrL.getHitbox().getX() + ", " + plrL.getHitbox().getY() + ")", 0,50);
+        g.drawString( "PLR_R @ " + plrR.getPos().x + ", " + plrR.getPos().y, 0,100);
+        g.drawString("PLR_L @ " + plrL.getPos().x + ", " + plrL.getPos().y, 0,130);
+        g.drawString("hitboxes (" + plrL.getHitbox().getX() + ", " + plrL.getHitbox().getY() + ")", 0,50);
     }
 
     public static Player getPlayerL() {
