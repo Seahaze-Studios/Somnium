@@ -2,12 +2,15 @@ package core;
 
 import org.newdawn.slick.AppGameContainer;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public final class Configuration {
-    public int RESOLUTION_X;
-    public int RESOLUTION_Y;
-    public int FRAMES_PER_SECOND;
-    public GraphicsQuality GRAPHICS_QUALITY;
-    public boolean VSYNC;
+    public int RESOLUTION_X = 1920;
+    public int RESOLUTION_Y = 1080;
+    public int FRAMES_PER_SECOND = 60;
+    public GraphicsQuality GRAPHICS_QUALITY = GraphicsQuality.MEDIUM;
+    public boolean VSYNC = false;
     public enum GraphicsQuality {
         LOW("Low"),
         MEDIUM("Medium"),
@@ -22,7 +25,9 @@ public final class Configuration {
         }
     }
 
-    public int[] presetFPS = {24, 30, 48, 60, 75, 120, 144, 240, 360};
+    public static List<Integer> presetFPS = new ArrayList<>() {{
+        add(24); add(30); add(48); add(60); add(75); add(90); add(120); add(144); add(240); add(360);
+    }};
 
     public Configuration() {}
 

@@ -14,10 +14,20 @@ import java.util.Date;
 public abstract class AdvancedGameState extends BasicGameState {
     @Override
     public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
+        Main.getAppgc().setTargetFrameRate(Main.config.FRAMES_PER_SECOND);
+        gc.setTargetFrameRate(Main.config.FRAMES_PER_SECOND);
+        sbg.getContainer().setTargetFrameRate(Main.config.FRAMES_PER_SECOND);
         Main.UI.getElements().forEach(m -> {
             m.update(gc);
             m.render(gc);
         });
+    }
+
+    @Override
+    public void enter(GameContainer gc, StateBasedGame sbg) throws SlickException {
+        Main.getAppgc().setTargetFrameRate(Main.config.FRAMES_PER_SECOND);
+        gc.setTargetFrameRate(Main.config.FRAMES_PER_SECOND);
+        sbg.getContainer().setTargetFrameRate(Main.config.FRAMES_PER_SECOND);
     }
 
     public void debugRender(GameContainer gc){

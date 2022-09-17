@@ -31,28 +31,47 @@ public class ToggleBar {
         length = Main.font.getWidth(sortlist.get(0).object) + 20;
         for (var i = 0; i < toggles.length; i++) {
             if (i == 0 || i == toggles.length - 1)
-                // TODO: make toggles dynamically sized based on longest text
-                rectangles.add(new RoundedRectangle(0, 0, length, 30, 10, 25,
+                rectangles.add(new RoundedRectangle(0, 0, length, 31, 10, 25,
                         i == 0 ? RoundedRectangle.TOP_LEFT + RoundedRectangle.BOTTOM_LEFT : RoundedRectangle.TOP_RIGHT + RoundedRectangle.BOTTOM_RIGHT));
             else rectangles.add(new Rectangle(0, 0, length, 30));
         }
     }
 
-    public void update(GameContainer gc) {}
+    public void update(GameContainer gc) {
+
+    }
 
     public void render(GameContainer gc, float x, float y) {
         var g = gc.getGraphics();
         for (var i = 0; i < toggles.size(); i++) {
             var rect = rectangles.get(i);
+            var rX = rect.getX();
+            var width = rect.getWidth();
+            var rY = rect.getY();
+            var height = rect.getHeight();
+            var mouseX = gc.getInput().getAbsoluteMouseX();
+            var mouseY = gc.getInput().getAbsoluteMouseY();
             rect.setX(x + length * i);
             rect.setY(y + 5);
             if (i == toggledIndex) {
                 g.setColor(Color.white);
+                g.draw(rect);
                 g.fill(rect);
                 g.setColor(Color.black);
             } else {
                 g.setColor(Color.white);
                 g.draw(rect);
+                if (rX - width / 2 < mouseX && mouseX < rX + width / 2) {
+                    if (rY - height / 2 < mouseY && mouseY < rY + height / 2) {
+                        g.setColor(new Color(255, 255, 255, 100));
+                        g.fill(rect);
+                        if (gc.getInput().isMousePressed(0)) {
+                            toggledIndex = i;
+                            toggles.get(i).element.command();
+                        }
+                        g.setColor(Color.white);
+                    }
+                }
             }
             DrawUtilities.drawStringCentered(g, toggles.get(i).object, Main.font, rect);
         }

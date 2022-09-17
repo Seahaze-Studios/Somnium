@@ -79,6 +79,7 @@ public class IntroCredit extends AdvancedGameState {
 
     @Override // Begin file loading upon entering the gamestate
     public void enter(GameContainer gc, StateBasedGame sbg) throws SlickException {
+        super.enter(gc, sbg);
         counter = 0;
         counter2 = 100 * Main.config.FRAMES_PER_SECOND / 60;
         for (var i = 0; i < 10; i++) {

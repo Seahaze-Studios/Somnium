@@ -24,6 +24,7 @@ import util.DrawUtilities;
 import util.bundle.Bundle;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Settings extends AdvancedGameState {
     public final int id;
@@ -49,31 +50,38 @@ public class Settings extends AdvancedGameState {
     }
 
     @Override
-    public void enter(GameContainer container, StateBasedGame game) throws SlickException {
+    public void enter(GameContainer gc, StateBasedGame sbg) throws SlickException {
+        super.enter(gc, sbg);
         counter = 0;
-        saveButton = new PaddedButton(Main.width() - 50 - 120, Main.height() - 50 - 40, Main.fonts.VariableWidth.P35.getWidth("Save and Exit") + 20, Main.fonts.VariableWidth.P35.getHeight() + 10, "Save and Exit", () -> game.enterState(Main.TITLE_ID, new FadeOutTransition(), new FadeInTransition()));
+        saveButton = new PaddedButton(Main.width() - 50 - 120, Main.height() - 50 - 40, Main.fonts.VariableWidth.P35.getWidth("Save and Exit") + 20, Main.fonts.VariableWidth.P35.getHeight() + 10, "Save and Exit", () -> sbg.enterState(Main.TITLE_ID, new FadeOutTransition(), new FadeInTransition()));
         tabber = new Tabber(
                 new Tab(
                         new RoundedRectangle(50, 50, Main.width() / 7 - 50, 50, 20, 25, RoundedRectangle.TOP_LEFT),
                         "Graphics",
-                        new TabBody(new Bundle<>("Graphics Quality Preset", new ToggleBar(
-                                new Bundle<>(Configuration.GraphicsQuality.LOW.name(), () -> {}),
-                                new Bundle<>(Configuration.GraphicsQuality.MEDIUM.name(), () -> {}),
-                                new Bundle<>(Configuration.GraphicsQuality.HIGH.name(), () -> {}),
-                                new Bundle<>(Configuration.GraphicsQuality.ULTRA.name(), () -> {})
-                            ).setToggledIndex(3)),
+                        new TabBody(
+                                new Bundle<>("Graphics Quality Preset", new ToggleBar(
+                                    new Bundle<>(Configuration.GraphicsQuality.LOW.name(), () -> { Main.config.GRAPHICS_QUALITY = Configuration.GraphicsQuality.LOW; }),
+                                    new Bundle<>(Configuration.GraphicsQuality.MEDIUM.name(), () -> { Main.config.GRAPHICS_QUALITY = Configuration.GraphicsQuality.MEDIUM; }),
+                                    new Bundle<>(Configuration.GraphicsQuality.HIGH.name(), () -> { Main.config.GRAPHICS_QUALITY = Configuration.GraphicsQuality.HIGH; }),
+                                    new Bundle<>(Configuration.GraphicsQuality.ULTRA.name(), () -> { Main.config.GRAPHICS_QUALITY = Configuration.GraphicsQuality.ULTRA; })
+                                ).setToggledIndex(Arrays.asList(Configuration.GraphicsQuality.values()).indexOf(Main.config.GRAPHICS_QUALITY))),
                                 new Bundle<>("Framerate (fps)", new ToggleBar(
-                                        new Bundle<>("24", () -> {}),
-                                        new Bundle<>("30", () -> {}),
-                                        new Bundle<>("45", () -> {}),
-                                        new Bundle<>("60", () -> {}),
-                                        new Bundle<>("75", () -> {}),
-                                        new Bundle<>("90", () -> {}),
-                                        new Bundle<>("120", () -> {}),
-                                        new Bundle<>("144", () -> {}),
-                                        new Bundle<>("240", () -> {}),
-                                        new Bundle<>("360", () -> {})
-                                ).setToggledIndex(3)))
+                                        new Bundle<>("24", () -> { Main.config.FRAMES_PER_SECOND = 24; }),
+                                        new Bundle<>("30", () -> { Main.config.FRAMES_PER_SECOND = 30; }),
+                                        new Bundle<>("45", () -> { Main.config.FRAMES_PER_SECOND = 45; }),
+                                        new Bundle<>("60", () -> { Main.config.FRAMES_PER_SECOND = 60; }),
+                                        new Bundle<>("75", () -> { Main.config.FRAMES_PER_SECOND = 75; }),
+                                        new Bundle<>("90", () -> { Main.config.FRAMES_PER_SECOND = 90; }),
+                                        new Bundle<>("120", () -> { Main.config.FRAMES_PER_SECOND = 120; }),
+                                        new Bundle<>("144", () -> { Main.config.FRAMES_PER_SECOND = 144; }),
+                                        new Bundle<>("240", () -> { Main.config.FRAMES_PER_SECOND = 240; }),
+                                        new Bundle<>("360", () -> { Main.config.FRAMES_PER_SECOND = 360; })
+                                ).setToggledIndex(Configuration.presetFPS.indexOf(Main.config.FRAMES_PER_SECOND))),
+                                new Bundle<>("Show FPS", new ToggleBar(
+                                        new Bundle<>("O", () -> { gc.setShowFPS(false); }),
+                                        new Bundle<>("I", () -> { gc.setShowFPS(true); })
+                                ).setToggledIndex(gc.isShowingFPS() ? 1 : 0))
+                        )
                         ).setActive(true),
                 new Tab(
                         new Rectangle(50, 100, Main.width() / 7 - 50, 50),

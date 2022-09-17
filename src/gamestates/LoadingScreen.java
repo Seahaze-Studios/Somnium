@@ -73,6 +73,7 @@ public class LoadingScreen extends AdvancedGameState {
 
     @Override // Begin file loading upon entering the gamestate
     public void enter(GameContainer gc, StateBasedGame sbg) throws SlickException {
+        super.enter(gc, sbg);
         //SoundManager.overrideBackgroundMusic(music);
 
         // Set Loading List to Deferred

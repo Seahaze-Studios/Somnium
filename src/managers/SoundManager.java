@@ -9,11 +9,14 @@ public class SoundManager {
 
 	public static final Map<String, Sound> Sounds = new HashMap<>();
 	private static Sound backgroundMusic;
+	private static boolean musicPlaying;
 
 	private SoundManager() { throw new IllegalStateException("Utility class"); }
 	
 	// Play a sound effect
-	public static void playSoundEffect(String name) { Sounds.get(name).play(); }
+	public static void playSoundEffect(String name) {
+		Sounds.get(name).play();
+	}
 
 	// Stop any existing background music, and play new background music
 	public static void playBackgroundMusic(String name) {
@@ -26,12 +29,14 @@ public class SoundManager {
 
 			if(backgroundMusic != null) {
 				backgroundMusic.loop();
+				musicPlaying = true;
 			}
 		}
 	}
 	public static void stopBackgroundMusic() {
 		try{
 			backgroundMusic.stop();
+			musicPlaying = false;
 		} catch(Exception ignored) {}
 	}
 
@@ -44,7 +49,12 @@ public class SoundManager {
 			backgroundMusic = sound;
 			if (backgroundMusic != null) {
 				backgroundMusic.loop();
+				musicPlaying = true;
 			}
 		}
+	}
+
+	public static boolean isMusicPlaying() {
+		return musicPlaying;
 	}
 }

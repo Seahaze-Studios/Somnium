@@ -112,4 +112,7 @@ public class Main extends StateBasedGame
 
 	}
 
+	public static AppGameContainer getAppgc() {
+		return appgc;
+	}
 }

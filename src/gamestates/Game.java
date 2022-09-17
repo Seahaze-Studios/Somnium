@@ -93,6 +93,7 @@ public class Game extends AdvancedGameState {
     public void enter(GameContainer gc, StateBasedGame sbg) throws SlickException {
         // This code happens when you enter a gameState.
         //entity.setPos(400, 400);
+        super.enter(gc, sbg);
         gc.getGraphics().setBackground(org.newdawn.slick.Color.black);
         plrL.setSprite(ImageManager.getImage("1a").getScaledCopy(54, 54));
         plrR.setSprite(ImageManager.getImage("2").getScaledCopy(54, 54));
