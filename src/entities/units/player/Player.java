@@ -62,7 +62,7 @@ public class Player extends Unit {
     public boolean enterGoal(GameMap gm)  {
         AtomicBoolean returning = new AtomicBoolean(false);
         gm.getTileList().forEach(t -> {
-            if(t instanceof Goal && this.getHitbox().intersects(t.getHitbox())) {
+            if (t instanceof Goal && this.getHitbox().intersects(t.getHitbox())) {
                 returning.set(true);
             }
         });

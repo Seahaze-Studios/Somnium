@@ -51,7 +51,6 @@ public final class KeyManager implements Predicate<Integer> {
 						if(playerL.collides(MapManager.mapL))	{
 							playerL.move(new Vector2f(0, 1));
 							temp1 = true;
-							break;
 						}
 					}
 					if(!temp2) {
@@ -59,7 +58,6 @@ public final class KeyManager implements Predicate<Integer> {
 						if(playerR.collides(MapManager.mapR))	{
 							playerR.move(new Vector2f(0, 1));
 							temp2 = true;
-							break;
 						}
 					}
 				}

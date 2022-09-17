@@ -21,7 +21,5 @@ R
 "src/managers/AnimationManager.java,d\1\d103a9f2030cee0fb01420e4cebdba50f8e7d459
 P
  src/managers/DisplayManager.java,e\e\ee8afc168c9f7253472a04b1a7f389a5e9c8cb5e
-U
-%src/map/tile/interactable/Portal.java,7\e\7e4565dfd59c0136c4a0941b509888cc5e77dd4b
 ^
 .src/map/tile/interactable/utility/Utility.java,9\b\9b0b2eb3088c94f1cb96e8555b1b0996aaa18b77
