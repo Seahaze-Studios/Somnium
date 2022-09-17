@@ -13,6 +13,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.function.Predicate;
 
+import static core.Constants.SCALING_FACTOR;
+
 public final class KeyManager implements Predicate<Integer> {
 	private static final float PLAYER_ACCELERATION = 1f;
 	public static final List<Integer> KEY_DOWN_LIST = List.of(Input.KEY_W, Input.KEY_S, Input.KEY_A, Input.KEY_D);
@@ -47,16 +49,16 @@ public final class KeyManager implements Predicate<Integer> {
 			case Input.KEY_W ->	{
 				for(int i = 0; i < Constants.PLAYER_MAX_SPEED; i++)	{
 					if(!temp1) {
-						playerL.move(new Vector2f(0, -1));
+						playerL.move(new Vector2f(0, -1 * SCALING_FACTOR()));
 						if(playerL.collides(MapManager.mapL))	{
-							playerL.move(new Vector2f(0, 1));
+							playerL.move(new Vector2f(0, 1 * SCALING_FACTOR()));
 							temp1 = true;
 						}
 					}
 					if(!temp2) {
-						playerR.move(new Vector2f(0, -1));
+						playerR.move(new Vector2f(0, -1 * SCALING_FACTOR()));
 						if(playerR.collides(MapManager.mapR))	{
-							playerR.move(new Vector2f(0, 1));
+							playerR.move(new Vector2f(0, 1 * SCALING_FACTOR()));
 							temp2 = true;
 						}
 					}
@@ -66,17 +68,17 @@ public final class KeyManager implements Predicate<Integer> {
 			case Input.KEY_A ->	{
 				for(int i = 0; i < Constants.PLAYER_MAX_SPEED; i++)	{
 					if(!temp1) {
-						playerL.move(new Vector2f(-1, 0));
+						playerL.move(new Vector2f(-1 * SCALING_FACTOR(), 0));
 						if(playerL.collides(MapManager.mapL))	{
-							playerL.move(new Vector2f(1, 0));
+							playerL.move(new Vector2f(1 * SCALING_FACTOR(), 0));
 							temp1 = true;
 						}
 
 					}
 					if(!temp2) {
-						playerR.move(new Vector2f(1, 0));
+						playerR.move(new Vector2f(1 * SCALING_FACTOR(), 0));
 						if(playerR.collides(MapManager.mapR))	{
-							playerR.move(new Vector2f(-1, 0));
+							playerR.move(new Vector2f(-1 * SCALING_FACTOR(), 0));
 							temp2 = true;
 						}
 					}
@@ -85,16 +87,16 @@ public final class KeyManager implements Predicate<Integer> {
 			case Input.KEY_S -> {
 				for(int i = 0; i < Constants.PLAYER_MAX_SPEED; i++)	{
 					if(!temp1) {
-						playerL.move(new Vector2f(0, 1));
+						playerL.move(new Vector2f(0, 1 * SCALING_FACTOR()));
 						if(playerL.collides(MapManager.mapL))	{
-							playerL.move(new Vector2f(0, -1));
+							playerL.move(new Vector2f(0, -1 * SCALING_FACTOR()));
 							temp1 = true;
 						}
 					}
 					if(!temp2) {
-						playerR.move(new Vector2f(0, 1));
+						playerR.move(new Vector2f(0, 1 * SCALING_FACTOR()));
 						if(playerR.collides(MapManager.mapR))	{
-							playerR.move(new Vector2f(0, -1));
+							playerR.move(new Vector2f(0, -1 * SCALING_FACTOR()));
 							temp2 = true;
 						}
 					}
@@ -104,17 +106,17 @@ public final class KeyManager implements Predicate<Integer> {
 			case Input.KEY_D -> {
 				for(int i = 0; i < Constants.PLAYER_MAX_SPEED; i++)	{
 					if(!temp1) {
-						playerL.move(new Vector2f(1, 0));
+						playerL.move(new Vector2f(1 * SCALING_FACTOR(), 0));
 						if(playerL.collides(MapManager.mapL))	{
-							playerL.move(new Vector2f(-1, 0));
+							playerL.move(new Vector2f(-1 * SCALING_FACTOR(), 0));
 							temp1 = true;
 						}
 
 					}
 					if(!temp2) {
-						playerR.move(new Vector2f(-1, 0));
+						playerR.move(new Vector2f(-1 * SCALING_FACTOR(), 0));
 						if(playerR.collides(MapManager.mapR))	{
-							playerR.move(new Vector2f(1, 0));
+							playerR.move(new Vector2f(1 * SCALING_FACTOR(), 0));
 							temp2 = true;
 						}
 					}

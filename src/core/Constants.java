@@ -24,5 +24,6 @@ public final class Constants {
 
 
     public static final float PLAYER_MAX_SPEED = 10;
+    public static final float SCALING_FACTOR() { return 60f / Main.config.FRAMES_PER_SECOND; }
 
 }
