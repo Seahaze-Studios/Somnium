@@ -113,5 +113,9 @@ public class MapManager {
     private void levelChange() throws SlickException {
         Game.curLevelID++;
         loadStage(Game.curLevelID);
+        Game.getPlayerL().setPos(mapL.plrPos);
+        Game.getPlayerL().setHitbox(mapL.plrPos.x - Game.getPlayerL().getHitbox().getWidth()/2,mapL.plrPos.y - Game.getPlayerL().getHitbox().getWidth()/2);
+        Game.getPlayerR().setPos(mapR.plrPos);
+        Game.getPlayerR().setHitbox(mapR.plrPos.x- Game.getPlayerR().getHitbox().getWidth()/2,mapR.plrPos.y - Game.getPlayerR().getHitbox().getWidth()/2);
     }
 }

@@ -100,6 +100,11 @@ public abstract class Entity implements Serializable {
         this.pos.set(x, y);
     }
 
+    public void setHitbox(float x, float y) {
+        this.hitbox.setX(x);
+        this.hitbox.setY(y);
+    }
+
     public void setX(float x) {
         this.pos.set(x, this.pos.y);
     }
