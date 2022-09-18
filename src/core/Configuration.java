@@ -26,7 +26,7 @@ public final class Configuration {
     }
 
     public static List<Integer> presetFPS = new ArrayList<>() {{
-        add(24); add(30); add(48); add(60); add(75); add(90); add(120); add(144); add(240); add(360);
+        add(24); add(30); add(45); add(50); add(60); add(75); add(90); add(120); add(144); add(165); add (180); add(240); add(360); add(390);
     }};
 
     public Configuration() {}
