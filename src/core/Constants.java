@@ -1,5 +1,7 @@
 package core;
 
+import org.newdawn.slick.Color;
+
 import java.util.ArrayList;
 
 public final class Constants {
@@ -14,6 +16,16 @@ public final class Constants {
     public static final int LEVEL_TEST_ID = -1;
     public static final int LEVEL_1_ID = 1;
     public static final int LEVEL_2_ID = 2;
+    public static final ArrayList<Color> COLOR_L = new ArrayList<>()    {{
+        add(Color.white);
+        add(Color.orange);
+    }};
+    public static final ArrayList<Color> COLOR_R = new ArrayList<>()    {{
+        add(Color.black);
+        add(Color.blue);
+    }};
+
+
 
     // List of Level IDs - index is level, element is ID.
     //public static final ArrayList<Integer> levelIDs = new ArrayList<>() {{

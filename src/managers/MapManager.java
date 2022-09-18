@@ -35,7 +35,7 @@ public class MapManager {
 
     public void loadStage(int id) throws SlickException {
         try {
-            loadMaps(new GameMap("res/maps/lvl" + id + "left.tmx"), new GameMap("res/maps/lvl" + id + "right.tmx"));
+            loadMaps(new GameMap("res/maps/lvl" + id + "left.tmx", Constants.COLOR_L.get(id - 1)), new GameMap("res/maps/lvl" + id + "right.tmx", Constants.COLOR_R.get(id - 1)));
         } catch (Exception e) {
 
         }
