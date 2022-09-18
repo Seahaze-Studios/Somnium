@@ -12,6 +12,7 @@ import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Polygon;
+import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.geom.Shape;
 import util.DrawUtilities;
 import util.Vector2f;
@@ -77,6 +78,10 @@ public class MapManager {
     }
 
     public void render(Graphics g) throws SlickException {
+        g.setColor(mapR.getColor());
+        g.fill(new Rectangle(0,0,Main.getScreenWidth()/2,Main.getScreenHeight()));
+        g.setColor(mapL.getColor());
+        g.fill(new Rectangle(Main.getScreenWidth()/2,0, Main.getScreenWidth(),Main.getScreenHeight()));
         mapL.render(0,0);
         mapR.render(Main.getScreenWidth()-(Constants.TILE_SIZE*mapR.getWidth()), 0);
         colorMap(mapL, g);
@@ -106,7 +111,7 @@ public class MapManager {
     }
 
     public void colorMap(GameMap gm, Graphics g)  {
-        g.setColor(new Color(gm.getColor().getRed(), gm.getColor().getBlue(),gm.getColor().getGreen(),0.5f));
+        g.setColor(new Color(gm.getColor().getRed(), gm.getColor().getBlue(),gm.getColor().getGreen(),0.8f));
         gm.getTileList().forEach(t -> g.fill(t.getHitbox()));
     }
 
