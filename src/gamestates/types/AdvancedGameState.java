@@ -9,14 +9,20 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
+import java.time.Instant;
 import java.util.Date;
 
 public abstract class AdvancedGameState extends BasicGameState {
+    protected long timestamp;
+
     @Override
     public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
-        Main.getAppgc().setTargetFrameRate(Main.config.FRAMES_PER_SECOND);
-        gc.setTargetFrameRate(Main.config.FRAMES_PER_SECOND);
-        sbg.getContainer().setTargetFrameRate(Main.config.FRAMES_PER_SECOND);
+        Main.setRealFPS((int) (1 / ((System.nanoTime() - timestamp) / 1000000000d)));
+        System.out.println(Main.getRealFPS());
+        timestamp = System.nanoTime();
+        Main.getAppgc().setTargetFrameRate(Main.config.UNLIMITED_FPS ? Integer.MAX_VALUE : Main.config.FRAMES_PER_SECOND);
+        gc.setTargetFrameRate(Main.config.UNLIMITED_FPS ? Integer.MAX_VALUE : Main.config.FRAMES_PER_SECOND);
+        sbg.getContainer().setTargetFrameRate(Main.config.UNLIMITED_FPS ? Integer.MAX_VALUE : Main.config.FRAMES_PER_SECOND);
         Main.UI.getElements().forEach(m -> {
             m.update(gc);
             m.render(gc);
@@ -25,9 +31,9 @@ public abstract class AdvancedGameState extends BasicGameState {
 
     @Override
     public void enter(GameContainer gc, StateBasedGame sbg) throws SlickException {
-        Main.getAppgc().setTargetFrameRate(Main.config.FRAMES_PER_SECOND);
-        gc.setTargetFrameRate(Main.config.FRAMES_PER_SECOND);
-        sbg.getContainer().setTargetFrameRate(Main.config.FRAMES_PER_SECOND);
+        Main.getAppgc().setTargetFrameRate(Main.config.UNLIMITED_FPS ? Integer.MAX_VALUE : Main.config.FRAMES_PER_SECOND);
+        gc.setTargetFrameRate(Main.config.UNLIMITED_FPS ? Integer.MAX_VALUE : Main.config.FRAMES_PER_SECOND);
+        sbg.getContainer().setTargetFrameRate(Main.config.UNLIMITED_FPS ? Integer.MAX_VALUE : Main.config.FRAMES_PER_SECOND);
     }
 
     public void debugRender(GameContainer gc){

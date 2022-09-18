@@ -81,12 +81,24 @@ public class Settings extends AdvancedGameState {
                                         new Bundle<>("240", () -> { Main.config.FRAMES_PER_SECOND = 240; }),
                                         new Bundle<>("360", () -> { Main.config.FRAMES_PER_SECOND = 360; }),
                                         new Bundle<>("390", () -> { Main.config.FRAMES_PER_SECOND = 390; }),
-                                        new Bundle<>("Custom", () -> { Main.config.FRAMES_PER_SECOND = Integer.parseInt(customFPS); })
+                                        new Bundle<>("...", () -> { Main.config.FRAMES_PER_SECOND = Integer.parseInt(customFPS); })
                                 ).setToggledIndex(Configuration.presetFPS.indexOf(Main.config.FRAMES_PER_SECOND) > Configuration.presetFPS.size() ? Configuration.presetFPS.size() + 1 : Configuration.presetFPS.indexOf(Main.config.FRAMES_PER_SECOND))),
+                                new Bundle<>("Unlimited FPS (not recommended)", new ToggleBar(
+                                        new Bundle<>("O", () -> Main.config.UNLIMITED_FPS = false),
+                                        new Bundle<>("I", () -> Main.config.UNLIMITED_FPS = true)
+                                ).setToggledIndex(Main.config.UNLIMITED_FPS ? 1 : 0)),
                                 new Bundle<>("Show FPS", new ToggleBar(
-                                        new Bundle<>("O", () -> { gc.setShowFPS(false); }),
-                                        new Bundle<>("I", () -> { gc.setShowFPS(true); })
-                                ).setToggledIndex(gc.isShowingFPS() ? 1 : 0))
+                                        new Bundle<>("O", () -> gc.setShowFPS(false)),
+                                        new Bundle<>("I", () -> gc.setShowFPS(true))
+                                ).setToggledIndex(gc.isShowingFPS() ? 1 : 0)),
+                                new Bundle<>("VSync", new ToggleBar(
+                                        new Bundle<>("O", () -> gc.setVSync(false)),
+                                        new Bundle<>("I", () -> gc.setVSync(true))
+                                ).setToggledIndex(gc.isVSyncRequested() ? 1 : 0)),
+                                new Bundle<>("NVIDIA G-Sync / AMD FreeSync", new ToggleBar(
+                                        new Bundle<>("O", () -> Main.config.GSYNC_FREESYNC = false),
+                                        new Bundle<>("I", () -> Main.config.GSYNC_FREESYNC = true)
+                                ).setToggledIndex(Main.config.GSYNC_FREESYNC ? 1 : 0))
                         )
                         ).setActive(true),
                 new Tab(
@@ -105,6 +117,7 @@ public class Settings extends AdvancedGameState {
 
     @Override
     public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
+        super.render(gc, sbg, g);
         g.setBackground(Color.black);
         tabber.render(gc);
         g.draw(lines.get(0));

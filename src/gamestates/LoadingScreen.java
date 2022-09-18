@@ -113,6 +113,7 @@ public class LoadingScreen extends AdvancedGameState {
     @Override // Render, all visuals
     public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException
     {
+        super.render(gc, sbg, g);
         g.setFont(Main.font);
         // Calculate the number of tasks done
         this.tasksDone = loadingList.getTotalResources() - loadingList.getRemainingResources();
@@ -146,6 +147,5 @@ public class LoadingScreen extends AdvancedGameState {
         g.draw(new RoundedRectangle(BAR_X, BAR_Y, BAR_WIDTH, BAR_HEIGHT, RoundedRectangle.ALL));
 
         DrawUtilities.drawStringCentered(g, "Loading resource: " + lastResource + "...", Main.width() / 2, BAR_Y + BAR_HEIGHT + 25f);
-        super.render(gc, sbg, g);
     }
 }

@@ -33,6 +33,7 @@ public class QuitState extends AdvancedGameState {
     }
 
     public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
+        super.render(gc, sbg, g);
         DrawUtilities.drawStringCentered(g, "Goodbye.", Main.fonts.VariableWidth.P55, Main.width() / 2, Main.height() / 2);
     }
 }

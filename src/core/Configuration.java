@@ -11,6 +11,8 @@ public final class Configuration {
     public int FRAMES_PER_SECOND = 60;
     public GraphicsQuality GRAPHICS_QUALITY = GraphicsQuality.MEDIUM;
     public boolean VSYNC = false;
+    public boolean GSYNC_FREESYNC = false;
+    public boolean UNLIMITED_FPS = false;
     public enum GraphicsQuality {
         LOW("Low"),
         MEDIUM("Medium"),
@@ -38,5 +40,7 @@ public final class Configuration {
         VSYNC = false;
         System.out.println(RESOLUTION_X + " " + RESOLUTION_Y +  " " + FRAMES_PER_SECOND + " " + VSYNC);
         GRAPHICS_QUALITY = GraphicsQuality.MEDIUM;
+        UNLIMITED_FPS = false;
+        GSYNC_FREESYNC = false;
     }
 }
