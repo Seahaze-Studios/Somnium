@@ -64,12 +64,11 @@ public class Game extends AdvancedGameState {
         this.sbg = sbg;
 
         curLevelID = Constants.LEVEL_1_ID;
-
+        plrL = new Player();
+        plrR = new Player();
         mapMan = new MapManager(curLevelID);
         System.out.println("[VERBOSE] MapManager initialized");
-        plrL = new Player(MapManager.mapL.plrPos);
-        plrR = new Player(MapManager.mapR.plrPos);
-        plrR.color(Color.black);
+
 //        plrL.setSpriteSVG(Constants.SVG_L);
 //        plrR.setSpriteSVG(Constants.SVG_R);
 

@@ -39,11 +39,11 @@ public class MapManager {
             if(id <= Constants.COLOR_L.size()) {
                 loadMaps(new GameMap("res/maps/lvl" + id + "left.tmx", Constants.COLOR_L.get(id - 1)),
                         new GameMap("res/maps/lvl" + id + "right.tmx", Constants.COLOR_R.get(id - 1)));
-                Game.getPlayerL().color(Constants.COLOR_R.get(id - 1));
+                Game.getPlayerL().color(Constants.COLOR_L.get(id - 1));
                 Game.getPlayerL().setPos(mapL.plrPos);
                 Game.getPlayerL().setHitbox(mapL.plrPos.x - Game.getPlayerL().getHitbox().getWidth() / 2, mapL.plrPos.y - Game.getPlayerL().getHitbox().getWidth() / 2);
                 Game.getPlayerR().setPos(mapR.plrPos);
-                Game.getPlayerR().color(Constants.COLOR_L.get(id-1));
+                Game.getPlayerR().color(Constants.COLOR_R.get(id-1));
                 Game.getPlayerR().setHitbox(mapR.plrPos.x - Game.getPlayerR().getHitbox().getWidth() / 2, mapR.plrPos.y - Game.getPlayerR().getHitbox().getWidth() / 2);
             }
         } catch (Exception e) {

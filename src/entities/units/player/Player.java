@@ -20,6 +20,8 @@ public class Player extends Unit {
 //    private SimpleDiagramRenderer spriteSVG;
     private Image refSprite;
 
+    private Color color;
+
 
     public Player(int x, int y) throws SlickException {
         super(x,y);
@@ -41,7 +43,8 @@ public class Player extends Unit {
         width = Constants.TILE_SIZE;
         height = Constants.TILE_SIZE;
         this.refSprite = new Image("res/dev/placeholder.png").getScaledCopy(54,54);
-        this.refSprite = sprite;
+        this.sprite = refSprite;
+        this.color = new Color(Color.gray);
     }
 
     public boolean collides(GameMap gm) {
@@ -76,6 +79,13 @@ public class Player extends Unit {
         return returning.get();
     }
 
+    public void render()    {
+        sprite.setImageColor(color.r, color.g, color.b, 1f);
+        super.render();
+
+    }
+
+
 //    public void setSpriteSVG(SimpleDiagramRenderer svg)  {
 //        this.spriteSVG = svg;
 //    }
@@ -83,6 +93,6 @@ public class Player extends Unit {
 //        return spriteSVG;
 //    }
     public void color(Color color)  {
-        sprite.setImageColor(color.r,color.g,color.b);
+        if(color != Color.black) this.color = color;
     }
 }
