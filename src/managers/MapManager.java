@@ -36,7 +36,15 @@ public class MapManager {
 
     public void loadStage(int id) throws SlickException {
         try {
-            loadMaps(new GameMap("res/maps/lvl" + id + "left.tmx", Constants.COLOR_L.get(id - 1)), new GameMap("res/maps/lvl" + id + "right.tmx", Constants.COLOR_R.get(id - 1)));
+            if(id < Constants.COLOR_L.size()) {
+                loadMaps(new GameMap("res/maps/lvl" + id + "left.tmx", Constants.COLOR_L.get(id - 1)), new GameMap("res/maps/lvl" + id + "right.tmx", Constants.COLOR_R.get(id - 1)));
+                Game.getPlayerL().color(Constants.COLOR_R.get(id - 1));
+                Game.getPlayerL().setPos(mapL.plrPos);
+                Game.getPlayerL().setHitbox(mapL.plrPos.x - Game.getPlayerL().getHitbox().getWidth() / 2, mapL.plrPos.y - Game.getPlayerL().getHitbox().getWidth() / 2);
+                Game.getPlayerR().setPos(mapR.plrPos);
+                Game.getPlayerR().color(Constants.COLOR_L.get(id - 1));
+                Game.getPlayerR().setHitbox(mapR.plrPos.x - Game.getPlayerR().getHitbox().getWidth() / 2, mapR.plrPos.y - Game.getPlayerR().getHitbox().getWidth() / 2);
+            }
         } catch (Exception e) {
 
         }
@@ -111,16 +119,12 @@ public class MapManager {
     }
 
     public void colorMap(GameMap gm, Graphics g)  {
-        g.setColor(new Color(gm.getColor().getRed(), gm.getColor().getBlue(),gm.getColor().getGreen(),0.8f));
-        gm.getTileList().forEach(t -> g.fill(t.getHitbox()));
+        g.setColor(new Color(gm.getColor().getRed(), gm.getColor().getBlue(),gm.getColor().getGreen(),0.95f));
+        gm.getTileList().forEach(t -> {if(!(t instanceof Goal)  )g.fill(t.getHitbox());});
     }
 
     private void levelChange() throws SlickException {
         Game.curLevelID++;
         loadStage(Game.curLevelID);
-        Game.getPlayerL().setPos(mapL.plrPos);
-        Game.getPlayerL().setHitbox(mapL.plrPos.x - Game.getPlayerL().getHitbox().getWidth()/2,mapL.plrPos.y - Game.getPlayerL().getHitbox().getWidth()/2);
-        Game.getPlayerR().setPos(mapR.plrPos);
-        Game.getPlayerR().setHitbox(mapR.plrPos.x- Game.getPlayerR().getHitbox().getWidth()/2,mapR.plrPos.y - Game.getPlayerR().getHitbox().getWidth()/2);
     }
 }

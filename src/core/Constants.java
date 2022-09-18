@@ -1,6 +1,9 @@
 package core;
 
 import org.newdawn.slick.Color;
+import org.newdawn.slick.SlickException;
+import org.newdawn.slick.svg.InkscapeLoader;
+import org.newdawn.slick.svg.SimpleDiagramRenderer;
 
 import java.util.ArrayList;
 
@@ -25,6 +28,17 @@ public final class Constants {
         add(Color.blue);
     }};
 
+//    public static final SimpleDiagramRenderer SVG_L;
+//    public static final SimpleDiagramRenderer SVG_R;
+//
+//    static {
+//        try {
+//             SVG_L = new SimpleDiagramRenderer(InkscapeLoader.load("res/player/face1.svg"));
+//            SVG_R = new SimpleDiagramRenderer(InkscapeLoader.load("res/player/face2.svg"));
+//        } catch (SlickException e) {
+//            throw new RuntimeException(e);
+//        }
+//    }
 
 
     // List of Level IDs - index is level, element is ID.

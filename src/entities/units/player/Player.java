@@ -7,13 +7,19 @@ import map.GameMap;
 import map.tile.interactable.utility.Goal;
 import map.tile.obstacle.Block;
 import map.tile.obstacle.Obstacle;
+import org.newdawn.slick.Color;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.svg.InkscapeLoader;
+import org.newdawn.slick.svg.SimpleDiagramRenderer;
 import util.Vector2f;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class Player extends Unit {
+//    private SimpleDiagramRenderer spriteSVG;
+    private Image refSprite;
+
 
     public Player(int x, int y) throws SlickException {
         super(x,y);
@@ -34,7 +40,8 @@ public class Player extends Unit {
         super.init();
         width = Constants.TILE_SIZE;
         height = Constants.TILE_SIZE;
-        this.sprite = new Image("res/dev/placeholder.png").getScaledCopy(54,54);
+        this.refSprite = new Image("res/dev/placeholder.png").getScaledCopy(54,54);
+        this.refSprite = sprite;
     }
 
     public boolean collides(GameMap gm) {
@@ -67,5 +74,15 @@ public class Player extends Unit {
             }
         });
         return returning.get();
+    }
+
+//    public void setSpriteSVG(SimpleDiagramRenderer svg)  {
+//        this.spriteSVG = svg;
+//    }
+//    public SimpleDiagramRenderer getSpriteSVG() {
+//        return spriteSVG;
+//    }
+    public void color(Color color)  {
+        sprite.setImageColor(color.r,color.g,color.b);
     }
 }

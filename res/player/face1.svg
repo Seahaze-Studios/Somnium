@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="256"
+   height="256"
+   viewBox="0 0 256 256"
+   version="1.1"
+   id="svg5"
+   sodipodi:docname="face1.svg"
+   inkscape:export-filename="face1.png"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96"
+   inkscape:version="1.2.1 (9c6d41e410, 2022-07-14)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#505050"
+     bordercolor="#eeeeee"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#505050"
+     inkscape:document-units="px"
+     showgrid="true"
+     inkscape:zoom="2.9012175"
+     inkscape:cx="25.851216"
+     inkscape:cy="126.32627"
+     inkscape:window-width="1350"
+     inkscape:window-height="1040"
+     inkscape:window-x="570"
+     inkscape:window-y="72"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="layer1">
+    <inkscape:grid
+       type="xygrid"
+       id="grid9"
+       spacingx="16"
+       spacingy="16"
+       originx="0"
+       originy="0"
+       empspacing="2"
+       color="#00537c"
+       opacity="0.14901961" />
+  </sodipodi:namedview>
+  <defs
+     id="defs2" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke-width:2"
+       id="rect115"
+       width="256"
+       height="256"
+       x="0"
+       y="0" />
+    <path
+       style="fill:#000000;fill-opacity:0;stroke:#000000;stroke-width:16;stroke-linecap:square;stroke-dasharray:none;stroke-opacity:1"
+       d="m 32,144 c 32,32 64,0 64,0"
+       id="path4310" />
+    <path
+       style="fill:#000000;fill-opacity:0;stroke:#000000;stroke-width:16;stroke-linecap:square;stroke-dasharray:none;stroke-opacity:1"
+       d="m 160,144 c 32,32 64,0 64,0"
+       id="path4310-1" />
+    <circle
+       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:16;stroke-linecap:square;stroke-dasharray:none;stroke-opacity:1"
+       id="path7773"
+       cx="152"
+       cy="216"
+       r="8" />
+    <path
+       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0;stroke-linecap:square;stroke-dasharray:none;stroke-opacity:1"
+       d="m 128,240 c -16,-48 32,-48 32,-48 0,0 48,0 32,48"
+       id="path14812" />
+  </g>
+</svg>

@@ -25,7 +25,11 @@ public class Game extends AdvancedGameState {
     private final int id;
     private static GameContainer gc;
 
+    private static StateBasedGame sbg;
 
+    public static StateBasedGame getSbg()  {
+        return sbg;
+    }
 
     private static MapManager mapMan;
 
@@ -62,6 +66,8 @@ public class Game extends AdvancedGameState {
         System.out.println("[VERBOSE] MapManager initialized");
         plrL = new Player(MapManager.mapL.plrPos);
         plrR = new Player(MapManager.mapR.plrPos);
+//        plrL.setSpriteSVG(Constants.SVG_L);
+//        plrR.setSpriteSVG(Constants.SVG_R);
 
         // Initialize Managers
         keyDown = new KeyManager(gc.getInput(), this);
@@ -76,6 +82,8 @@ public class Game extends AdvancedGameState {
         mapMan.render(g);
         g.setColor(Color.white);
         g.drawLine(Main.width() / 2, 0, Main.width() / 2, Main.height());
+//        plrL.getSpriteSVG().render(g);
+//        plrR.getSpriteSVG().render(g);
         plrL.render();
         plrR.render();
         if(debug) {
