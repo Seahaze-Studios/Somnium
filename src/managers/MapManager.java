@@ -36,13 +36,14 @@ public class MapManager {
 
     public void loadStage(int id) throws SlickException {
         try {
-            if(id < Constants.COLOR_L.size()) {
-                loadMaps(new GameMap("res/maps/lvl" + id + "left.tmx", Constants.COLOR_L.get(id - 1)), new GameMap("res/maps/lvl" + id + "right.tmx", Constants.COLOR_R.get(id - 1)));
+            if(id <= Constants.COLOR_L.size()) {
+                loadMaps(new GameMap("res/maps/lvl" + id + "left.tmx", Constants.COLOR_L.get(id - 1)),
+                        new GameMap("res/maps/lvl" + id + "right.tmx", Constants.COLOR_R.get(id - 1)));
                 Game.getPlayerL().color(Constants.COLOR_R.get(id - 1));
                 Game.getPlayerL().setPos(mapL.plrPos);
                 Game.getPlayerL().setHitbox(mapL.plrPos.x - Game.getPlayerL().getHitbox().getWidth() / 2, mapL.plrPos.y - Game.getPlayerL().getHitbox().getWidth() / 2);
                 Game.getPlayerR().setPos(mapR.plrPos);
-                Game.getPlayerR().color(Constants.COLOR_L.get(id - 1));
+                Game.getPlayerR().color(Constants.COLOR_L.get(id-1));
                 Game.getPlayerR().setHitbox(mapR.plrPos.x - Game.getPlayerR().getHitbox().getWidth() / 2, mapR.plrPos.y - Game.getPlayerR().getHitbox().getWidth() / 2);
             }
         } catch (Exception e) {
@@ -90,10 +91,10 @@ public class MapManager {
         g.fill(new Rectangle(0,0,Main.getScreenWidth()/2,Main.getScreenHeight()));
         g.setColor(mapL.getColor());
         g.fill(new Rectangle(Main.getScreenWidth()/2,0, Main.getScreenWidth(),Main.getScreenHeight()));
-        mapL.render(0,0);
-        mapR.render(Main.getScreenWidth()-(Constants.TILE_SIZE*mapR.getWidth()), 0);
-        colorMap(mapL, g);
-        colorMap(mapR, g);
+        mapL.render(0,0, g);
+        mapR.render(Main.getScreenWidth()-(Constants.TILE_SIZE*mapR.getWidth()), 0, g);
+//        colorMap(mapL, g);
+//        colorMap(mapR, g);
         if(win()) levelChange();
     }
 

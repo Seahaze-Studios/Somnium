@@ -69,6 +69,7 @@ public class Game extends AdvancedGameState {
         System.out.println("[VERBOSE] MapManager initialized");
         plrL = new Player(MapManager.mapL.plrPos);
         plrR = new Player(MapManager.mapR.plrPos);
+        plrR.color(Color.black);
 //        plrL.setSpriteSVG(Constants.SVG_L);
 //        plrR.setSpriteSVG(Constants.SVG_R);
 

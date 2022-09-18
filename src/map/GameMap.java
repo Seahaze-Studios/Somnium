@@ -1,12 +1,13 @@
 package map;
 
 import map.tile.Tile;
+import map.tile.interactable.utility.Goal;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.tiled.TiledMap;
 import org.newdawn.slick.Color;
+import org.newdawn.slick.Graphics;
 import util.Vector2f;
 
-import java.awt.*;
 import java.util.ArrayList;
 
 public class GameMap extends TiledMap {
@@ -36,5 +37,12 @@ public class GameMap extends TiledMap {
     public ArrayList<Tile> getTileList()    {
         return tiles;
     }
+
+    public void render(int x, int y, Graphics g)    {
+        super.render(x,y);
+        g.setColor(new Color(color.r,color.g, color.b, 0.95f));
+        tiles.forEach(t -> {if(!(t instanceof Goal)  )g.fill(t.getHitbox());});
+    }
+
 
 }
