@@ -55,6 +55,7 @@ public class TitleScreen extends AdvancedGameState {
 
     @Override
     public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
+        super.render(gc, sbg, g);
         lightarc.setImageColor(1, 1, 1, 1 * ((float) counter / (100 * Main.config.FRAMES_PER_SECOND / 60)));
         lightarc.drawCentered(Main.width() / 2, Main.height() / 2);
         logo.getScaledCopy(0.33f).drawCentered(Main.width() / 4, Main.height() / 4);

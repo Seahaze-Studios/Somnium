@@ -37,6 +37,8 @@ public class Main extends StateBasedGame
 	public static TrueTypeFont font;
 	public static Fonts fonts;
 
+	private static int realFPS;
+
 	public static Configuration config = new Configuration();
 
 	public static int width() {
@@ -114,5 +116,13 @@ public class Main extends StateBasedGame
 
 	public static AppGameContainer getAppgc() {
 		return appgc;
+	}
+
+	public static int getRealFPS() {
+		return realFPS;
+	}
+
+	public static void setRealFPS(int fps) {
+		realFPS = fps;
 	}
 }

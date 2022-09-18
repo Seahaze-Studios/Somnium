@@ -111,6 +111,7 @@ public class IntroCredit extends AdvancedGameState {
     @Override // Render, all visuals
     public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException
     {
+        super.render(gc, sbg, g);
         g.setBackground(Color.white);
         logo.setImageColor(1, 1, 1, 1 * ((float) counter / (100 * Main.config.FRAMES_PER_SECOND / 60)));
         if (counter > 200 * Main.config.FRAMES_PER_SECOND / 60) logo.setImageColor(1, 1, 1, 1 * ((float) --counter2 / (100 * Main.config.FRAMES_PER_SECOND / 60)));
@@ -136,7 +137,6 @@ public class IntroCredit extends AdvancedGameState {
         //if (counter > 960) sbg.enterState(Main.TITLE_ID);
 
         logo.drawCentered(Main.width() / 2, Main.height() / 2);
-        super.render(gc, sbg, g);
     }
 
     @Override

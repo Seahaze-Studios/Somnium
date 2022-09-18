@@ -69,6 +69,7 @@ public class Game extends AdvancedGameState {
     }
 
     public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
+        super.render(gc, sbg, g);
         entities.forEach(Entity::render);
         plrL.render();
         plrR.render();

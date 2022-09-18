@@ -11,6 +11,8 @@ public final class Configuration {
     public int FRAMES_PER_SECOND = 60;
     public GraphicsQuality GRAPHICS_QUALITY = GraphicsQuality.MEDIUM;
     public boolean VSYNC = false;
+    public boolean GSYNC_FREESYNC = false;
+    public boolean UNLIMITED_FPS = false;
     public enum GraphicsQuality {
         LOW("Low"),
         MEDIUM("Medium"),
@@ -26,7 +28,7 @@ public final class Configuration {
     }
 
     public static List<Integer> presetFPS = new ArrayList<>() {{
-        add(24); add(30); add(48); add(60); add(75); add(90); add(120); add(144); add(240); add(360);
+        add(24); add(30); add(45); add(50); add(60); add(75); add(90); add(120); add(144); add(165); add (180); add(240); add(360); add(390);
     }};
 
     public Configuration() {}
@@ -38,5 +40,7 @@ public final class Configuration {
         VSYNC = false;
         System.out.println(RESOLUTION_X + " " + RESOLUTION_Y +  " " + FRAMES_PER_SECOND + " " + VSYNC);
         GRAPHICS_QUALITY = GraphicsQuality.MEDIUM;
+        UNLIMITED_FPS = false;
+        GSYNC_FREESYNC = false;
     }
 }
