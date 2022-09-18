@@ -1,6 +1,7 @@
 package graphics.ui.tabber;
 
 import core.Main;
+import graphics.ui.selection.Settable;
 import graphics.ui.selection.ToggleBar;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
@@ -11,9 +12,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TabBody {
-    private ArrayList<Bundle<String, ToggleBar>> options;
+    private ArrayList<Bundle<String, Settable>> options;
 
-    public TabBody(Bundle<String, ToggleBar>... options) {
+    public TabBody(Bundle<String, Settable>... options) {
         this.options = new ArrayList<>(List.of(options));
     }
 

@@ -46,11 +46,12 @@ public class TitleScreen extends AdvancedGameState {
     }
 
     @Override
-    public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int i) throws SlickException {
+    public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
+        super.update(gc, sbg, delta);
         counter++;
-        playButton.update(gameContainer);
-        settingsButton.update(gameContainer);
-        quitButton.update(gameContainer);
+        playButton.update(gc);
+        settingsButton.update(gc);
+        quitButton.update(gc);
     }
 
     @Override

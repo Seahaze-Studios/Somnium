@@ -13,10 +13,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.stream.Collectors;
 
-public class ToggleBar {
+public class ToggleBar implements Settable {
     private ArrayList<Bundle<String, Commandable>> toggles;
     private ArrayList<Rectangle> rectangles;
     private float length;
@@ -30,7 +28,8 @@ public class ToggleBar {
         Collections.sort(sortlist, (a, b) -> Main.font.getWidth(b.object) - Main.font.getWidth(a.object));
         length = Main.font.getWidth(sortlist.get(0).object) + 20;
         for (var i = 0; i < toggles.length; i++) {
-            if (i == 0 || i == toggles.length - 1)
+            if (i == 0 && toggles.length == 1) rectangles.add(new RoundedRectangle(0, 0, length, 31, 10, 25, RoundedRectangle.ALL));
+            else if (i == 0 || i == toggles.length - 1)
                 rectangles.add(new RoundedRectangle(0, 0, length, 31, 10, 25,
                         i == 0 ? RoundedRectangle.TOP_LEFT + RoundedRectangle.BOTTOM_LEFT : RoundedRectangle.TOP_RIGHT + RoundedRectangle.BOTTOM_RIGHT));
             else rectangles.add(new Rectangle(0, 0, length, 30));

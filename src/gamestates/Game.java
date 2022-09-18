@@ -13,6 +13,8 @@ import org.newdawn.slick.*;
 import org.newdawn.slick.particles.Particle;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
+import org.newdawn.slick.state.transition.FadeInTransition;
+import org.newdawn.slick.state.transition.FadeOutTransition;
 import org.newdawn.slick.tiled.TiledMap;
 import util.DrawUtilities;
 
@@ -59,6 +61,7 @@ public class Game extends AdvancedGameState {
         // This code happens when you enter a game state for the *first time.*
         gc.setShowFPS(debug);
         this.gc = gc;
+        this.sbg = sbg;
 
         curLevelID = Constants.LEVEL_1_ID;
 
@@ -92,6 +95,7 @@ public class Game extends AdvancedGameState {
     }
 
     public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
+        super.update(gc, sbg, delta);
         keyInput();
         plrL.update();
         plrR.update();
@@ -115,6 +119,7 @@ public class Game extends AdvancedGameState {
 
     public void keyPressed(int key, char c) {
         super.keyPressed(key, c);
+        if (key == Input.KEY_ESCAPE) sbg.enterState(Main.TITLE_ID, new FadeOutTransition(), new FadeInTransition());
     }
 
     public void mousePressed(int button, int x, int y) {

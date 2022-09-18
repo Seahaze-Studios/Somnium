@@ -105,6 +105,7 @@ public class IntroCredit extends AdvancedGameState {
     @Override // Update, runs consistently
     public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException
     {
+        super.update(gc, sbg, delta);
         counter++;
     }
 

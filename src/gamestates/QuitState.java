@@ -27,7 +27,8 @@ public class QuitState extends AdvancedGameState {
     }
 
     @Override
-    public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int i) throws SlickException {
+    public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
+        super.update(gc, sbg, delta);
         counter++;
         if (counter == 20) System.exit(0);
     }

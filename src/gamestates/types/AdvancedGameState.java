@@ -17,9 +17,6 @@ public abstract class AdvancedGameState extends BasicGameState {
 
     @Override
     public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
-        Main.setRealFPS((int) (1 / ((System.nanoTime() - timestamp) / 1000000000d)));
-        System.out.println(Main.getRealFPS());
-        timestamp = System.nanoTime();
         Main.getAppgc().setTargetFrameRate(Main.config.UNLIMITED_FPS ? Integer.MAX_VALUE : Main.config.FRAMES_PER_SECOND);
         gc.setTargetFrameRate(Main.config.UNLIMITED_FPS ? Integer.MAX_VALUE : Main.config.FRAMES_PER_SECOND);
         sbg.getContainer().setTargetFrameRate(Main.config.UNLIMITED_FPS ? Integer.MAX_VALUE : Main.config.FRAMES_PER_SECOND);
@@ -27,6 +24,14 @@ public abstract class AdvancedGameState extends BasicGameState {
             m.update(gc);
             m.render(gc);
         });
+    }
+
+    @Override
+    public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
+        //Main.setRealFPS((int) (1 / ((System.nanoTime() - timestamp) / 1000000000d)));
+        Main.setRealFPS((int) (1 / (((double) delta <= 0 ? 1d : (double) delta) / 1000d)));
+        System.out.println(Main.getRealFPS());
+        timestamp = System.nanoTime();
     }
 
     @Override

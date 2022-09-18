@@ -91,6 +91,7 @@ public class LoadingScreen extends AdvancedGameState {
     @Override // Update, runs consistently
     public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException
     {
+        super.update(gc, sbg, delta);
         background.update();
         // Load a new resource
         if(loadingList.getRemainingResources() > 0) {

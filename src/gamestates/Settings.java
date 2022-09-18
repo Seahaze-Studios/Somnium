@@ -26,6 +26,9 @@ import util.bundle.Bundle;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import static org.lwjgl.opengl.GL11.GL_RENDERER;
+import static org.lwjgl.opengl.GL11.glGetString;
+
 public class Settings extends AdvancedGameState {
     public final int id;
     private RoundedRectangle box;
@@ -60,6 +63,9 @@ public class Settings extends AdvancedGameState {
                         new RoundedRectangle(50, 50, Main.width() / 7 - 50, 50, 20, 25, RoundedRectangle.TOP_LEFT),
                         "Graphics",
                         new TabBody(
+                                new Bundle<>("Graphics Processor (for Multi GPU)", new ToggleBar(
+                                        new Bundle<>(glGetString(GL_RENDERER), () -> { })
+                                ).setToggledIndex(0)),
                                 new Bundle<>("Graphics Quality Preset", new ToggleBar(
                                     new Bundle<>(Configuration.GraphicsQuality.LOW.name(), () -> { Main.config.GRAPHICS_QUALITY = Configuration.GraphicsQuality.LOW; }),
                                     new Bundle<>(Configuration.GraphicsQuality.MEDIUM.name(), () -> { Main.config.GRAPHICS_QUALITY = Configuration.GraphicsQuality.MEDIUM; }),
@@ -110,7 +116,8 @@ public class Settings extends AdvancedGameState {
     }
 
     @Override
-    public void update(GameContainer gc, StateBasedGame sbg, int i) throws SlickException {
+    public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
+        super.update(gc, sbg, delta);
         counter++;
         saveButton.update(gc);
     }
