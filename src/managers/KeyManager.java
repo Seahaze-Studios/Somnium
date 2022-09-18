@@ -1,6 +1,7 @@
 package managers;
 
 import core.Constants;
+import core.Main;
 import entities.units.player.Player;
 import gamestates.Game;
 import map.GameMap;
@@ -49,18 +50,22 @@ public final class KeyManager implements Predicate<Integer> {
 			case Input.KEY_W ->	{
 				for(int i = 0; i < Constants.PLAYER_MAX_SPEED; i++)	{
 					if(!temp1) {
-						playerL.move(new Vector2f(0, -1 * SCALING_FACTOR()));
-						if(playerL.collides(MapManager.mapL))	{
-							playerL.move(new Vector2f(0, 1 * SCALING_FACTOR()));
-							temp1 = true;
-						}
+						temp1 = playerMove(MapManager.mapL, playerL, new Vector2f(0,-1),true);
+//						playerL.move(new Vector2f(0, -1));
+//						if(playerL.collides(MapManager.mapL))	{
+//							playerL.move(new Vector2f(0, 1));
+//							temp1 = true;
+//							break;
+//						}
 					}
 					if(!temp2) {
-						playerR.move(new Vector2f(0, -1 * SCALING_FACTOR()));
-						if(playerR.collides(MapManager.mapR))	{
-							playerR.move(new Vector2f(0, 1 * SCALING_FACTOR()));
-							temp2 = true;
-						}
+						temp2 = playerMove(MapManager.mapR, playerR, new Vector2f(0,-1),false);
+//						playerR.move(new Vector2f(0, -1));
+//						if(playerR.collides(MapManager.mapR))	{
+//							playerR.move(new Vector2f(0, 1));
+//							temp2 = true;
+//							break;
+//						}
 					}
 				}
 
@@ -68,61 +73,76 @@ public final class KeyManager implements Predicate<Integer> {
 			case Input.KEY_A ->	{
 				for(int i = 0; i < Constants.PLAYER_MAX_SPEED; i++)	{
 					if(!temp1) {
-						playerL.move(new Vector2f(-1 * SCALING_FACTOR(), 0));
-						if(playerL.collides(MapManager.mapL))	{
-							playerL.move(new Vector2f(1 * SCALING_FACTOR(), 0));
-							temp1 = true;
-						}
+						temp1 = playerMove(MapManager.mapL, playerL, new Vector2f(-1,0),true);
+//						playerL.move(new Vector2f(-1, 0));
+//						if(playerL.collides(MapManager.mapL))	{
+//							playerL.move(new Vector2f(1, 0));
+//							temp1 = true;
+//						}
 
 					}
 					if(!temp2) {
-						playerR.move(new Vector2f(1 * SCALING_FACTOR(), 0));
-						if(playerR.collides(MapManager.mapR))	{
-							playerR.move(new Vector2f(-1 * SCALING_FACTOR(), 0));
-							temp2 = true;
-						}
+						temp2 = playerMove(MapManager.mapR, playerR, new Vector2f(1,0),false);
+//						playerR.move(new Vector2f(1, 0));
+//						if(playerR.collides(MapManager.mapR))	{
+//							playerR.move(new Vector2f(-1, 0));
+//							temp2 = true;
+//						}
 					}
 				}
 			}
 			case Input.KEY_S -> {
 				for(int i = 0; i < Constants.PLAYER_MAX_SPEED; i++)	{
 					if(!temp1) {
-						playerL.move(new Vector2f(0, 1 * SCALING_FACTOR()));
-						if(playerL.collides(MapManager.mapL))	{
-							playerL.move(new Vector2f(0, -1 * SCALING_FACTOR()));
-							temp1 = true;
+						temp1 = playerMove(MapManager.mapL, playerL, new Vector2f(0,1),true);
+//						playerL.move(new Vector2f(0, 1));
+//						if(playerL.collides(MapManager.mapL))	{
+//							playerL.move(new Vector2f(0, -1));
+//							temp1 = true;
 						}
-					}
 					if(!temp2) {
-						playerR.move(new Vector2f(0, 1 * SCALING_FACTOR()));
-						if(playerR.collides(MapManager.mapR))	{
-							playerR.move(new Vector2f(0, -1 * SCALING_FACTOR()));
-							temp2 = true;
-						}
+						temp2 = playerMove(MapManager.mapR, playerR, new Vector2f(0,1),false);
+//						playerR.move(new Vector2f(0, 1));
+//						if(playerR.collides(MapManager.mapR))	{
+//							playerR.move(new Vector2f(0, -1));
+//							temp2 = true;
+//						}
 					}
 				}
-
 			}
+
 			case Input.KEY_D -> {
 				for(int i = 0; i < Constants.PLAYER_MAX_SPEED; i++)	{
 					if(!temp1) {
-						playerL.move(new Vector2f(1 * SCALING_FACTOR(), 0));
-						if(playerL.collides(MapManager.mapL))	{
-							playerL.move(new Vector2f(-1 * SCALING_FACTOR(), 0));
-							temp1 = true;
-						}
+						temp1 = playerMove(MapManager.mapL, playerL, new Vector2f(1,0),true);
+//						playerL.move(new Vector2f(1, 0));
+////						if(playerL.collides(MapManager.mapL))	{
+////							playerL.move(new Vector2f(-1, 0));
+////							temp1 = true;
+////						}
 
 					}
 					if(!temp2) {
-						playerR.move(new Vector2f(-1 * SCALING_FACTOR(), 0));
-						if(playerR.collides(MapManager.mapR))	{
-							playerR.move(new Vector2f(1 * SCALING_FACTOR(), 0));
-							temp2 = true;
-						}
+						temp2 = playerMove(MapManager.mapR, playerR, new Vector2f(-1,0),false);
+//						playerR.move(new Vector2f(-1, 0));
+//						if(playerR.collides(MapManager.mapR))	{
+//							playerR.move(new Vector2f(1, 0));
+//							temp2 = true;
+//						}
 					}
 				}
 			}
 		}
+	}
+
+	private boolean playerMove(GameMap gm, Player plr, Vector2f disp, boolean left)	{
+		plr.move(disp);
+		if(plr.collides(gm) || ((left == true)?plr.getPos().getX()+(plr.getHitbox().getWidth()/2) > Main.getScreenWidth()/2-1:
+				plr.getPos().getX()-(plr.getHitbox().getWidth()/2) < Main.getScreenWidth()/2+1))	{
+			plr.move(disp.negate());
+			return true;
+		}
+		return false;
 	}
 
 	/*public void keyDown(int key) {
