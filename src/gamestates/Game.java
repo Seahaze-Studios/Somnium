@@ -67,6 +67,8 @@ public class Game extends AdvancedGameState {
         plrL = new Player();
         plrR = new Player();
         mapMan = new MapManager(curLevelID);
+        plrL.setRefSprite(new Image("res/player/1a.png").getScaledCopy(54,54));
+        plrR.setRefSprite(new Image("res/player/2.png").getScaledCopy(54,54));
         System.out.println("[VERBOSE] MapManager initialized");
 
 //        plrL.setSpriteSVG(Constants.SVG_L);

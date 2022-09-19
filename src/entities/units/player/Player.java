@@ -17,7 +17,11 @@ import util.Vector2f;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class Player extends Unit {
-//    private SimpleDiagramRenderer spriteSVG;
+    public void setRefSprite(Image refSprite) {
+        this.refSprite = refSprite;
+    }
+
+    //    private SimpleDiagramRenderer spriteSVG;
     private Image refSprite;
 
     private Color color;
@@ -93,6 +97,7 @@ public class Player extends Unit {
 //        return spriteSVG;
 //    }
     public void color(Color color)  {
+        sprite = refSprite;
         if(color != Color.black) this.color = color;
     }
 }
