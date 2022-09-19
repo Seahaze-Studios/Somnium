@@ -14,6 +14,8 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Polygon;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.geom.Shape;
+import org.newdawn.slick.state.transition.FadeInTransition;
+import org.newdawn.slick.state.transition.FadeOutTransition;
 import util.DrawUtilities;
 import util.Vector2f;
 
@@ -45,6 +47,8 @@ public class MapManager {
                 Game.getPlayerR().setPos(mapR.plrPos);
                 Game.getPlayerR().color(Constants.COLOR_R.get(id-1));
                 Game.getPlayerR().setHitbox(mapR.plrPos.x - Game.getPlayerR().getHitbox().getWidth() / 2, mapR.plrPos.y - Game.getPlayerR().getHitbox().getWidth() / 2);
+            } else {
+                Main.sbg.enterState(Main.TITLE_ID, new FadeOutTransition(), new FadeInTransition());
             }
         } catch (Exception e) {
 
@@ -83,6 +87,18 @@ public class MapManager {
 
 
     public boolean win()    {
+        if (Game.getPlayerL().enterGoal(mapL)) {
+            var prevColor = Main.sbg.getContainer().getGraphics().getColor();
+            Main.sbg.getContainer().getGraphics().setColor(new Color(0, 0, 0, 100));
+            Main.sbg.getContainer().getGraphics().fill(new Rectangle(0, 0, Main.width() / 2, Main.height()));
+            Main.sbg.getContainer().getGraphics().setColor(prevColor);
+        }
+        if (Game.getPlayerR().enterGoal(mapR)) {
+            var prevColor = Main.sbg.getContainer().getGraphics().getColor();
+            Main.sbg.getContainer().getGraphics().setColor(new Color(0, 0, 0, 100));
+            Main.sbg.getContainer().getGraphics().fill(new Rectangle(Main.width() / 2, 0, Main.width(), Main.height()));
+            Main.sbg.getContainer().getGraphics().setColor(prevColor);
+        }
         return Game.getPlayerL().enterGoal(mapL) && Game.getPlayerR().enterGoal(mapR);
     }
 
