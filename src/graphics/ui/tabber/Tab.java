@@ -21,7 +21,7 @@ public class Tab {
 
     public void update(GameContainer gc) {
         if (mouseOver(gc)) {
-            if (gc.getInput().isMousePressed(0)) active = true;
+            if (gc.getInput().isMousePressed(0)) this.active = true;
         }
     }
 
@@ -49,8 +49,8 @@ public class Tab {
     public boolean mouseOver(GameContainer gc) {
         var mouseX = gc.getInput().getMouseX();
         var mouseY = gc.getInput().getMouseY();
-        var x = this.box.getX();
-        var y = this.box.getY();
+        var x = this.box.getCenterX();
+        var y = this.box.getCenterY();
         var width = this.box.getWidth();
         var height = this.box.getHeight();
         if(x - width / 2 < mouseX && mouseX < x + width / 2) {

@@ -44,9 +44,9 @@ public class ToggleBar implements Settable {
         var g = gc.getGraphics();
         for (var i = 0; i < toggles.size(); i++) {
             var rect = rectangles.get(i);
-            var rX = rect.getX();
+            var rX = rect.getCenterX();
             var width = rect.getWidth();
-            var rY = rect.getY();
+            var rY = rect.getCenterY();
             var height = rect.getHeight();
             var mouseX = gc.getInput().getAbsoluteMouseX();
             var mouseY = gc.getInput().getAbsoluteMouseY();

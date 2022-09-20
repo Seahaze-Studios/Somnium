@@ -3,11 +3,13 @@ package graphics.ui.tabber;
 import core.Main;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Input;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.geom.RoundedRectangle;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Tabber {
     private Rectangle box;
@@ -21,8 +23,16 @@ public class Tabber {
     }
 
     public void update(GameContainer gc) {
-        tabs.forEach(t -> t.update(gc));
-        if (tabs.stream().filter(Tab::isActive).count() > 1) tabs.stream().filter(Tab::isActive).findFirst().ifPresent(t -> t.setActive(false)); // No reuse of consumed Stream<>
+        var active = tabs.stream().filter(Tab::isActive).collect(Collectors.toList());
+        for (Tab t : tabs) {
+            t.update(gc);
+            if (t.mouseOver(gc) && gc.getInput().isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)) {
+                active.forEach(tt -> tt.setActive(false));
+                t.setActive(true);
+            }
+        }
+        //tabs.forEach(t -> t.update(gc));
+        //if (tabs.stream().filter(Tab::isActive).count() > 1) tabs.stream().filter(Tab::isActive).findFirst().ifPresent(t -> t.setActive(false)); // No reuse of consumed Stream<>
     }
 
     public void render(GameContainer gc) {

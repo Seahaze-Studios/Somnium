@@ -9,6 +9,7 @@ import graphics.ui.selection.ToggleBar;
 import graphics.ui.tabber.Tab;
 import graphics.ui.tabber.TabBody;
 import graphics.ui.tabber.Tabber;
+import managers.SoundManager;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -110,8 +111,21 @@ public class Settings extends AdvancedGameState {
                 new Tab(
                         new Rectangle(50, 100, Main.width() / 7 - 50, 50),
                         "Audio",
-                        new TabBody(new Bundle<>("Volume", new ToggleBar(new Bundle<>("10", () -> {}))))
-                )
+                        new TabBody(
+                                new Bundle<>("Volume", new ToggleBar(
+                                new Bundle<>("0", () -> gc.setSoundVolume(0f)),
+                                new Bundle<>("1", () -> gc.setSoundVolume(0.1f)),
+                                new Bundle<>("2", () -> gc.setSoundVolume(0.2f)),
+                                new Bundle<>("3", () -> gc.setSoundVolume(0.3f)),
+                                new Bundle<>("4", () -> gc.setSoundVolume(0.4f)),
+                                new Bundle<>("5", () -> gc.setSoundVolume(0.5f)),
+                                new Bundle<>("6", () -> gc.setSoundVolume(0.6f)),
+                                new Bundle<>("7", () -> gc.setSoundVolume(0.7f)),
+                                new Bundle<>("8", () -> gc.setSoundVolume(0.8f)),
+                                new Bundle<>("9", () -> gc.setSoundVolume(0.9f)),
+                                new Bundle<>("10", () -> gc.setSoundVolume(1f)))
+                        ))
+                ).setActive(false)
         );
     }
 
@@ -120,6 +134,7 @@ public class Settings extends AdvancedGameState {
         super.update(gc, sbg, delta);
         counter++;
         saveButton.update(gc);
+        tabber.update(gc);
     }
 
     @Override
