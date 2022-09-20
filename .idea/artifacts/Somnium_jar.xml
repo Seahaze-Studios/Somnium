@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="Somnium:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Somnium_jar</output-path>
+    <root id="archive" name="Somnium.jar">
+      <element id="module-output" name="Somnium" />
+    </root>
+  </artifact>
+</component>

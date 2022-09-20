@@ -45,8 +45,8 @@ public class Player extends Unit {
 
     public void init() throws SlickException {
         super.init();
-        width = Constants.TILE_SIZE;
-        height = Constants.TILE_SIZE;
+        width = Constants.TILE_SIZE - 1;
+        height = Constants.TILE_SIZE - 1;
         this.refSprite = new Image("res/dev/placeholder.png").getScaledCopy(54,54);
         this.sprite = refSprite;
         this.color = new Color(Color.gray);

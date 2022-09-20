@@ -48,7 +48,7 @@ public class MapManager {
                 Game.getPlayerR().color(Constants.COLOR_R.get(id-1));
                 Game.getPlayerR().setHitbox(mapR.plrPos.x - Game.getPlayerR().getHitbox().getWidth() / 2, mapR.plrPos.y - Game.getPlayerR().getHitbox().getWidth() / 2);
             } else {
-                Main.sbg.enterState(Main.TITLE_ID, new FadeOutTransition(), new FadeInTransition());
+                //Main.sbg.enterState(Main.TITLE_ID, new FadeOutTransition(), new FadeInTransition());
             }
         } catch (Exception e) {
 
