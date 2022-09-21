@@ -48,10 +48,20 @@ public class MapManager {
                 Game.getPlayerR().color(Constants.COLOR_R.get(id-1));
                 Game.getPlayerR().setHitbox(mapR.plrPos.x - Game.getPlayerR().getHitbox().getWidth() / 2, mapR.plrPos.y - Game.getPlayerR().getHitbox().getWidth() / 2);
             } else {
-                //Main.sbg.enterState(Main.TITLE_ID, new FadeOutTransition(), new FadeInTransition());
+                Game.curLevelID = 1;
+                var idd = 1;
+                loadMaps(new GameMap("res/maps/lvl" + idd + "left.tmx", Constants.COLOR_L.get(idd - 1)),
+                        new GameMap("res/maps/lvl" + idd + "right.tmx", Constants.COLOR_R.get(idd - 1)));
+                Game.getPlayerL().color(Constants.COLOR_L.get(idd - 1));
+                Game.getPlayerL().setPos(mapL.plrPos);
+                Game.getPlayerL().setHitbox(mapL.plrPos.x - Game.getPlayerL().getHitbox().getWidth() / 2, mapL.plrPos.y - Game.getPlayerL().getHitbox().getWidth() / 2);
+                Game.getPlayerR().setPos(mapR.plrPos);
+                Game.getPlayerR().color(Constants.COLOR_R.get(idd-1));
+                Game.getPlayerR().setHitbox(mapR.plrPos.x - Game.getPlayerR().getHitbox().getWidth() / 2, mapR.plrPos.y - Game.getPlayerR().getHitbox().getWidth() / 2);
+                Game.getSbg().enterState(Main.TITLE_ID);
             }
         } catch (Exception e) {
-
+            e.printStackTrace();
         }
     }
 
