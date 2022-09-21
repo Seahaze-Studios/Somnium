@@ -5,6 +5,8 @@ import core.Main;
 import entities.Entity;
 import entities.units.player.Player;
 import gamestates.types.AdvancedGameState;
+import graphics.particle.effect.GlowBlackEffect;
+import graphics.particle.effect.GlowEffect;
 import managers.ImageManager;
 import managers.KeyManager;
 import managers.MapManager;
@@ -17,8 +19,11 @@ import org.newdawn.slick.state.transition.FadeInTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
 import org.newdawn.slick.tiled.TiledMap;
 import util.DrawUtilities;
+import util.Vector2f;
 
+import java.util.ArrayList;
 import java.util.Queue;
+import java.util.Random;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 import static core.Main.debug;
@@ -34,6 +39,9 @@ public class Game extends AdvancedGameState {
     }
 
     private static MapManager mapMan;
+    private static ArrayList<GlowEffect> glows = new ArrayList<>();
+    private static ArrayList<GlowEffect> glowsR = new ArrayList<>();
+    private Random R = new Random();
 
     public static int curLevelID;
 
@@ -81,6 +89,8 @@ public class Game extends AdvancedGameState {
 
     public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
         super.render(gc, sbg, g);
+        if (R.nextInt(0, 15) == 4) glows.get(R.nextInt(0, glows.size() - 1)).inMotion = true;
+        glows.stream().filter(p -> p.inMotion).forEach(GlowEffect::motion);
         entities.forEach(Entity::render);
 
         //g.drawLine(Main.width() / 2, 0, Main.width() / 2, Main.height());
@@ -109,6 +119,12 @@ public class Game extends AdvancedGameState {
         // This code happens when you enter a gameState.
         //entity.setPos(400, 400);
         super.enter(gc, sbg);
+        for (var i = 0; i < 10000; i++) {
+            glows.add(new GlowEffect(new Vector2f(R.nextInt(0, 42), R.nextInt(0, Main.height())), new Vector2f(R.nextInt(-2, 2), R.nextInt(-2, 2)), Color.white));
+        }
+        for (var i = 0; i < 10000; i++) {
+            glowsR.add(new GlowEffect(new Vector2f(R.nextInt(Main.width() - 42, Main.width()), R.nextInt(0, Main.height())), new Vector2f(R.nextInt(-2, 2), R.nextInt(-2, 2)), Color.white));
+        }
         gc.getGraphics().setBackground(org.newdawn.slick.Color.black);
         plrL.setSprite(ImageManager.getImage("1a").getScaledCopy(54, 54));
         plrR.setSprite(ImageManager.getImage("2").getScaledCopy(54, 54));
@@ -155,4 +171,12 @@ public class Game extends AdvancedGameState {
         return plrL;
     }
     public static Player getPlayerR(){return plrR;}
+
+    public static ArrayList<GlowEffect> getGlows() {
+        return glows;
+    }
+
+    public static ArrayList<GlowEffect> getGlowsR() {
+        return glowsR;
+    }
 }

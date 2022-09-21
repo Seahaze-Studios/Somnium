@@ -102,6 +102,11 @@ public class IntroCredit extends AdvancedGameState {
         }
     }
 
+    @Override
+    public void leave(GameContainer gc, StateBasedGame sbg) throws SlickException {
+        this.glows.clear();
+    }
+
     @Override // Update, runs consistently
     public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException
     {

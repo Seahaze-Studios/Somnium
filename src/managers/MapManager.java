@@ -3,6 +3,8 @@ package managers;
 import core.Constants;
 import core.Main;
 import gamestates.Game;
+import graphics.particle.effect.GlowBlackEffect;
+import graphics.particle.effect.GlowEffect;
 import map.GameMap;
 import map.tile.Tile;
 import map.tile.interactable.utility.Goal;
@@ -20,10 +22,13 @@ import util.DrawUtilities;
 import util.Vector2f;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class MapManager {
     public static GameMap mapL;
     public static GameMap mapR;
+    private Random R = new Random();
+
 
 
 
@@ -116,10 +121,14 @@ public class MapManager {
     }
 
     public void render(Graphics g) throws SlickException {
+        if (R.nextInt(0, 15) == 4) Game.getGlows().get(R.nextInt(0, Game.getGlows().size() - 1)).inMotion = true;
+        Game.getGlows().stream().filter(p -> p.inMotion).forEach(GlowEffect::motion);
+        if (R.nextInt(0, 15) == 4) Game.getGlowsR().get(R.nextInt(0, Game.getGlowsR().size() - 1)).inMotion = true;
+        Game.getGlowsR().stream().filter(p -> p.inMotion).forEach(GlowEffect::motion);
         g.setColor(mapR.getColor());
-        g.fill(new Rectangle(0,0,Main.getScreenWidth()/2,Main.getScreenHeight()));
+        g.fill(new Rectangle(Main.getScreenWidth()/2 - (Constants.MAP_WIDTH* Constants.TILE_SIZE),0,Main.getScreenWidth()/2,Main.getScreenHeight()));
         g.setColor(mapL.getColor());
-        g.fill(new Rectangle(Main.getScreenWidth()/2,0, Main.getScreenWidth(),Main.getScreenHeight()));
+        g.fill(new Rectangle(Main.getScreenWidth()/2,0, Main.getScreenWidth()/2 - 42,Main.getScreenHeight()));
         mapL.render(Main.getScreenWidth()/2 - Constants.MAP_WIDTH*Constants.TILE_SIZE ,0, g);
         mapR.render(Main.getScreenWidth()/2, 0, g);
 //        colorMap(mapL, g);
