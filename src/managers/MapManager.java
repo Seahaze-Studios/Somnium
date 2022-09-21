@@ -108,7 +108,7 @@ public class MapManager {
         g.setColor(mapL.getColor());
         g.fill(new Rectangle(Main.getScreenWidth()/2,0, Main.getScreenWidth(),Main.getScreenHeight()));
         mapL.render(0,0, g);
-        mapR.render(Main.getScreenWidth()-(Constants.TILE_SIZE*mapR.getWidth()), 0, g);
+        mapR.render(Main.getScreenWidth() - Constants.MAP_WIDTH*Constants.TILE_SIZE, 0, g);
 //        colorMap(mapL, g);
 //        colorMap(mapR, g);
         if(win()) levelChange();
