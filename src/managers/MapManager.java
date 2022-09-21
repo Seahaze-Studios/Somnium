@@ -70,8 +70,11 @@ public class MapManager {
         mapR = m2;
         generateHitboxes(mapL);
         generateHitboxes(mapR);
-        mapR.getTileList().forEach(t -> t.getHitbox().setX(t.getHitbox().getX() + Main.getScreenWidth()-(Constants.TILE_SIZE*mapR.getWidth())));
-        mapR.plrPos.add(new Vector2f(Main.getScreenWidth()-(Constants.TILE_SIZE*mapR.getWidth()),0));
+        mapL.getTileList().forEach(t -> t.getHitbox().setX(t.getHitbox().getX() + Main.getScreenWidth()/2-(Constants.TILE_SIZE*mapR.getWidth())));
+        mapR.getTileList().forEach(t -> t.getHitbox().setX(t.getHitbox().getX() + Main.getScreenWidth()/2));
+        mapL.plrPos.add(new Vector2f((Main.getScreenWidth()/2)-(Constants.TILE_SIZE*mapR.getWidth()),0));
+        mapR.plrPos.add(new Vector2f(Main.getScreenWidth()/2,0));
+
     }
     private void generateHitboxes(GameMap map) {
         for (int i = 0; i < Constants.MAP_WIDTH; i++)    {
@@ -117,8 +120,8 @@ public class MapManager {
         g.fill(new Rectangle(0,0,Main.getScreenWidth()/2,Main.getScreenHeight()));
         g.setColor(mapL.getColor());
         g.fill(new Rectangle(Main.getScreenWidth()/2,0, Main.getScreenWidth(),Main.getScreenHeight()));
-        mapL.render(0,0, g);
-        mapR.render(Main.getScreenWidth() - Constants.MAP_WIDTH*Constants.TILE_SIZE, 0, g);
+        mapL.render(Main.getScreenWidth()/2 - Constants.MAP_WIDTH*Constants.TILE_SIZE ,0, g);
+        mapR.render(Main.getScreenWidth()/2, 0, g);
 //        colorMap(mapL, g);
 //        colorMap(mapR, g);
         if(win()) levelChange();

@@ -59,10 +59,10 @@ public class Player extends Unit {
                 returning.set(true);
             }
         });
-        if(pos.getX() + width/2 > Main.getScreenWidth()) {
+        if(pos.getX() + width/2 > Main.getScreenWidth()/2 + Constants.MAP_WIDTH*Constants.TILE_SIZE) {
             returning.set(true);
         }
-        else if(pos.getX() - width/2 < 0) {
+        else if(pos.getX() - width/2 < Main.getScreenWidth()/2 - Constants.MAP_WIDTH*Constants.TILE_SIZE) {
             returning.set(true);
         }
         else if(pos.getY() + height/2 > Main.getScreenHeight()) {
