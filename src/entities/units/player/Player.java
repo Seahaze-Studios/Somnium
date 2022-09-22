@@ -17,7 +17,7 @@ import util.Vector2f;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
-public class Player extends Unit {
+public class  Player extends Unit {
     public void setRefSprite(Image refSprite) {
         this.refSprite = refSprite;
     }
