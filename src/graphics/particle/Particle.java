@@ -65,6 +65,10 @@ public abstract class Particle {
         this.pos.set(x, y);
     }
 
+    public void setSpeed(Vector2f speed) {
+        this.speed = speed;
+    }
+
     public void setX(float x) {
         this.pos.set(x, this.pos.y);
     }
