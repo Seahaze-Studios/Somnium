@@ -13,6 +13,8 @@ import org.newdawn.slick.geom.Transform;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.state.transition.FadeInTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
+import util.DrawUtilities;
+import util.RomanNumber;
 
 import java.util.HashMap;
 
@@ -34,16 +36,10 @@ public class LevelSelectScreen extends AdvancedGameState {
 
     @Override
     public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
-    }
-
-    @Override
-    public void enter(GameContainer gc, StateBasedGame sbg) throws SlickException {
-        super.enter(gc, sbg);
-        gc.getGraphics().setColor(Color.white);
         shapes = new HashMap<>();
         shapes.put(1, new Circle(Main.width() / 2, Main.height() / 2, 400));
         shapes.put(2, new Circle(Main.width() / 2, Main.height() / 2, 400));
-        for (double i = 3; i <= 30; i++) {
+        for (double i = 3; i <= 1000; i++) {
             Polygon gon = new Polygon();
             for (double j = 0; j < i; j++) {
                 gon.addPoint((float)Math.sin(j/i*2*Math.PI),
@@ -53,6 +49,12 @@ public class LevelSelectScreen extends AdvancedGameState {
             shapes.get((int) i).setCenterX(Main.width() / 2);
             shapes.get((int) i).setCenterY(Main.height() / 2);
         }
+    }
+
+    @Override
+    public void enter(GameContainer gc, StateBasedGame sbg) throws SlickException {
+        super.enter(gc, sbg);
+        gc.getGraphics().setColor(Color.white);
     }
 
     @Override
@@ -67,6 +69,11 @@ public class LevelSelectScreen extends AdvancedGameState {
         g.setBackground(Color.black);
         g.setColor(Color.white);
         g.draw(shapes.get(level));
+        var scaledShape = shapes.get(level).transform(Transform.createScaleTransform(0.7f, 0.7f));
+        scaledShape.setCenterX(Main.width() / 2);
+        scaledShape.setCenterY(Main.height() / 2);
+        if (level != 1) g.draw(scaledShape);
+        DrawUtilities.drawStringCentered(g, RomanNumber.toRoman(level), Main.fonts.VariableWidth.P60, Main.width() / 2, Main.height() / 2);
         g.drawString(level + "", 400, 400);
     }
 
