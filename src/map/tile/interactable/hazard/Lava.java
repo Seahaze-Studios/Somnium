@@ -1,7 +1,7 @@
 package map.tile.interactable.hazard;
 
 public class Lava extends Hazard {
-    public Lava() {
-        super();
+    public Lava(int x, int y) {
+        super(x, y);
     }
 }

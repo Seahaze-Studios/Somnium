@@ -39,7 +39,7 @@ public class TitleScreen extends AdvancedGameState {
         super.enter(gc, sbg);
         logo = ImageManager.getImage("logo");
         lightarc = ImageManager.getImage("lightarc").getScaledCopy(0.75f);
-        playButton = new Button(Main.width() / 4 * 3, Main.height() / 4 * 3, "Play", () -> sbg.enterState(Main.GAME_ID, new FadeOutTransition(), new FadeInTransition()));
+        playButton = new Button(Main.width() / 4 * 3, Main.height() / 4 * 3, "Play", () -> sbg.enterState(Main.LEVELSELECT_ID, new FadeOutTransition(), new FadeInTransition()));
         settingsButton = new Button(Main.width() / 4 * 3, Main.height() / 4 * 3 + 50, "Settings", () -> Main.sbg.enterState(Main.SETTINGS_ID, new FadeOutTransition(), new FadeInTransition()));
         quitButton = new Button(Main.width() / 4 * 3, Main.height() / 4 * 3 + 100, "Quit", () -> sbg.enterState(Main.QUIT_ID, new FadeOutTransition(), new FadeInTransition()));
         if (!SoundManager.isMusicPlaying()) SoundManager.playBackgroundMusic("title");

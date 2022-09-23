@@ -96,7 +96,9 @@ public class Game extends AdvancedGameState {
         //g.drawLine(Main.width() / 2, 0, Main.width() / 2, Main.height());
         mapMan.render(g);
         g.setColor(Color.white);
+        g.drawLine(42, 0, 42, Main.height());
         g.drawLine(Main.width() / 2, 0, Main.width() / 2, Main.height());
+        g.drawLine(Main.width() - 42, 0, Main.width() - 42, Main.height());
 //        plrL.getSpriteSVG().render(g);
 //        plrR.getSpriteSVG().render(g);
         plrL.render();
