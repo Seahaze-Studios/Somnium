@@ -13,7 +13,7 @@ import java.io.IOException;
 
 public class Main extends StateBasedGame 
 {
-	public static boolean testMode = false;
+	public static boolean testMode = false;//true;
 
 	public static StateBasedGame sbg;
 	private static AppGameContainer appgc;
