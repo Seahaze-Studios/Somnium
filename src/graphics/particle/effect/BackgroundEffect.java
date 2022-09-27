@@ -11,7 +11,7 @@ public class BackgroundEffect extends ImageParticle {
 
     public BackgroundEffect(Vector2f pos, Vector2f speed, Image image) {
         super(pos, speed, image);
-        setSpeed(new Vector2f(9*(float) (Math.random()-0.5), 9*(float) (Math.random()-0.5)));
+        setSpeed(new Vector2f(3*(float) (Math.random()-0.5), 3*(float) (Math.random()-0.5)));
     }
 
     public void render(){
@@ -32,6 +32,7 @@ public class BackgroundEffect extends ImageParticle {
         if(pos.getY()>Main.getScreenHeight()){
             this.setY(-image.getHeight());
         }
+        //applyForce(new Vector2f(1f,1f));
         move();
     }
 }
