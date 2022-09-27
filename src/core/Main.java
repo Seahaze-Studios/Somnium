@@ -24,6 +24,7 @@ public class Main extends StateBasedGame
 	public static final int TITLE_ID = 3;
 	public static final int GAME_ID = 4;
 	public static final int SETTINGS_ID = 5;
+	public static final int LEVELSELECT_ID = 6;
 	public static final int QUIT_ID = 999;
 	public static TestState test;
 	public static IntroCredit intro;
@@ -31,6 +32,7 @@ public class Main extends StateBasedGame
 	public static TitleScreen title;
 	public static Game game;
 	public static Settings settings;
+	public static LevelSelectScreen levelSelect;
 	public static QuitState quit;
 	public static boolean debug;
 	public static final UI UI = new UI();
@@ -59,6 +61,7 @@ public class Main extends StateBasedGame
 		title = new TitleScreen(TITLE_ID);
 		game = new Game(GAME_ID);
 		settings = new Settings(SETTINGS_ID);
+		levelSelect = new LevelSelectScreen(LEVELSELECT_ID);
 		quit = new QuitState(QUIT_ID);
 	}
 
@@ -81,6 +84,7 @@ public class Main extends StateBasedGame
 		addState(title);
 		addState(game);
 		addState(settings);
+		addState(levelSelect);
 		addState(quit);
 	}
 

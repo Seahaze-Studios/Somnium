@@ -94,7 +94,7 @@ public class Button implements UIElement {
         if (onButton(gc.getInput().getMouseX(), gc.getInput().getMouseY())) {
             this.onFrames++;
             if (gc.getInput().isMousePressed(0)) {
-                //SoundManager.playSoundEffect("click");
+                SoundManager.playSoundEffect("click");
                 command.command();
             }
         }

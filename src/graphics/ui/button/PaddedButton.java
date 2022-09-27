@@ -4,6 +4,7 @@ import core.Main;
 import gamestates.Game;
 import graphics.ui.UIElement;
 import graphics.ui.menu.Menu;
+import managers.SoundManager;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -67,7 +68,7 @@ public class PaddedButton extends Button implements UIElement {
         if (onButton(gc.getInput().getMouseX(), gc.getInput().getMouseY())) {
             this.onFrames++;
             if (gc.getInput().isMousePressed(0)) {
-                //SoundManager.playSoundEffect("click");
+                SoundManager.playSoundEffect("click");
                 command.command();
             }
         }

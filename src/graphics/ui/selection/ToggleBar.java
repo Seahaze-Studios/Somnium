@@ -1,6 +1,7 @@
 package graphics.ui.selection;
 
 import core.Main;
+import managers.SoundManager;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.geom.Rectangle;
@@ -66,6 +67,7 @@ public class ToggleBar implements Settable {
                         g.fill(rect);
                         if (gc.getInput().isMousePressed(0)) {
                             toggledIndex = i;
+                            SoundManager.playSoundEffect("click");
                             toggles.get(i).element.command();
                         }
                         g.setColor(Color.white);

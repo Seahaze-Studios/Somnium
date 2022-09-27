@@ -3,8 +3,11 @@ package managers;
 import core.Constants;
 import core.Main;
 import gamestates.Game;
+import graphics.particle.effect.GlowBlackEffect;
+import graphics.particle.effect.GlowEffect;
 import map.GameMap;
 import map.tile.Tile;
+import map.tile.interactable.hazard.Lava;
 import map.tile.interactable.utility.Goal;
 import map.tile.obstacle.Block;
 import map.tile.obstacle.Obstacle;
@@ -20,10 +23,13 @@ import util.DrawUtilities;
 import util.Vector2f;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class MapManager {
     public static GameMap mapL;
     public static GameMap mapR;
+    private Random R = new Random();
+
 
 
 
@@ -48,10 +54,20 @@ public class MapManager {
                 Game.getPlayerR().color(Constants.COLOR_R.get(id-1));
                 Game.getPlayerR().setHitbox(mapR.plrPos.x - Game.getPlayerR().getHitbox().getWidth() / 2, mapR.plrPos.y - Game.getPlayerR().getHitbox().getWidth() / 2);
             } else {
-                //Main.sbg.enterState(Main.TITLE_ID, new FadeOutTransition(), new FadeInTransition());
+                Game.curLevelID = 1;
+                var idd = 1;
+                loadMaps(new GameMap("res/maps/lvl" + idd + "left.tmx", Constants.COLOR_L.get(idd - 1)),
+                        new GameMap("res/maps/lvl" + idd + "right.tmx", Constants.COLOR_R.get(idd - 1)));
+                Game.getPlayerL().color(Constants.COLOR_L.get(idd - 1));
+                Game.getPlayerL().setPos(mapL.plrPos);
+                Game.getPlayerL().setHitbox(mapL.plrPos.x - Game.getPlayerL().getHitbox().getWidth() / 2, mapL.plrPos.y - Game.getPlayerL().getHitbox().getWidth() / 2);
+                Game.getPlayerR().setPos(mapR.plrPos);
+                Game.getPlayerR().color(Constants.COLOR_R.get(idd-1));
+                Game.getPlayerR().setHitbox(mapR.plrPos.x - Game.getPlayerR().getHitbox().getWidth() / 2, mapR.plrPos.y - Game.getPlayerR().getHitbox().getWidth() / 2);
+                Game.getSbg().enterState(Main.TITLE_ID);
             }
         } catch (Exception e) {
-
+            e.printStackTrace();
         }
     }
 
@@ -80,6 +96,11 @@ public class MapManager {
                 case "block" -> map.getTileList().add(new Block(i * Constants.TILE_SIZE, j * Constants.TILE_SIZE));
                 case "player" -> map.plrPos = new Vector2f((i + 0.5f) * Constants.TILE_SIZE, (j + 0.5f) * Constants.TILE_SIZE);
                 case "goal" -> map.getTileList().add(new Goal(i * Constants.TILE_SIZE, j * Constants.TILE_SIZE));
+                case "lava" ->  map.getTileList().add(new Lava(i*Constants.TILE_SIZE,j * Constants.TILE_SIZE));
+                case "ice" -> map.getTileList().add(new Lava(i * Constants.TILE_SIZE, j * Constants.TILE_SIZE));
+                case "portal" -> {
+
+                }
             }
             /*if(map.getTileProperty(map.getTileId(i,j, 0), "type", "false").equals("block"))  {
                 map.getTileList().add(new Block(i * Constants.TILE_SIZE, j * Constants.TILE_SIZE));
@@ -106,12 +127,18 @@ public class MapManager {
     }
 
     public void render(Graphics g) throws SlickException {
+        if (R.nextInt(0, 15) == 4) Game.getGlows().get(R.nextInt(0, Game.getGlows().size() - 1)).inMotion = true;
+        Game.getGlows().stream().filter(p -> p.inMotion).forEach(GlowEffect::motion);
+        if (R.nextInt(0, 15) == 4) Game.getGlowsR().get(R.nextInt(0, Game.getGlowsR().size() - 1)).inMotion = true;
+        Game.getGlowsR().stream().filter(p -> p.inMotion).forEach(GlowEffect::motion);
         g.setColor(mapR.getColor());
-        g.fill(new Rectangle(0,0,Main.getScreenWidth()/2,Main.getScreenHeight()));
+        g.fill(new Rectangle(Main.getScreenWidth()/2 - (Constants.MAP_WIDTH* Constants.TILE_SIZE),0,Main.getScreenWidth()/2,Main.getScreenHeight()));
         g.setColor(mapL.getColor());
-        g.fill(new Rectangle(Main.getScreenWidth()/2,0, Main.getScreenWidth(),Main.getScreenHeight()));
+        g.fill(new Rectangle(Main.getScreenWidth()/2,0, Main.getScreenWidth()/2 - 42,Main.getScreenHeight()));
         mapL.render(Main.getScreenWidth()/2 - Constants.MAP_WIDTH*Constants.TILE_SIZE ,0, g);
         mapR.render(Main.getScreenWidth()/2, 0, g);
+        Game.getPlayerL().tileSpecialCollisions(mapL);
+        Game.getPlayerR().tileSpecialCollisions(mapR);
 //        colorMap(mapL, g);
 //        colorMap(mapR, g);
         if(win()) levelChange();

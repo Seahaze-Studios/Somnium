@@ -1,6 +1,7 @@
 package graphics.ui.tabber;
 
 import core.Main;
+import managers.SoundManager;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.geom.Rectangle;
@@ -21,7 +22,10 @@ public class Tab {
 
     public void update(GameContainer gc) {
         if (mouseOver(gc)) {
-            if (gc.getInput().isMousePressed(0)) this.active = true;
+            if (gc.getInput().isMousePressed(0)) {
+                this.active = true;
+                SoundManager.playSoundEffect("click");
+            }
         }
     }
 
