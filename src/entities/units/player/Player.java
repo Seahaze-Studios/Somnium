@@ -4,6 +4,9 @@ import core.Constants;
 import core.Main;
 import entities.units.Unit;
 import map.GameMap;
+import map.tile.interactable.Interactable;
+import map.tile.interactable.Portal;
+import map.tile.interactable.hazard.Hazard;
 import map.tile.interactable.utility.Goal;
 import map.tile.obstacle.Block;
 import map.tile.obstacle.Obstacle;
@@ -82,6 +85,23 @@ public class  Player extends Unit {
             }
         });
         return returning.get();
+    }
+
+    public void tileSpecialCollisions(GameMap map)    {
+        map.getTileList().forEach(tile -> {
+            if(tile instanceof Hazard)  {
+                kill(map);
+            }
+            if(tile instanceof Interactable)  {
+                if(tile instanceof Portal)  {
+                    this.setPos(new Vector2f(((Portal) tile).getPair().getHitbox().getX(), ((Portal) tile).getPair().getHitbox().getY()));
+                }
+            }
+        });
+    }
+
+    public void kill(GameMap map)   {
+        this.setPos(map.plrPos);
     }
 
     public void render()    {
