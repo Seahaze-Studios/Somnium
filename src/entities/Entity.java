@@ -18,6 +18,7 @@ public abstract class Entity implements Serializable {
     protected GameContainer gc;
     protected Graphics g;
     protected int frame;
+    protected Direction dir;
 
     protected Entity() throws SlickException {
         this.gc = Game.getGc();
@@ -51,6 +52,7 @@ public abstract class Entity implements Serializable {
 
     public void init() throws SlickException {
         hitbox = new Rectangle(pos.x - width / 2, pos.y - height / 2, width, height);
+        dir = Direction.NONE;
     }
 
     public void update() {
@@ -92,6 +94,10 @@ public abstract class Entity implements Serializable {
         return hitbox;
     }
 
+    public Direction getDir() {
+        return dir;
+    }
+
     public void setPos(Vector2f pos) {
         this.pos = pos;
     }
@@ -115,5 +121,9 @@ public abstract class Entity implements Serializable {
 
     public void setSprite(Image sprite) {
         this.sprite = sprite;
+    }
+
+    public void setDir(Direction newDir)    {
+        this.dir = newDir;
     }
 }

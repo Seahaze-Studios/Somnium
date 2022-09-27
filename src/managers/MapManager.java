@@ -7,6 +7,7 @@ import graphics.particle.effect.GlowBlackEffect;
 import graphics.particle.effect.GlowEffect;
 import map.GameMap;
 import map.tile.Tile;
+import map.tile.interactable.hazard.Lava;
 import map.tile.interactable.utility.Goal;
 import map.tile.obstacle.Block;
 import map.tile.obstacle.Obstacle;
@@ -95,6 +96,11 @@ public class MapManager {
                 case "block" -> map.getTileList().add(new Block(i * Constants.TILE_SIZE, j * Constants.TILE_SIZE));
                 case "player" -> map.plrPos = new Vector2f((i + 0.5f) * Constants.TILE_SIZE, (j + 0.5f) * Constants.TILE_SIZE);
                 case "goal" -> map.getTileList().add(new Goal(i * Constants.TILE_SIZE, j * Constants.TILE_SIZE));
+                case "lava" ->  map.getTileList().add(new Lava(i*Constants.TILE_SIZE,j * Constants.TILE_SIZE));
+                case "ice" -> map.getTileList().add(new Lava(i * Constants.TILE_SIZE, j * Constants.TILE_SIZE));
+                case "portal" -> {
+
+                }
             }
             /*if(map.getTileProperty(map.getTileId(i,j, 0), "type", "false").equals("block"))  {
                 map.getTileList().add(new Block(i * Constants.TILE_SIZE, j * Constants.TILE_SIZE));
