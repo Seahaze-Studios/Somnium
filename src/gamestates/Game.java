@@ -128,11 +128,9 @@ public class Game extends AdvancedGameState {
             glowsR.add(new GlowEffect(new Vector2f(R.nextInt(Main.width() - 42, Main.width()), R.nextInt(0, Main.height())), new Vector2f(R.nextInt(-2, 2), R.nextInt(-2, 2)), Color.white));
         }
         gc.getGraphics().setBackground(org.newdawn.slick.Color.black);
-        plrL = new Player();
-        plrR = new Player();
-        mapMan = new MapManager(curLevelID);
         plrL.setRefSprite(new Image("res/player/1a.png").getScaledCopy(54,54));
         plrR.setRefSprite(new Image("res/player/2.png").getScaledCopy(54,54));
+        mapMan = new MapManager(curLevelID);
     }
 
     public void leave(GameContainer gc, StateBasedGame sbg) {

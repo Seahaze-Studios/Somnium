@@ -56,13 +56,13 @@ public class MapManager {
             } else {
                 Game.curLevelID = 1;
                 var idd = 1;
-                loadMaps(new GameMap("res/maps/lvl" + id + "left.tmx", Constants.COLOR_L.get(id)),
-                        new GameMap("res/maps/lvl" + id + "right.tmx", Constants.COLOR_R.get(id)));
-                Game.getPlayerL().color(Constants.COLOR_L.get(id));
+                loadMaps(new GameMap("res/maps/lvl" + idd + "left.tmx", Constants.COLOR_L.get(idd)),
+                        new GameMap("res/maps/lvl" + idd + "right.tmx", Constants.COLOR_R.get(idd)));
+                Game.getPlayerL().color(Constants.COLOR_L.get(idd));
                 Game.getPlayerL().setPos(mapL.plrPos);
                 Game.getPlayerL().setHitbox(mapL.plrPos.x - Game.getPlayerL().getHitbox().getWidth() / 2, mapL.plrPos.y - Game.getPlayerL().getHitbox().getWidth() / 2);
                 Game.getPlayerR().setPos(mapR.plrPos);
-                Game.getPlayerR().color(Constants.COLOR_R.get(id));
+                Game.getPlayerR().color(Constants.COLOR_R.get(idd));
                 Game.getPlayerR().setHitbox(mapR.plrPos.x - Game.getPlayerR().getHitbox().getWidth() / 2, mapR.plrPos.y - Game.getPlayerR().getHitbox().getWidth() / 2);
                 Game.getSbg().enterState(Main.TITLE_ID);
             }

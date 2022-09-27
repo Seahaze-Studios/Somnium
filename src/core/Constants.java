@@ -20,17 +20,23 @@ public final class Constants {
     public static final int LEVEL_1_ID = 1;
     public static final int LEVEL_2_ID = 2;
     public static final int LEVEL_3_ID = 3;
+    public static final int LEVEL_4_ID = 4;
+    public static final int LEVEL_5_ID = 5;
     public static final ArrayList<Color> COLOR_L = new ArrayList<>()    {{
         add(Color.gray);
         add(Color.white);
         add(Color.orange);
         add(Color.red);
+        add(Color.yellow);
+        add(Color.lightGray);
     }};
     public static final ArrayList<Color> COLOR_R = new ArrayList<>()    {{
         add(Color.cyan);
         add(Color.black);
         add(Color.blue);
         add(Color.green);
+        add(new Color(143,0,255));//violet
+        add(Color.darkGray);
     }};
 
 //    public static final SimpleDiagramRenderer SVG_L;
