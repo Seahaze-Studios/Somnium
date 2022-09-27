@@ -2,6 +2,7 @@ package gamestates;
 
 import core.Main;
 import gamestates.types.AdvancedGameState;
+import graphics.particle.effect.GlowEffect;
 import graphics.ui.button.Button;
 import managers.ImageManager;
 import managers.SoundManager;
@@ -9,6 +10,7 @@ import org.newdawn.slick.*;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.state.transition.FadeInTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
+import util.Vector2f;
 
 public class TitleScreen extends AdvancedGameState {
 

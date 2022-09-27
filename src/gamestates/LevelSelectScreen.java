@@ -2,6 +2,7 @@ package gamestates;
 
 import core.Main;
 import gamestates.types.AdvancedGameState;
+import graphics.particle.effect.GlowEffect;
 import graphics.ui.button.Button;
 import managers.ImageManager;
 import managers.SoundManager;
@@ -15,8 +16,11 @@ import org.newdawn.slick.state.transition.FadeInTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
 import util.DrawUtilities;
 import util.RomanNumber;
+import util.Vector2f;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Random;
 
 public class LevelSelectScreen extends AdvancedGameState {
 
@@ -24,6 +28,9 @@ public class LevelSelectScreen extends AdvancedGameState {
     private int counter = 0;
     private int level = 1;
     private HashMap<Integer, Shape> shapes;
+    private ArrayList<IntroCredit.PathBundle> paths = new ArrayList<>();
+    private ArrayList<GlowEffect> glows = new ArrayList<>();
+    private Random R = new Random();
 
     public LevelSelectScreen(int id)
     {
@@ -55,12 +62,22 @@ public class LevelSelectScreen extends AdvancedGameState {
     public void enter(GameContainer gc, StateBasedGame sbg) throws SlickException {
         super.enter(gc, sbg);
         gc.getGraphics().setColor(Color.white);
+        for (var i = 0; i < 1000; i++) {
+            glows.add(new GlowEffect(new Vector2f(R.nextInt(0, Main.width()), R.nextInt(0, Main.height())), new Vector2f(R.nextInt(-2, 2), R.nextInt(-2, 2)), Color.white));
+        }
     }
 
     @Override
     public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
         super.update(gc, sbg, delta);
         counter++;
+        if (R.nextInt(0, 15) == 4) glows.get(R.nextInt(0, glows.size() - 1)).inMotion = true;
+        if (gc.getInput().isKeyDown(Input.KEY_UP)) level++;
+        if (gc.getInput().isKeyDown(Input.KEY_DOWN) && level > 1) level--;
+        if (gc.getInput().isMousePressed(0) && shapes.get(level).contains(gc.getInput().getMouseX(), gc.getInput().getMouseY())) {
+            Game.curLevelID = level;
+            sbg.enterState(Main.GAME_ID, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
+        }
     }
 
     @Override
@@ -68,6 +85,7 @@ public class LevelSelectScreen extends AdvancedGameState {
         super.render(gc, sbg, g);
         g.setBackground(Color.black);
         g.setColor(Color.white);
+        glows.stream().filter(p -> p.inMotion).forEach(GlowEffect::motion);
         g.draw(shapes.get(level));
         var scaledShape = shapes.get(level).transform(Transform.createScaleTransform(0.7f, 0.7f));
         scaledShape.setCenterX(Main.width() / 2);
@@ -80,7 +98,7 @@ public class LevelSelectScreen extends AdvancedGameState {
     @Override
     public void keyPressed(int key, char c) {
         super.keyPressed(key, c);
-        if (key == Input.KEY_UP) level++;
-        if (key == Input.KEY_DOWN && level > 1) level--;
+        if (key == Input.KEY_RIGHT) level++;
+        if (key == Input.KEY_LEFT && level > 1) level--;
     }
 }
