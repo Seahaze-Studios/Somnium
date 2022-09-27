@@ -23,6 +23,7 @@ import java.util.HashMap;
 import java.util.Random;
 
 public class LevelSelectScreen extends AdvancedGameState {
+    private StateBasedGame sbg;
 
     public final int id;
     private int counter = 0;
@@ -42,7 +43,8 @@ public class LevelSelectScreen extends AdvancedGameState {
     } // R
 
     @Override
-    public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
+    public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
+        this.sbg = sbg;
         shapes = new HashMap<>();
         shapes.put(1, new Circle(Main.width() / 2, Main.height() / 2, 400));
         shapes.put(2, new Circle(Main.width() / 2, Main.height() / 2, 400));
@@ -100,5 +102,9 @@ public class LevelSelectScreen extends AdvancedGameState {
         super.keyPressed(key, c);
         if (key == Input.KEY_RIGHT) level++;
         if (key == Input.KEY_LEFT && level > 1) level--;
+        if(key == Input.KEY_0) {
+            Game.curLevelID = 0;
+            sbg.enterState(Main.GAME_ID, new FadeOutTransition(Color.white), new FadeInTransition(Color.white));
+        }
     }
 }

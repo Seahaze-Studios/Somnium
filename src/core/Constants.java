@@ -16,16 +16,18 @@ public final class Constants {
 
     public static final int TILE_SIZE = 54;
 
-    public static final int LEVEL_TEST_ID = -1;
+    public static final int LEVEL_TEST_ID = 0;
     public static final int LEVEL_1_ID = 1;
     public static final int LEVEL_2_ID = 2;
     public static final int LEVEL_3_ID = 3;
     public static final ArrayList<Color> COLOR_L = new ArrayList<>()    {{
+        add(Color.gray);
         add(Color.white);
         add(Color.orange);
         add(Color.red);
     }};
     public static final ArrayList<Color> COLOR_R = new ArrayList<>()    {{
+        add(Color.cyan);
         add(Color.black);
         add(Color.blue);
         add(Color.green);
