@@ -34,6 +34,7 @@ public class TestState extends AdvancedGameState {
     @Override
     public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
         super.update(gc, sbg, delta);
+        b.update();
     }
 
     public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {

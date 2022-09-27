@@ -2,6 +2,8 @@ package gamestates;
 
 import core.Main;
 import gamestates.types.AdvancedGameState;
+import graphics.GameBackground;
+import graphics.particle.effect.BackgroundEffect;
 import graphics.ui.button.Button;
 import managers.ImageManager;
 import managers.SoundManager;
@@ -20,6 +22,8 @@ public class TitleScreen extends AdvancedGameState {
     private Button playButton;
     private Button quitButton;
     private Button settingsButton;
+
+    private GameBackground bg;
 
     public TitleScreen(int id)
     {
@@ -43,6 +47,7 @@ public class TitleScreen extends AdvancedGameState {
         settingsButton = new Button(Main.width() / 4 * 3, Main.height() / 4 * 3 + 50, "Settings", () -> Main.sbg.enterState(Main.SETTINGS_ID, new FadeOutTransition(), new FadeInTransition()));
         quitButton = new Button(Main.width() / 4 * 3, Main.height() / 4 * 3 + 100, "Quit", () -> sbg.enterState(Main.QUIT_ID, new FadeOutTransition(), new FadeInTransition()));
         if (!SoundManager.isMusicPlaying()) SoundManager.playBackgroundMusic("title");
+        bg = new GameBackground();
     }
 
     @Override
@@ -52,6 +57,7 @@ public class TitleScreen extends AdvancedGameState {
         playButton.update(gc);
         settingsButton.update(gc);
         quitButton.update(gc);
+        bg.update();
     }
 
     @Override
@@ -63,5 +69,6 @@ public class TitleScreen extends AdvancedGameState {
         playButton.render(gc);
         settingsButton.render(gc);
         quitButton.render(gc);
+        bg.render(g);
     }
 }
