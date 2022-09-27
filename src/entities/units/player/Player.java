@@ -4,6 +4,7 @@ import core.Constants;
 import core.Main;
 import entities.units.Unit;
 import map.GameMap;
+import map.tile.interactable.Ice;
 import map.tile.interactable.Interactable;
 import map.tile.interactable.Portal;
 import map.tile.interactable.hazard.Hazard;
@@ -95,6 +96,23 @@ public class  Player extends Unit {
             if(tile instanceof Interactable)  {
                 if(tile instanceof Portal)  {
                     this.setPos(new Vector2f(((Portal) tile).getPair().getHitbox().getX(), ((Portal) tile).getPair().getHitbox().getY()));
+                }
+                if(tile instanceof Ice) {
+                    switch(dir) {
+                        case UP -> {
+                            this.speed = new Vector2f(0, -1 * Constants.SCALING_FACTOR());
+                        }
+                        case DOWN -> {
+                            this.speed = new Vector2f(0, 1 * Constants.SCALING_FACTOR());
+                        }
+                        case LEFT -> {
+                            this.speed = new Vector2f(-1*Constants.SCALING_FACTOR(),0);
+                        }
+                        case RIGHT -> {
+                            this.speed = new Vector2f(1*Constants.SCALING_FACTOR(), 0);
+                        }
+                    }
+
                 }
             }
         });

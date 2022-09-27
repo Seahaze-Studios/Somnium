@@ -1,0 +1,46 @@
+
+
+java:S1319€"eThe type of "lines" should be an interface such as "List" rather than the implementation "ArrayList".(ÿŒ¿Ğúÿÿÿÿ
+m
+java:S1104"WMake defaultFont a static final constant or non-public and provide accessors if needed.(©‚È‰
+G
+java:S1444"1Make this "public static defaultFont" field final(©‚È‰
+V
+java:S2184&"@Cast one of the operands of this integer division to a "double".(±¨®
+V
+java:S2184'"@Cast one of the operands of this integer division to a "double".(¯Ó†ü
+[
+java:S21845"@Cast one of the operands of this integer division to a "double".(ĞÖàùúÿÿÿÿ
+V
+java:S21846"@Cast one of the operands of this integer division to a "double".(¯Ó†ü
+[
+java:S2184?"@Cast one of the operands of this integer division to a "double".(ĞÖàùúÿÿÿÿ
+V
+java:S2184@"@Cast one of the operands of this integer division to a "double".(¯Ó†ü
+[
+java:S2184K"@Cast one of the operands of this integer division to a "double".(ĞÖàùúÿÿÿÿ
+V
+java:S2184L"@Cast one of the operands of this integer division to a "double".(¯Ó†ü
+[
+java:S2184W"@Cast one of the operands of this integer division to a "double".(·Ê¡¸ûÿÿÿÿ
+[
+java:S2184X"@Cast one of the operands of this integer division to a "double".(àë±Ûıÿÿÿÿ
+[
+java:S2184`"@Cast one of the operands of this integer division to a "double".(·Ê¡¸ûÿÿÿÿ
+[
+java:S2184a"@Cast one of the operands of this integer division to a "double".(àë±Ûıÿÿÿÿ
+[
+java:S2184i"@Cast one of the operands of this integer division to a "double".(ĞÖàùúÿÿÿÿ
+V
+java:S2184j"@Cast one of the operands of this integer division to a "double".(¯Ó†ü
+[
+java:S2184r"@Cast one of the operands of this integer division to a "double".(ĞÖàùúÿÿÿÿ
+V
+java:S2184s"@Cast one of the operands of this integer division to a "double".(¯Ó†ü
+C
+java:S1172\"(Remove this unused method parameter "g".(€ì÷şÿÿÿÿ
+O
+java:S1172€"3Remove these unused method parameters "g", "speed".(ÿŒ¿Ğúÿÿÿÿ
+W	java:S125‚"<This block of commented-out lines of code should be removed.(½üˆ¬üÿÿÿÿ
+H
+java:S1128"-Remove this unused import 'java.util.Arrays'.(î–˜Éüÿÿÿÿ

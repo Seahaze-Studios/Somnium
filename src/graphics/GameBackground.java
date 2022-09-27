@@ -24,8 +24,8 @@ public class GameBackground {
         //image = ImageManager.getImage("glow");  //this doesn't work.
         image = ImageManager.getImage("spot");
         image.setImageColor(0f,0.5f,1f);
-        for(int i = 0; i < 35; i++){
-            particles.add(new BackgroundEffect(new Vector2f((float) (Math.random()* Main.getScreenWidth()), (float) (Math.random()* Main.getScreenHeight())),new Vector2f(0,0),image));
+        for(int i = 0; i < 99; i++){
+            particles.add(new BackgroundEffect(new Vector2f((float) (Math.random()* Main.getScreenWidth()), (float) (Math.random()* Main.getScreenHeight())),new Vector2f(0,0),image.getScaledCopy((float) (1+Math.random()))));
         }
 
     }
