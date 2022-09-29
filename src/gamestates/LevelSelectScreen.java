@@ -1,5 +1,6 @@
 package gamestates;
 
+import core.Constants;
 import core.Main;
 import gamestates.types.AdvancedGameState;
 import graphics.particle.effect.GlowEffect;
@@ -86,13 +87,20 @@ public class LevelSelectScreen extends AdvancedGameState {
     public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
         super.render(gc, sbg, g);
         g.setBackground(Color.black);
-        g.setColor(Color.white);
+        if (level < Constants.COLOR_L.size()) g.setColor(Constants.COLOR_L.get(level));
         glows.stream().filter(p -> p.inMotion).forEach(GlowEffect::motion);
         g.draw(shapes.get(level));
+        g.fill(shapes.get(level));
         var scaledShape = shapes.get(level).transform(Transform.createScaleTransform(0.7f, 0.7f));
         scaledShape.setCenterX(Main.width() / 2);
         scaledShape.setCenterY(Main.height() / 2);
-        if (level != 1) g.draw(scaledShape);
+        if (level != 1) {
+            if (level < Constants.COLOR_R.size()) g.setColor(Constants.COLOR_R.get(level));
+            g.draw(scaledShape);
+            g.fill(scaledShape);
+            g.setColor(Color.white);
+        }
+        if (level == 1) g.setColor(Color.black);
         DrawUtilities.drawStringCentered(g, RomanNumber.toRoman(level), Main.fonts.VariableWidth.P60, Main.width() / 2, Main.height() / 2);
         g.drawString(level + "", 400, 400);
     }
