@@ -164,12 +164,12 @@
  </tile>
  <tile id="32">
   <properties>
-   <property name="type" value="player"/>
+   <property name="type" value="lava"/>
   </properties>
  </tile>
  <tile id="33">
   <properties>
-   <property name="type" value=""/>
+   <property name="type" value="ice"/>
   </properties>
  </tile>
  <tile id="34">
