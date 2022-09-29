@@ -108,7 +108,7 @@
         "temp2.tsx"
     ],
     "project": "temp.tiled-project",
-    "property.type": "string",
+    "property.type": "int",
     "recentFiles": [
         "lvl1left.tmx",
         "temp1.tmx",

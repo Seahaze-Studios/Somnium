@@ -8,6 +8,7 @@ import graphics.particle.effect.GlowEffect;
 import map.GameMap;
 import map.tile.Tile;
 import map.tile.interactable.Ice;
+import map.tile.interactable.Portal;
 import map.tile.interactable.hazard.Hazard;
 import map.tile.interactable.hazard.Lava;
 import map.tile.interactable.utility.Goal;
@@ -94,6 +95,9 @@ public class MapManager {
     }
 
     private void generateTile(int i, int j, GameMap map) {
+        Portal temp1;
+        Portal temp2;
+        Portal temp3;
         if(map.getTileId(i,j,0) != 0)   {
             switch(map.getTileProperty(map.getTileId(i,j,0),"type","block"))    {
                 case "block" -> map.getTileList().add(new Block(i * Constants.TILE_SIZE, j * Constants.TILE_SIZE));
@@ -102,6 +106,9 @@ public class MapManager {
                 case "lava" ->  map.getTileList().add(new Lava(i*Constants.TILE_SIZE,j * Constants.TILE_SIZE));
                 case "ice" -> map.getTileList().add(new Ice(i * Constants.TILE_SIZE, j * Constants.TILE_SIZE));
                 case "portal" -> {
+                    switch(map.getTileProperty(map.getTileId(i,j,0),"id", "0"))   {
+
+                    }
 
                 }
             }
@@ -145,6 +152,11 @@ public class MapManager {
 //        colorMap(mapL, g);
 //        colorMap(mapR, g);
         if(win()) levelChange();
+        if(Game.getPlayerL().dead() || Game.getPlayerR().dead())   {
+            Game.getPlayerR().revive();
+            Game.getPlayerL().revive();
+            loadStage(Game.curLevelID);
+        }
     }
 
     public void debugRender(Graphics g) {
@@ -185,7 +197,7 @@ public class MapManager {
 
     public void colorMap(GameMap gm, Graphics g)  {
         g.setColor(new Color(gm.getColor().getRed(), gm.getColor().getBlue(),gm.getColor().getGreen(),0.95f));
-        gm.getTileList().forEach(t -> {if(!(t instanceof Ice)  ){g.fill(t.getHitbox());}});
+        gm.getTileList().forEach(t -> {if((t instanceof Obstacle)  ){g.fill(t.getHitbox());}});
     }
 
     private void levelChange() throws SlickException {

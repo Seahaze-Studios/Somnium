@@ -112,8 +112,8 @@ public class Game extends AdvancedGameState {
     public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
         super.update(gc, sbg, delta);
         keyInput();
-        plrL.update();
-        plrR.update();
+        plrL.update(MapManager.mapL);
+        plrR.update(MapManager.mapR);
         // This is where you put your game's logic that executes each frame that isn't about drawing
         entities.forEach(Entity::update);
     }

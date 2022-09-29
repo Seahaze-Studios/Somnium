@@ -50,7 +50,7 @@ public final class KeyManager implements Predicate<Integer> {
 		switch(key)	{
 			case Input.KEY_W ->	{
 				for(int i = 0; i < Constants.PLAYER_MAX_SPEED; i++)	{
-					if(!temp1) {
+					if(!temp1 && !playerL.isImmobile()) {
 						temp1 = playerMove(MapManager.mapL, playerL, new Vector2f(0,-1 * SCALING_FACTOR()),true);
 						playerL.setDir(Direction.UP);
 //						playerL.move(new Vector2f(0, -1));
@@ -60,7 +60,7 @@ public final class KeyManager implements Predicate<Integer> {
 //							break;
 //						}
 					}
-					if(!temp2) {
+					if(!temp2 && !playerR.isImmobile()) {
 						temp2 = playerMove(MapManager.mapR, playerR, new Vector2f(0,-1 * SCALING_FACTOR()),false);
 						playerR.setDir(Direction.UP);
 //						playerR.move(new Vector2f(0, -1));
@@ -75,7 +75,7 @@ public final class KeyManager implements Predicate<Integer> {
 			}
 			case Input.KEY_A ->	{
 				for(int i = 0; i < Constants.PLAYER_MAX_SPEED; i++)	{
-					if(!temp1) {
+					if(!temp1 && !playerL.isImmobile()) {
 						temp1 = playerMove(MapManager.mapL, playerL, new Vector2f(-1 * SCALING_FACTOR(),0),true);
 						playerL.setDir(Direction.LEFT);
 //						playerL.move(new Vector2f(-1, 0));
@@ -85,7 +85,7 @@ public final class KeyManager implements Predicate<Integer> {
 //						}
 
 					}
-					if(!temp2) {
+					if(!temp2 && !playerR.isImmobile()) {
 						temp2 = playerMove(MapManager.mapR, playerR, new Vector2f(1 * SCALING_FACTOR(),0),false);
 						playerR.setDir(Direction.RIGHT);
 //						playerR.move(new Vector2f(1, 0));
@@ -98,7 +98,7 @@ public final class KeyManager implements Predicate<Integer> {
 			}
 			case Input.KEY_S -> {
 				for(int i = 0; i < Constants.PLAYER_MAX_SPEED; i++)	{
-					if(!temp1) {
+					if(!temp1 && !playerL.isImmobile()) {
 						temp1 = playerMove(MapManager.mapL, playerL, new Vector2f(0,1 * SCALING_FACTOR()),true);
 						playerL.setDir(Direction.DOWN);
 //						playerL.move(new Vector2f(0, 1));
@@ -106,7 +106,7 @@ public final class KeyManager implements Predicate<Integer> {
 //							playerL.move(new Vector2f(0, -1));
 //							temp1 = true;
 						}
-					if(!temp2) {
+					if(!temp2 && !playerR.isImmobile()) {
 						temp2 = playerMove(MapManager.mapR, playerR, new Vector2f(0,1 * SCALING_FACTOR()),false);
 						playerR.setDir(Direction.DOWN);
 //						playerR.move(new Vector2f(0, 1));
@@ -120,7 +120,7 @@ public final class KeyManager implements Predicate<Integer> {
 
 			case Input.KEY_D -> {
 				for(int i = 0; i < Constants.PLAYER_MAX_SPEED; i++)	{
-					if(!temp1) {
+					if(!temp1 && !playerL.isImmobile()) {
 						temp1 = playerMove(MapManager.mapL, playerL, new Vector2f(1 * SCALING_FACTOR(),0),true);
 						playerL.setDir(Direction.RIGHT);
 //						playerL.move(new Vector2f(1, 0));
@@ -130,7 +130,7 @@ public final class KeyManager implements Predicate<Integer> {
 ////						}
 
 					}
-					if(!temp2) {
+					if(!temp2 && !playerR.isImmobile()) {
 						temp2 = playerMove(MapManager.mapR, playerR, new Vector2f(-1 * SCALING_FACTOR(),0),false);
 						playerR.setDir(Direction.LEFT);
 //						playerR.move(new Vector2f(-1, 0));

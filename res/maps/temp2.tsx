@@ -149,7 +149,8 @@
  </tile>
  <tile id="29">
   <properties>
-   <property name="type" value="block"/>
+   <property name="id" type="int" value="0"/>
+   <property name="type" value="portal"/>
   </properties>
  </tile>
  <tile id="30">
@@ -174,12 +175,14 @@
  </tile>
  <tile id="34">
   <properties>
-   <property name="type" value=""/>
+   <property name="id" type="int" value="1"/>
+   <property name="type" value="portal"/>
   </properties>
  </tile>
  <tile id="35">
   <properties>
-   <property name="type" value=""/>
+   <property name="id" type="int" value="2"/>
+   <property name="type" value="portal"/>
   </properties>
  </tile>
 </tileset>
