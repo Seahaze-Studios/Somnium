@@ -7,6 +7,8 @@ import graphics.particle.effect.GlowBlackEffect;
 import graphics.particle.effect.GlowEffect;
 import map.GameMap;
 import map.tile.Tile;
+import map.tile.interactable.Ice;
+import map.tile.interactable.hazard.Hazard;
 import map.tile.interactable.hazard.Lava;
 import map.tile.interactable.utility.Goal;
 import map.tile.obstacle.Block;
@@ -44,7 +46,7 @@ public class MapManager {
 
     public void loadStage(int id) throws SlickException {
         try {
-            if(id <= Constants.COLOR_L.size()) {
+//            if(id < Constants.COLOR_L.size()) {
                 loadMaps(new GameMap("res/maps/lvl" + id + "left.tmx", Constants.COLOR_L.get(id)),
                         new GameMap("res/maps/lvl" + id + "right.tmx", Constants.COLOR_R.get(id)));
                 Game.getPlayerL().color(Constants.COLOR_L.get(id));
@@ -53,19 +55,20 @@ public class MapManager {
                 Game.getPlayerR().setPos(mapR.plrPos);
                 Game.getPlayerR().color(Constants.COLOR_R.get(id));
                 Game.getPlayerR().setHitbox(mapR.plrPos.x - Game.getPlayerR().getHitbox().getWidth() / 2, mapR.plrPos.y - Game.getPlayerR().getHitbox().getWidth() / 2);
-            } else {
-                Game.curLevelID = 1;
-                var idd = 1;
-                loadMaps(new GameMap("res/maps/lvl" + idd + "left.tmx", Constants.COLOR_L.get(idd)),
-                        new GameMap("res/maps/lvl" + idd + "right.tmx", Constants.COLOR_R.get(idd)));
-                Game.getPlayerL().color(Constants.COLOR_L.get(idd));
-                Game.getPlayerL().setPos(mapL.plrPos);
-                Game.getPlayerL().setHitbox(mapL.plrPos.x - Game.getPlayerL().getHitbox().getWidth() / 2, mapL.plrPos.y - Game.getPlayerL().getHitbox().getWidth() / 2);
-                Game.getPlayerR().setPos(mapR.plrPos);
-                Game.getPlayerR().color(Constants.COLOR_R.get(idd));
-                Game.getPlayerR().setHitbox(mapR.plrPos.x - Game.getPlayerR().getHitbox().getWidth() / 2, mapR.plrPos.y - Game.getPlayerR().getHitbox().getWidth() / 2);
-                Game.getSbg().enterState(Main.TITLE_ID);
-            }
+//
+//            }else {
+//                Game.curLevelID = 1;
+//                var idd = 1;
+//                loadMaps(new GameMap("res/maps/lvl" + idd + "left.tmx", Constants.COLOR_L.get(idd)),
+//                        new GameMap("res/maps/lvl" + idd + "right.tmx", Constants.COLOR_R.get(idd)));
+//                Game.getPlayerL().color(Constants.COLOR_L.get(idd));
+//                Game.getPlayerL().setPos(mapL.plrPos);
+//                Game.getPlayerL().setHitbox(mapL.plrPos.x - Game.getPlayerL().getHitbox().getWidth() / 2, mapL.plrPos.y - Game.getPlayerL().getHitbox().getWidth() / 2);
+//                Game.getPlayerR().setPos(mapR.plrPos);
+//                Game.getPlayerR().color(Constants.COLOR_R.get(idd));
+//                Game.getPlayerR().setHitbox(mapR.plrPos.x - Game.getPlayerR().getHitbox().getWidth() / 2, mapR.plrPos.y - Game.getPlayerR().getHitbox().getWidth() / 2);
+//                Game.getSbg().enterState(Main.TITLE_ID);
+//            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -97,7 +100,7 @@ public class MapManager {
                 case "player" -> map.plrPos = new Vector2f((i + 0.5f) * Constants.TILE_SIZE, (j + 0.5f) * Constants.TILE_SIZE);
                 case "goal" -> map.getTileList().add(new Goal(i * Constants.TILE_SIZE, j * Constants.TILE_SIZE));
                 case "lava" ->  map.getTileList().add(new Lava(i*Constants.TILE_SIZE,j * Constants.TILE_SIZE));
-                case "ice" -> map.getTileList().add(new Lava(i * Constants.TILE_SIZE, j * Constants.TILE_SIZE));
+                case "ice" -> map.getTileList().add(new Ice(i * Constants.TILE_SIZE, j * Constants.TILE_SIZE));
                 case "portal" -> {
 
                 }
@@ -145,10 +148,18 @@ public class MapManager {
     }
 
     public void debugRender(Graphics g) {
+        Color temp = g.getColor();
         for (Tile tile : mapL.getTileList())
             if (tile instanceof Goal) {
-                Color temp = g.getColor();
                 g.setColor(new Color(0, 255, 255, 0.5f));
+                g.fill(tile.getHitbox());
+                g.setColor(temp);
+            } else if(tile instanceof Hazard)  {
+                g.setColor(new Color(255, 0, 0, 0.5f));
+                g.fill(tile.getHitbox());
+                g.setColor(temp);
+            } else if(tile instanceof Ice)  {
+                g.setColor(new Color(0, 0, 255, 0.5f));
                 g.fill(tile.getHitbox());
                 g.setColor(temp);
             } else {
@@ -156,8 +167,15 @@ public class MapManager {
             }
         for (Tile t : mapR.getTileList())
             if (t instanceof Goal) {
-                Color temp = g.getColor();
                 g.setColor(new Color(0, 255, 255, 0.5f));
+                g.fill(t.getHitbox());
+                g.setColor(temp);
+            } else if(t instanceof Hazard)  {
+                g.setColor(new Color(255, 0, 0, 0.5f));
+                g.fill(t.getHitbox());
+                g.setColor(temp);
+            } else if(t instanceof Ice)  {
+                g.setColor(new Color(0, 0, 255, 0.5f));
                 g.fill(t.getHitbox());
                 g.setColor(temp);
             } else {
@@ -167,7 +185,7 @@ public class MapManager {
 
     public void colorMap(GameMap gm, Graphics g)  {
         g.setColor(new Color(gm.getColor().getRed(), gm.getColor().getBlue(),gm.getColor().getGreen(),0.95f));
-        gm.getTileList().forEach(t -> {if(!(t instanceof Goal)  )g.fill(t.getHitbox());});
+        gm.getTileList().forEach(t -> {if(!(t instanceof Ice)  ){g.fill(t.getHitbox());}});
     }
 
     private void levelChange() throws SlickException {

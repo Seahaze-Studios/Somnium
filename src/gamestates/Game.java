@@ -105,6 +105,7 @@ public class Game extends AdvancedGameState {
         plrR.render();
         if(debug) {
             debugRender(gc);
+            DrawUtilities.drawStringCentered(g, String.valueOf(curLevelID), 900,100);
         }
     }
 

@@ -89,27 +89,30 @@ public class  Player extends Unit {
     }
 
     public void tileSpecialCollisions(GameMap map)    {
+        this.speed = new Vector2f(0,0);
         map.getTileList().forEach(tile -> {
-            if(tile instanceof Hazard)  {
-                kill(map);
-            }
-            if(tile instanceof Interactable)  {
-                if(tile instanceof Portal)  {
-                    this.setPos(new Vector2f(((Portal) tile).getPair().getHitbox().getX(), ((Portal) tile).getPair().getHitbox().getY()));
+            if(this.hitbox.intersects(tile.getHitbox())) {
+                if (tile instanceof Hazard) {
+                    kill(map);
                 }
-                if(tile instanceof Ice) {
-                    switch(dir) {
-                        case UP -> {
-                            this.speed = new Vector2f(0, -1 * Constants.SCALING_FACTOR());
-                        }
-                        case DOWN -> {
-                            this.speed = new Vector2f(0, 1 * Constants.SCALING_FACTOR());
-                        }
-                        case LEFT -> {
-                            this.speed = new Vector2f(-1*Constants.SCALING_FACTOR(),0);
-                        }
-                        case RIGHT -> {
-                            this.speed = new Vector2f(1*Constants.SCALING_FACTOR(), 0);
+                if (tile instanceof Interactable) {
+                    if (tile instanceof Portal) {
+                        this.setPos(new Vector2f(((Portal) tile).getPair().getHitbox().getX(), ((Portal) tile).getPair().getHitbox().getY()));
+                    }
+                    if (tile instanceof Ice) {
+                        switch (dir) {
+                            case UP -> {
+                                this.speed = new Vector2f(0, -5* Constants.SCALING_FACTOR());
+                            }
+                            case DOWN -> {
+                                this.speed = new Vector2f(0, 5 * Constants.SCALING_FACTOR());
+                            }
+                            case LEFT -> {
+                                this.speed = new Vector2f(-5 * Constants.SCALING_FACTOR(), 0);
+                            }
+                            case RIGHT -> {
+                                this.speed = new Vector2f(5 * Constants.SCALING_FACTOR(), 0);
+                            }
                         }
                     }
 
