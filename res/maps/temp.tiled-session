@@ -41,6 +41,14 @@
                 "y": 540.7545412203075
             }
         },
+        "lvl3right.tmx": {
+            "scale": 0.788148148148148,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 459.3045112781956,
+                "y": 540.5075187969926
+            }
+        },
         "lvl4left.tmx": {
             "scale": 0.7951851851851851,
             "selectedLayer": 0,
@@ -70,7 +78,23 @@
             "selectedLayer": 0,
             "viewCenter": {
                 "x": 406.19469026548666,
-                "y": 540.7545412203075
+                "y": 540.7545412203074
+            }
+        },
+        "lvl6left.tmx": {
+            "scale": 0.5,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 524,
+                "y": 528
+            }
+        },
+        "lvl6right.tmx": {
+            "scale": 0.788148148148148,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 459.3045112781956,
+                "y": 540.5075187969926
             }
         },
         "temp.tsx": {
@@ -101,7 +125,9 @@
     "last.imagePath": "C:/Users/AH458/Pictures",
     "map.lastUsedFormat": "tmx",
     "map.layerDataFormat": null,
-    "map.width": 15,
+    "map.tileHeight": 54,
+    "map.tileWidth": 54,
+    "map.width": 17,
     "openFiles": [
         "temp1.tmx",
         "temp2.tmx",
