@@ -22,6 +22,7 @@ public final class Constants {
     public static final int LEVEL_3_ID = 3;
     public static final int LEVEL_4_ID = 4;
     public static final int LEVEL_5_ID = 5;
+    public static final int LEVEL_6_ID = 6;
     public static final ArrayList<Color> COLOR_L = new ArrayList<>()    {{
         add(Color.gray);
         add(Color.white);
@@ -29,6 +30,7 @@ public final class Constants {
         add(Color.red);
         add(Color.yellow);
         add(Color.lightGray);
+        add(Color.cyan);
     }};
     public static final ArrayList<Color> COLOR_R = new ArrayList<>()    {{
         add(Color.cyan);
@@ -37,6 +39,7 @@ public final class Constants {
         add(Color.green);
         add(new Color(143,0,255));//violet
         add(Color.darkGray);
+        add(Color.pink);
     }};
 
 //    public static final SimpleDiagramRenderer SVG_L;

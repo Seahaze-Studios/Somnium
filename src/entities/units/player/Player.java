@@ -34,6 +34,7 @@ public class  Player extends Unit {
 
     private boolean immobile;
     private boolean kill;
+    private boolean portaled;
 
     public Player(int x, int y) throws SlickException {
         super(x,y);
@@ -59,6 +60,7 @@ public class  Player extends Unit {
         this.color = new Color(Color.gray);
         this.immobile = false;
         this.kill = false;
+        this.portaled = false;
     }
 
     public boolean isImmobile() {
@@ -132,8 +134,12 @@ public class  Player extends Unit {
                     kill = true;
                 }
                 if (tile instanceof Interactable) {
-                    if (tile instanceof Portal) {
-                        this.setPos(new Vector2f(((Portal) tile).getPair().getHitbox().getX(), ((Portal) tile).getPair().getHitbox().getY()));
+                    if (tile instanceof Portal && !portaled) {
+                        setPos(new Vector2f(((Portal) tile).getPair().getHitbox().getX(), ((Portal) tile).getPair().getHitbox().getY()));
+                        portaled = true;
+                    }
+                    else {
+                        portaled = false;
                     }
                     if (tile instanceof Ice) {
                         immobile = true;
