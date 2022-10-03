@@ -18,6 +18,7 @@ import org.newdawn.slick.Color;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Rectangle;
+import org.newdawn.slick.geom.Shape;
 import org.newdawn.slick.svg.InkscapeLoader;
 import org.newdawn.slick.svg.SimpleDiagramRenderer;
 import util.Vector2f;
@@ -40,6 +41,7 @@ public class  Player extends Unit {
     private boolean kill;
     private boolean portaled;
     private Rectangle testHitbox = new Rectangle(0, 0, 0,0);
+    private Shape lastPortal;
     private List<Tile> portals;
 
     public Player(int x, int y) throws SlickException {
@@ -164,11 +166,11 @@ public class  Player extends Unit {
                 }
                 if (tile instanceof Interactable) {
                     if (tile instanceof Portal portal) {
-                        if (!portaled) {
+                        if (lastPortal == null || !lastPortal.intersects(this.hitbox)) {
+                            lastPortal = portal.getHitbox();
                             setPos(new Vector2f((portal).getPair().getHitbox().getX() + width / 2, (portal).getPair().getHitbox().getY() + height / 2));
                             setHitbox(pos.x - width / 2, pos.y - height / 2);
                         }
-                        portaled = true;
                     }
                     if (tile instanceof Ice) {
                         immobile = true;
