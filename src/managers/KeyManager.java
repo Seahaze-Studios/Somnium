@@ -153,8 +153,8 @@ public final class KeyManager implements Predicate<Integer> {
 				playerR.setDir(Direction.UP);
 			}
 			case Input.KEY_A -> {
-				playerMove(MapManager.mapL, playerL, new Vector2f(-PLAYER_ACCELERATION, 0 * SCALING_FACTOR()), true);
-				playerMove(MapManager.mapR, playerR, new Vector2f(PLAYER_ACCELERATION, 0 * SCALING_FACTOR()), false);
+				playerMove(MapManager.mapL, playerL, new Vector2f(-PLAYER_ACCELERATION * SCALING_FACTOR(), 0), true);
+				playerMove(MapManager.mapR, playerR, new Vector2f(PLAYER_ACCELERATION * SCALING_FACTOR(), 0), false);
 				playerL.setDir(Direction.LEFT);
 				playerR.setDir(Direction.RIGHT);
 			}
@@ -165,8 +165,8 @@ public final class KeyManager implements Predicate<Integer> {
 				playerR.setDir(Direction.DOWN);
 			}
 			case Input.KEY_D -> {
-				playerMove(MapManager.mapL, playerL, new Vector2f(PLAYER_ACCELERATION, 0 * SCALING_FACTOR()), true);
-				playerMove(MapManager.mapR, playerR, new Vector2f(-PLAYER_ACCELERATION, 0 * SCALING_FACTOR()), false);
+				playerMove(MapManager.mapL, playerL, new Vector2f(PLAYER_ACCELERATION * SCALING_FACTOR(), 0), true);
+				playerMove(MapManager.mapR, playerR, new Vector2f(-PLAYER_ACCELERATION * SCALING_FACTOR(), 0), false);
 				playerL.setDir(Direction.RIGHT);
 				playerR.setDir(Direction.LEFT);
 			}
@@ -174,10 +174,10 @@ public final class KeyManager implements Predicate<Integer> {
 	}
 
 	private boolean playerMove(GameMap gm, Player plr, Vector2f disp, boolean left)	{
-		plr.move(gm, disp);
+		plr.move(gm, disp, 0);
 		if(plr.collides(gm) || ((left)?plr.getPos().getX()+(plr.getHitbox().getWidth()/2) > Main.getScreenWidth()/2:
 				plr.getPos().getX()-(plr.getHitbox().getWidth()/2) < Main.getScreenWidth()/2))	{
-			plr.move(gm, disp.negate());
+			plr.move(gm, disp.negate(), 0);
 			return true;
 		}
 		return false;

@@ -114,9 +114,14 @@ public class Main extends StateBasedGame
 
 		try {
 			highestLevel = Integer.parseInt(new String(Files.readAllBytes(Paths.get("saves/level.txt"))));
-		} catch (IOException e) {
+		} catch (IOException | NumberFormatException e) {
 			highestLevel = 1;
 		}
+
+		Constants.COLOR_L.forEach(c -> {
+			Constants.COLOR_R.add(new org.newdawn.slick.Color(255 - c.getRed(), 255 - c.getGreen(), 255 - c.getBlue()));
+		});
+
 
 		try 
 		{
