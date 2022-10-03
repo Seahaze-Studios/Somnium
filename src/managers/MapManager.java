@@ -33,6 +33,10 @@ public class MapManager {
     public static GameMap mapR;
     private Random R = new Random();
 
+    private int deathAnimCounter = -1;
+    private int levelChangeCounter = -1;
+    private boolean levelChange = false;
+
     private int portalTemp1 = -1;
     private int portalTemp2 = -1;
     private int portalTemp3 = -1;
@@ -47,6 +51,8 @@ public class MapManager {
 
     public MapManager(int id) throws SlickException {
         loadStage(id);
+        deathAnimCounter = -1;
+        levelChangeCounter = -1;
     }
 
     public void loadStage(int id) throws SlickException {
@@ -187,11 +193,45 @@ public class MapManager {
 //        Game.getPlayerR().tileSpecialCollisions(mapR);
 //        colorMap(mapL, g);
 //        colorMap(mapR, g);
-        if(win()) levelChange();
+    }
+
+    public void deathRender(Graphics g) throws SlickException {
         if(Game.getPlayerL().dead() || Game.getPlayerR().dead())   {
-            Game.getPlayerR().revive();
-            Game.getPlayerL().revive();
-            loadStage(Game.curLevelID);
+            Game.getPlayerL().setKill(true);
+            Game.getPlayerR().setKill(true);
+            if (deathAnimCounter == -1) {
+                deathAnimCounter = 120;
+                return;
+            }
+            if (deathAnimCounter == 0) {
+                Game.getPlayerR().revive();
+                Game.getPlayerL().revive();
+                loadStage(Game.curLevelID);
+                deathAnimCounter = -1;
+            } else {
+                g.setColor(new Color(255, 255, 255, (int) ((deathAnimCounter / 120d) * 255d)));
+                g.fillRect(0, 0, Main.width(), Main.height());
+                deathAnimCounter--;
+            }
+        }
+    }
+
+    public void levelCompleteRender(Graphics g) throws SlickException {
+        if (win() && !levelChange) {
+            levelChangeCounter = 120;
+            levelChange = true;
+        }
+        if(levelChange) {
+            if (levelChangeCounter == 60) levelChange();
+            if (levelChangeCounter == 0) {
+                levelChangeCounter = -1;
+                levelChange = false;
+            } else {
+                if (levelChangeCounter > 60) g.setColor(new Color(0, 0, 0, (int) (Math.abs(levelChangeCounter - 120) / 60d * 255d)));
+                else g.setColor(new Color(0, 0, 0, (int) (((levelChangeCounter) / 60d) * 255d)));
+                g.fillRect(0, 0, Main.width(), Main.height());
+                levelChangeCounter--;
+            }
         }
     }
 

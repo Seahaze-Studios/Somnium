@@ -113,6 +113,8 @@ public class Game extends AdvancedGameState {
             debugRender(gc);
             DrawUtilities.drawStringCentered(g, String.valueOf(curLevelID), 900,100);
         }
+        mapMan.deathRender(g);
+        mapMan.levelCompleteRender(g);
     }
 
     @Override

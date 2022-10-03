@@ -193,6 +193,7 @@ public class  Player extends Unit {
     }
 
     public void render()    {
+        if (kill) return;
         sprite.setImageColor(color.r, color.g, color.b, 1f);
         super.render();
 
@@ -212,5 +213,9 @@ public class  Player extends Unit {
 
     public void setPortals(List<Tile> portals) {
         this.portals = portals;
+    }
+
+    public void setKill(boolean kill) {
+        this.kill = kill;
     }
 }
