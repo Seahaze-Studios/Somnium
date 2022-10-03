@@ -4,7 +4,9 @@ import core.Constants;
 import core.Main;
 import entities.units.Unit;
 import gamestates.Game;
+import managers.MapManager;
 import map.GameMap;
+import map.tile.Tile;
 import map.tile.interactable.Ice;
 import map.tile.interactable.Interactable;
 import map.tile.interactable.Portal;
@@ -20,6 +22,8 @@ import org.newdawn.slick.svg.InkscapeLoader;
 import org.newdawn.slick.svg.SimpleDiagramRenderer;
 import util.Vector2f;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class  Player extends Unit {
@@ -36,6 +40,7 @@ public class  Player extends Unit {
     private boolean kill;
     private boolean portaled;
     private Rectangle testHitbox = new Rectangle(0, 0, 0,0);
+    private List<Tile> portals;
 
     public Player(int x, int y) throws SlickException {
         super(x,y);
@@ -122,6 +127,15 @@ public class  Player extends Unit {
         Game.entities.forEach(e -> {
             if (e.getHitbox().intersects(this.hitbox)) collide(e);
         });
+        tileSpecialCollisions(gm);
+        boolean portaledCheck = false;
+        for (Tile p : portals) {
+            if (this.hitbox.intersects(p.getHitbox())) {
+                portaledCheck = true;
+                break;
+            }
+        }
+        this.portaled = portaledCheck;
     }
 
     public void move(GameMap gm)    {
@@ -149,9 +163,11 @@ public class  Player extends Unit {
                     kill = true;
                 }
                 if (tile instanceof Interactable) {
-                    if (tile instanceof Portal portal && !portaled) {
-                        setPos(new Vector2f((portal).getPair().getHitbox().getX() + width/2, (portal).getPair().getHitbox().getY() + height/2));
-                        setHitbox(pos.x - width / 2, pos.y - height / 2);
+                    if (tile instanceof Portal portal) {
+                        if (!portaled) {
+                            setPos(new Vector2f((portal).getPair().getHitbox().getX() + width / 2, (portal).getPair().getHitbox().getY() + height / 2));
+                            setHitbox(pos.x - width / 2, pos.y - height / 2);
+                        }
                         portaled = true;
                     }
                     if (tile instanceof Ice) {
@@ -164,8 +180,6 @@ public class  Player extends Unit {
                         }
                     }
 
-                }                     else {
-                    portaled = false;
                 }
             }
         });
@@ -194,5 +208,9 @@ public class  Player extends Unit {
     public void color(Color color)  {
         sprite = refSprite;
         if(color != Color.black) this.color = color;
+    }
+
+    public void setPortals(List<Tile> portals) {
+        this.portals = portals;
     }
 }

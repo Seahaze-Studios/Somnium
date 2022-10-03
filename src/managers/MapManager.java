@@ -61,6 +61,9 @@ public class MapManager {
                 Game.getPlayerR().color(Constants.COLOR_R.get(id));
                 Game.getPlayerR().setHitbox(mapR.plrPos.x - Game.getPlayerR().getHitbox().getWidth() / 2, mapR.plrPos.y - Game.getPlayerR().getHitbox().getWidth() / 2);
 
+                Game.getPlayerL().setPortals(mapL.getTileList().stream().filter(Portal.class::isInstance).toList());
+                Game.getPlayerR().setPortals(mapR.getTileList().stream().filter(Portal.class::isInstance).toList());
+
            }else {
                Game.curLevelID = 1;
                 var idd = 1;
@@ -72,6 +75,8 @@ public class MapManager {
                 Game.getPlayerR().setPos(mapR.plrPos);
                 Game.getPlayerR().color(Constants.COLOR_R.get(idd));
                 Game.getPlayerR().setHitbox(mapR.plrPos.x - Game.getPlayerR().getHitbox().getWidth() / 2, mapR.plrPos.y - Game.getPlayerR().getHitbox().getWidth() / 2);
+                Game.getPlayerL().setPortals(mapL.getTileList().stream().filter(Portal.class::isInstance).toList());
+                Game.getPlayerR().setPortals(mapR.getTileList().stream().filter(Portal.class::isInstance).toList());
                 Game.getSbg().enterState(Main.TITLE_ID);
             }
         } catch (Exception e) {
@@ -178,8 +183,8 @@ public class MapManager {
         g.fill(new Rectangle(Main.getScreenWidth()/2,0, Main.getScreenWidth()/2 - 42,Main.getScreenHeight()));
         mapL.render(Main.getScreenWidth()/2 - Constants.MAP_WIDTH*Constants.TILE_SIZE ,0, g);
         mapR.render(Main.getScreenWidth()/2, 0, g);
-        Game.getPlayerL().tileSpecialCollisions(mapL);
-        Game.getPlayerR().tileSpecialCollisions(mapR);
+//        Game.getPlayerL().tileSpecialCollisions(mapL);
+//        Game.getPlayerR().tileSpecialCollisions(mapR);
 //        colorMap(mapL, g);
 //        colorMap(mapR, g);
         if(win()) levelChange();
