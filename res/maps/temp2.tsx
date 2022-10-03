@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.9" tiledversion="1.9.0" name="temp2" tilewidth="54" tileheight="54" tilecount="36" columns="6">
+<tileset version="1.9" tiledversion="1.9.0" name="temp2" tilewidth="54" tileheight="54" tilecount="48" columns="6">
  <grid orientation="orthogonal" width="64" height="64"/>
- <image source="gray-background-7131-98db5e6ffc4972baa4087760291cbc3e@1x.png" width="360" height="324"/>
+ <image source="gray-background-7131-98db5e6ffc4972baa4087760291cbc3e@1x.png" width="360" height="432"/>
  <tile id="0">
   <properties>
    <property name="type" value="block"/>
@@ -183,6 +183,78 @@
   <properties>
    <property name="id" type="int" value="2"/>
    <property name="type" value="portal"/>
+  </properties>
+ </tile>
+ <tile id="36">
+  <properties>
+   <property name="id" value="glowU"/>
+   <property name="type" value="cosmetic"/>
+  </properties>
+ </tile>
+ <tile id="37">
+  <properties>
+   <property name="id" value="glowD"/>
+   <property name="type" value="cosmetic"/>
+  </properties>
+ </tile>
+ <tile id="38">
+  <properties>
+   <property name="id" value="glowL"/>
+   <property name="type" value="cosmetic"/>
+  </properties>
+ </tile>
+ <tile id="39">
+  <properties>
+   <property name="id" value="glowR"/>
+   <property name="type" value="cosmetic"/>
+  </properties>
+ </tile>
+ <tile id="40">
+  <properties>
+   <property name="id" value="glowEUR"/>
+   <property name="type" value="cosmetic"/>
+  </properties>
+ </tile>
+ <tile id="41">
+  <properties>
+   <property name="id" value="glowEDL"/>
+   <property name="type" value="cosmetic"/>
+  </properties>
+ </tile>
+ <tile id="42">
+  <properties>
+   <property name="id" value="glowEDL"/>
+   <property name="type" value="cosmetic"/>
+  </properties>
+ </tile>
+ <tile id="43">
+  <properties>
+   <property name="id" value="glowEUL"/>
+   <property name="type" value="cosmetic"/>
+  </properties>
+ </tile>
+ <tile id="44">
+  <properties>
+   <property name="id" value="glowCDL"/>
+   <property name="type" value="cosmetic"/>
+  </properties>
+ </tile>
+ <tile id="45">
+  <properties>
+   <property name="id" value="glowCDR"/>
+   <property name="type" value="cosmetic"/>
+  </properties>
+ </tile>
+ <tile id="46">
+  <properties>
+   <property name="id" value="glowCDL"/>
+   <property name="type" value="cosmetic"/>
+  </properties>
+ </tile>
+ <tile id="47">
+  <properties>
+   <property name="id" value="glowCDR"/>
+   <property name="type" value="cosmetic"/>
   </properties>
  </tile>
 </tileset>
