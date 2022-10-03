@@ -16,6 +16,7 @@ public class GameMap extends TiledMap {
     public Vector2f plrPos;
 
     private Color color;
+    private boolean left;
 
     public Color getColor() {
         return color;
@@ -44,5 +45,11 @@ public class GameMap extends TiledMap {
         tiles.forEach(t -> {if(!(t instanceof Goal)  )g.fill(t.getHitbox());});
     }
 
+    public boolean isLeft() {
+        return left;
+    }
 
+    public void setLeft(boolean left) {
+        this.left = left;
+    }
 }

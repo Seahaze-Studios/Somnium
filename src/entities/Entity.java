@@ -6,10 +6,14 @@ import org.newdawn.slick.geom.Rectangle;
 import util.Vector2f;
 
 import java.io.Serializable;
+import java.util.List;
 
 public abstract class Entity implements Serializable {
-    protected Vector2f pos;
-    protected Vector2f speed;
+    protected Vector2f pos; // x
+    protected Vector2f speed; // dx/dt
+    protected Vector2f acceleration; // d^2x/dt^2
+    protected Vector2f jerk; // d^3x/dt^3
+    protected List<Vector2f> taylorSeries;
     protected Image sprite;
     protected SpriteSheet sheet;
     protected transient Rectangle hitbox;
@@ -25,6 +29,7 @@ public abstract class Entity implements Serializable {
         this.g = gc.getGraphics();
         pos = new Vector2f(0, 0);
         speed = new Vector2f(0, 0);
+        acceleration = new Vector2f(0, 0);
         width = 1;
         height = 1;
         init();
@@ -34,6 +39,7 @@ public abstract class Entity implements Serializable {
         this.g = gc.getGraphics();
         pos = new Vector2f(x, y);
         speed = new Vector2f(0, 0);
+        acceleration = new Vector2f(0, 0);
         width = 1;
         height = 1;
         init();
@@ -69,9 +75,23 @@ public abstract class Entity implements Serializable {
     public void applyForce(Vector2f f){speed.add(f);}
 
     public void move() {
+        accelerate();
         move(speed);
-
     }
+
+    public void accelerate() {
+        jerk();
+        speed.add(acceleration);
+    }
+
+    public void jerk() {
+        acceleration.add(jerk);
+    }
+
+    public void accelerate(Vector2f dv) {
+        speed.add(dv);
+    }
+
     public void move(Vector2f disp)  {
         pos.add(disp);
         hitbox.setX(hitbox.getX() + disp.x);

@@ -96,16 +96,10 @@ public class  Player extends Unit {
                 returning.set(true);
             }
         });
-        if(pos.getX() + width/2 > Main.getScreenWidth()/2 + Constants.MAP_WIDTH*Constants.TILE_SIZE) {
-            returning.set(true);
-        }
-        else if(pos.getX() - width/2 < Main.getScreenWidth()/2 - Constants.MAP_WIDTH*Constants.TILE_SIZE) {
-            returning.set(true);
-        }
-        else if(pos.getY() + height/2 > Main.getScreenHeight()) {
-            returning.set(true);
-        }
-        else if(pos.getY() - height/2 < 0) {
+        if(pos.getX() + width/2 > Main.width()/2 + Constants.MAP_WIDTH*Constants.TILE_SIZE ||
+                pos.getX() - width/2 < Main.width()/2 - Constants.MAP_WIDTH*Constants.TILE_SIZE ||
+                pos.getY() + height/2 > Main.height() ||
+                pos.getY() - height/2 < 0) {
             returning.set(true);
         }
         return returning.get();
@@ -129,25 +123,19 @@ public class  Player extends Unit {
     }
 
     public void move(GameMap gm)    {
-        /*boolean temp  = true;
-        for(int i = 0; i < Math.abs(speed.x);i++) {
-            move(new Vector2f(speed.x/Math.abs(speed.x),0));
-            if(collides(gm) && temp){
-                move(new Vector2f(speed.x/Math.abs(speed.x),0).negate());
-                temp = false;
-            }
+        move(gm, speed);
+    }
+
+    public void move(GameMap gm, Vector2f disp)    {
+        if(!(collides(gm, pos.copy().add(disp)))) {
+            move(disp);
+        } else {
+            move(gm, disp.scale(0.9f));
         }
-        temp = true;
-        for(int i = 0; i < Math.abs(speed.y);i++) {
-            move(new Vector2f(0, speed.y/Math.abs(speed.y)));
-            if(collides(gm) && temp){
-                move(new Vector2f(0, speed.y/Math.abs(speed.y)).negate());
-                temp = false;
-            }
-        }*/
-        if(!collides(gm, pos.copy().add(speed))) {
-            move(speed);
-        }
+    }
+
+    public void accelerate(GameMap gm, Vector2f dv) {
+        if (this.speed.length() < Constants.PLAYER_MAX_SPEED) speed.add(dv);
     }
 
     public void tileSpecialCollisions(GameMap map)    {

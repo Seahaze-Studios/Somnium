@@ -80,6 +80,7 @@ public class Game extends AdvancedGameState {
         plrL = new Player();
         plrR = new Player();
         mapMan = new MapManager(curLevelID);
+        MapManager.mapL.setLeft(true);
         plrL.setRefSprite(new Image("res/player/1a.png").getScaledCopy(54,54));
         plrR.setRefSprite(new Image("res/player/2.png").getScaledCopy(54,54));
         System.out.println("[VERBOSE] MapManager initialized");
@@ -114,6 +115,7 @@ public class Game extends AdvancedGameState {
         }
     }
 
+    @Override
     public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
         super.update(gc, sbg, delta);
         keyInput();
