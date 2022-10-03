@@ -34,7 +34,6 @@ public abstract class AdvancedGameState extends BasicGameState {
     public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
         //Main.setRealFPS((int) (1 / ((System.nanoTime() - timestamp) / 1000000000d)));
         Main.setRealFPS((int) (1 / (((double) delta <= 0 ? 1d : (double) delta) / 1000d)));
-        System.out.println(Main.getRealFPS());
         timestamp = System.nanoTime();
     }
 

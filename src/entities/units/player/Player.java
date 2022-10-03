@@ -89,6 +89,28 @@ public class  Player extends Unit {
         return returning.get();
     }
 
+    public boolean collides(GameMap gm, Vector2f pos) {
+        AtomicBoolean returning = new AtomicBoolean(false);
+        gm.getTileList().forEach(t -> {
+            if(t instanceof Block && new Rectangle(pos.x - width / 2, pos.y - height / 2, width, height).intersects(t.getHitbox())) {
+                returning.set(true);
+            }
+        });
+        if(pos.getX() + width/2 > Main.getScreenWidth()/2 + Constants.MAP_WIDTH*Constants.TILE_SIZE) {
+            returning.set(true);
+        }
+        else if(pos.getX() - width/2 < Main.getScreenWidth()/2 - Constants.MAP_WIDTH*Constants.TILE_SIZE) {
+            returning.set(true);
+        }
+        else if(pos.getY() + height/2 > Main.getScreenHeight()) {
+            returning.set(true);
+        }
+        else if(pos.getY() - height/2 < 0) {
+            returning.set(true);
+        }
+        return returning.get();
+    }
+
     public boolean enterGoal(GameMap gm)  {
         AtomicBoolean returning = new AtomicBoolean(false);
         gm.getTileList().forEach(t -> {
@@ -144,18 +166,10 @@ public class  Player extends Unit {
                     if (tile instanceof Ice) {
                         immobile = true;
                         switch (dir) {
-                            case UP -> {
-                                speed = new Vector2f(0, -Constants.PLAYER_MAX_SPEED* Constants.SCALING_FACTOR());
-                            }
-                            case DOWN -> {
-                                speed = new Vector2f(0, Constants.PLAYER_MAX_SPEED * Constants.SCALING_FACTOR());
-                            }
-                            case LEFT -> {
-                                speed = new Vector2f(-Constants.PLAYER_MAX_SPEED * Constants.SCALING_FACTOR(), 0);
-                            }
-                            case RIGHT -> {
-                                speed = new Vector2f(Constants.PLAYER_MAX_SPEED * Constants.SCALING_FACTOR(), 0);
-                            }
+                            case UP -> speed = new Vector2f(0, -Constants.PLAYER_MAX_SPEED* Constants.SCALING_FACTOR());
+                            case DOWN -> speed = new Vector2f(0, Constants.PLAYER_MAX_SPEED * Constants.SCALING_FACTOR());
+                            case LEFT -> speed = new Vector2f(-Constants.PLAYER_MAX_SPEED * Constants.SCALING_FACTOR(), 0);
+                            case RIGHT -> speed = new Vector2f(Constants.PLAYER_MAX_SPEED * Constants.SCALING_FACTOR(), 0);
                         }
                     }
 
