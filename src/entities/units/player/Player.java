@@ -35,6 +35,7 @@ public class  Player extends Unit {
     private boolean immobile;
     private boolean kill;
     private boolean portaled;
+    private Rectangle testHitbox = new Rectangle(0, 0, 0,0);
 
     public Player(int x, int y) throws SlickException {
         super(x,y);
@@ -90,6 +91,7 @@ public class  Player extends Unit {
     }
 
     public boolean collides(GameMap gm, Vector2f pos) {
+        //testHitbox.setBounds(pos.x - width / 2, pos.y - height / 2, width, height);
         AtomicBoolean returning = new AtomicBoolean(false);
         gm.getTileList().forEach(t -> {
             if(t instanceof Block && new Rectangle(pos.x - width / 2, pos.y - height / 2, width, height).intersects(t.getHitbox())) {
@@ -130,7 +132,7 @@ public class  Player extends Unit {
         if(!(collides(gm, pos.copy().add(disp)))) {
             move(disp);
         } else {
-            move(gm, disp.scale(0.9f));
+            move(gm, disp.scale(0.99f));
         }
     }
 
@@ -147,12 +149,10 @@ public class  Player extends Unit {
                     kill = true;
                 }
                 if (tile instanceof Interactable) {
-                    if (tile instanceof Portal && !portaled) {
-                        setPos(new Vector2f(((Portal) tile).getPair().getHitbox().getX() + width/2, ((Portal) tile).getPair().getHitbox().getY() + height/2));
+                    if (tile instanceof Portal portal && !portaled) {
+                        setPos(new Vector2f((portal).getPair().getHitbox().getX() + width/2, (portal).getPair().getHitbox().getY() + height/2));
+                        setHitbox(pos.x - width / 2, pos.y - height / 2);
                         portaled = true;
-                    }
-                    else {
-                        portaled = false;
                     }
                     if (tile instanceof Ice) {
                         immobile = true;
@@ -164,6 +164,8 @@ public class  Player extends Unit {
                         }
                     }
 
+                }                     else {
+                    portaled = false;
                 }
             }
         });
