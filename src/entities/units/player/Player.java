@@ -129,7 +129,7 @@ public class  Player extends Unit {
     }
 
     public void move(GameMap gm)    {
-        boolean temp  = true;
+        /*boolean temp  = true;
         for(int i = 0; i < Math.abs(speed.x);i++) {
             move(new Vector2f(speed.x/Math.abs(speed.x),0));
             if(collides(gm) && temp){
@@ -144,6 +144,9 @@ public class  Player extends Unit {
                 move(new Vector2f(0, speed.y/Math.abs(speed.y)).negate());
                 temp = false;
             }
+        }*/
+        if(!collides(gm, pos.copy().add(speed))) {
+            move(speed);
         }
     }
 
