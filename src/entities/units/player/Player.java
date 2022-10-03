@@ -4,7 +4,9 @@ import core.Constants;
 import core.Main;
 import entities.units.Unit;
 import gamestates.Game;
+import managers.MapManager;
 import map.GameMap;
+import map.tile.Tile;
 import map.tile.interactable.Ice;
 import map.tile.interactable.Interactable;
 import map.tile.interactable.Portal;
@@ -16,10 +18,13 @@ import org.newdawn.slick.Color;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Rectangle;
+import org.newdawn.slick.geom.Shape;
 import org.newdawn.slick.svg.InkscapeLoader;
 import org.newdawn.slick.svg.SimpleDiagramRenderer;
 import util.Vector2f;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class  Player extends Unit {
@@ -35,6 +40,9 @@ public class  Player extends Unit {
     private boolean immobile;
     private boolean kill;
     private boolean portaled;
+    private Rectangle testHitbox = new Rectangle(0, 0, 0,0);
+    private Shape lastPortal;
+    private List<Tile> portals;
 
     public Player(int x, int y) throws SlickException {
         super(x,y);
@@ -90,22 +98,17 @@ public class  Player extends Unit {
     }
 
     public boolean collides(GameMap gm, Vector2f pos) {
+        //testHitbox.setBounds(pos.x - width / 2, pos.y - height / 2, width, height);
         AtomicBoolean returning = new AtomicBoolean(false);
         gm.getTileList().forEach(t -> {
             if(t instanceof Block && new Rectangle(pos.x - width / 2, pos.y - height / 2, width, height).intersects(t.getHitbox())) {
                 returning.set(true);
             }
         });
-        if(pos.getX() + width/2 > Main.getScreenWidth()/2 + Constants.MAP_WIDTH*Constants.TILE_SIZE) {
-            returning.set(true);
-        }
-        else if(pos.getX() - width/2 < Main.getScreenWidth()/2 - Constants.MAP_WIDTH*Constants.TILE_SIZE) {
-            returning.set(true);
-        }
-        else if(pos.getY() + height/2 > Main.getScreenHeight()) {
-            returning.set(true);
-        }
-        else if(pos.getY() - height/2 < 0) {
+        if(pos.getX() + width/2 > Main.width()/2 + Constants.MAP_WIDTH*Constants.TILE_SIZE ||
+                pos.getX() - width/2 < Main.width()/2 - Constants.MAP_WIDTH*Constants.TILE_SIZE ||
+                pos.getY() + height/2 > Main.height() ||
+                pos.getY() - height/2 < 0) {
             returning.set(true);
         }
         return returning.get();
@@ -126,28 +129,31 @@ public class  Player extends Unit {
         Game.entities.forEach(e -> {
             if (e.getHitbox().intersects(this.hitbox)) collide(e);
         });
+        tileSpecialCollisions(gm);
+        boolean portaledCheck = false;
+        for (Tile p : portals) {
+            if (this.hitbox.intersects(p.getHitbox())) {
+                portaledCheck = true;
+                break;
+            }
+        }
+        this.portaled = portaledCheck;
     }
 
     public void move(GameMap gm)    {
-        /*boolean temp  = true;
-        for(int i = 0; i < Math.abs(speed.x);i++) {
-            move(new Vector2f(speed.x/Math.abs(speed.x),0));
-            if(collides(gm) && temp){
-                move(new Vector2f(speed.x/Math.abs(speed.x),0).negate());
-                temp = false;
-            }
+        move(gm, speed);
+    }
+
+    public void move(GameMap gm, Vector2f disp)    {
+        if(!(collides(gm, pos.copy().add(disp)))) {
+            move(disp);
+        } else {
+            move(gm, disp.scale(0.99f));
         }
-        temp = true;
-        for(int i = 0; i < Math.abs(speed.y);i++) {
-            move(new Vector2f(0, speed.y/Math.abs(speed.y)));
-            if(collides(gm) && temp){
-                move(new Vector2f(0, speed.y/Math.abs(speed.y)).negate());
-                temp = false;
-            }
-        }*/
-        if(!collides(gm, pos.copy().add(speed))) {
-            move(speed);
-        }
+    }
+
+    public void accelerate(GameMap gm, Vector2f dv) {
+        if (this.speed.length() < Constants.PLAYER_MAX_SPEED) speed.add(dv);
     }
 
     public void tileSpecialCollisions(GameMap map)    {
@@ -159,12 +165,12 @@ public class  Player extends Unit {
                     kill = true;
                 }
                 if (tile instanceof Interactable) {
-                    if (tile instanceof Portal && !portaled) {
-                        setPos(new Vector2f(((Portal) tile).getPair().getHitbox().getX() + width/2, ((Portal) tile).getPair().getHitbox().getY() + height/2));
-                        portaled = true;
-                    }
-                    else {
-                        portaled = false;
+                    if (tile instanceof Portal portal) {
+                        if (lastPortal == null || !lastPortal.intersects(this.hitbox)) {
+                            lastPortal = portal.getHitbox();
+                            setPos(new Vector2f((portal).getPair().getHitbox().getX() + width / 2, (portal).getPair().getHitbox().getY() + height / 2));
+                            setHitbox(pos.x - width / 2, pos.y - height / 2);
+                        }
                     }
                     if (tile instanceof Ice) {
                         immobile = true;
@@ -189,6 +195,7 @@ public class  Player extends Unit {
     }
 
     public void render()    {
+        if (kill) return;
         sprite.setImageColor(color.r, color.g, color.b, 1f);
         super.render();
 
@@ -204,5 +211,13 @@ public class  Player extends Unit {
     public void color(Color color)  {
         sprite = refSprite;
         if(color != Color.black) this.color = color;
+    }
+
+    public void setPortals(List<Tile> portals) {
+        this.portals = portals;
+    }
+
+    public void setKill(boolean kill) {
+        this.kill = kill;
     }
 }

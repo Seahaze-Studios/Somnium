@@ -33,6 +33,10 @@ public class MapManager {
     public static GameMap mapR;
     private Random R = new Random();
 
+    private int deathAnimCounter = -1;
+    private int levelChangeCounter = -1;
+    private boolean levelChange = false;
+
     private int portalTemp1 = -1;
     private int portalTemp2 = -1;
     private int portalTemp3 = -1;
@@ -47,11 +51,13 @@ public class MapManager {
 
     public MapManager(int id) throws SlickException {
         loadStage(id);
+        deathAnimCounter = -1;
+        levelChangeCounter = -1;
     }
 
     public void loadStage(int id) throws SlickException {
         try {
-//            if(id < Constants.COLOR_L.size()) {
+            if (id < Constants.COLOR_L.size()) {
                 loadMaps(new GameMap("res/maps/lvl" + id + "left.tmx", Constants.COLOR_L.get(id)),
                         new GameMap("res/maps/lvl" + id + "right.tmx", Constants.COLOR_R.get(id)));
                 Game.getPlayerL().color(Constants.COLOR_L.get(id));
@@ -60,20 +66,25 @@ public class MapManager {
                 Game.getPlayerR().setPos(mapR.plrPos);
                 Game.getPlayerR().color(Constants.COLOR_R.get(id));
                 Game.getPlayerR().setHitbox(mapR.plrPos.x - Game.getPlayerR().getHitbox().getWidth() / 2, mapR.plrPos.y - Game.getPlayerR().getHitbox().getWidth() / 2);
-//
-//            }else {
-//                Game.curLevelID = 1;
-//                var idd = 1;
-//                loadMaps(new GameMap("res/maps/lvl" + idd + "left.tmx", Constants.COLOR_L.get(idd)),
-//                        new GameMap("res/maps/lvl" + idd + "right.tmx", Constants.COLOR_R.get(idd)));
-//                Game.getPlayerL().color(Constants.COLOR_L.get(idd));
-//                Game.getPlayerL().setPos(mapL.plrPos);
-//                Game.getPlayerL().setHitbox(mapL.plrPos.x - Game.getPlayerL().getHitbox().getWidth() / 2, mapL.plrPos.y - Game.getPlayerL().getHitbox().getWidth() / 2);
-//                Game.getPlayerR().setPos(mapR.plrPos);
-//                Game.getPlayerR().color(Constants.COLOR_R.get(idd));
-//                Game.getPlayerR().setHitbox(mapR.plrPos.x - Game.getPlayerR().getHitbox().getWidth() / 2, mapR.plrPos.y - Game.getPlayerR().getHitbox().getWidth() / 2);
-//                Game.getSbg().enterState(Main.TITLE_ID);
-//            }
+
+                Game.getPlayerL().setPortals(mapL.getTileList().stream().filter(Portal.class::isInstance).toList());
+                Game.getPlayerR().setPortals(mapR.getTileList().stream().filter(Portal.class::isInstance).toList());
+
+           }else {
+               Game.curLevelID = 1;
+                var idd = 1;
+                loadMaps(new GameMap("res/maps/lvl" + idd + "left.tmx", Constants.COLOR_L.get(idd)),
+                        new GameMap("res/maps/lvl" + idd + "right.tmx", Constants.COLOR_R.get(idd)));
+                Game.getPlayerL().color(Constants.COLOR_L.get(idd));
+                Game.getPlayerL().setPos(mapL.plrPos);
+                Game.getPlayerL().setHitbox(mapL.plrPos.x - Game.getPlayerL().getHitbox().getWidth() / 2, mapL.plrPos.y - Game.getPlayerL().getHitbox().getWidth() / 2);
+                Game.getPlayerR().setPos(mapR.plrPos);
+                Game.getPlayerR().color(Constants.COLOR_R.get(idd));
+                Game.getPlayerR().setHitbox(mapR.plrPos.x - Game.getPlayerR().getHitbox().getWidth() / 2, mapR.plrPos.y - Game.getPlayerR().getHitbox().getWidth() / 2);
+                Game.getPlayerL().setPortals(mapL.getTileList().stream().filter(Portal.class::isInstance).toList());
+                Game.getPlayerR().setPortals(mapR.getTileList().stream().filter(Portal.class::isInstance).toList());
+                Game.getSbg().enterState(Main.TITLE_ID);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -178,15 +189,50 @@ public class MapManager {
         g.fill(new Rectangle(Main.getScreenWidth()/2,0, Main.getScreenWidth()/2 - 42,Main.getScreenHeight()));
         mapL.render(Main.getScreenWidth()/2 - Constants.MAP_WIDTH*Constants.TILE_SIZE ,0, g);
         mapR.render(Main.getScreenWidth()/2, 0, g);
-        Game.getPlayerL().tileSpecialCollisions(mapL);
-        Game.getPlayerR().tileSpecialCollisions(mapR);
+//        Game.getPlayerL().tileSpecialCollisions(mapL);
+//        Game.getPlayerR().tileSpecialCollisions(mapR);
 //        colorMap(mapL, g);
 //        colorMap(mapR, g);
-        if(win()) levelChange();
+    }
+
+    public void deathRender(Graphics g) throws SlickException {
         if(Game.getPlayerL().dead() || Game.getPlayerR().dead())   {
-            Game.getPlayerR().revive();
-            Game.getPlayerL().revive();
-            loadStage(Game.curLevelID);
+            Game.getPlayerL().setKill(true);
+            Game.getPlayerR().setKill(true);
+            if (deathAnimCounter == -1) {
+                SoundManager.playSoundEffect("death");
+                deathAnimCounter = 120;
+                return;
+            }
+            if (deathAnimCounter == 0) {
+                Game.getPlayerR().revive();
+                Game.getPlayerL().revive();
+                loadStage(Game.curLevelID);
+                deathAnimCounter = -1;
+            } else {
+                g.setColor(new Color(255, 255, 255, (int) ((deathAnimCounter / 120d) * 255d)));
+                g.fillRect(0, 0, Main.width(), Main.height());
+                deathAnimCounter--;
+            }
+        }
+    }
+
+    public void levelCompleteRender(Graphics g) throws SlickException {
+        if (win() && !levelChange) {
+            levelChangeCounter = 120;
+            levelChange = true;
+        }
+        if(levelChange) {
+            if (levelChangeCounter == 60) levelChange();
+            if (levelChangeCounter == 0) {
+                levelChangeCounter = -1;
+                levelChange = false;
+            } else {
+                if (levelChangeCounter > 60) g.setColor(new Color(0, 0, 0, (int) (Math.abs(levelChangeCounter - 120) / 60d * 255d)));
+                else g.setColor(new Color(0, 0, 0, (int) (((levelChangeCounter) / 60d) * 255d)));
+                g.fillRect(0, 0, Main.width(), Main.height());
+                levelChangeCounter--;
+            }
         }
     }
 
@@ -234,10 +280,14 @@ public class MapManager {
             }
     }
 
-    public void colorMap(GameMap gm, Graphics g)  {
-        g.setColor(new Color(gm.getColor().getRed(), gm.getColor().getBlue(),gm.getColor().getGreen(),0.95f));
-        gm.getTileList().forEach(t -> {if((t instanceof Block)  ){g.fill(t.getHitbox());}});
-    }
+//    public void colorMap(GameMap gm, Graphics g)  {
+//        g.setColor(new Color(gm.getColor().getRed(), gm.getColor().getBlue(),gm.getColor().getGreen(),0.95f));
+//        gm.getTileList().forEach(t -> {
+//            if((t instanceof Ice)  ){
+//                g.fill(t.getHitbox());
+//            }
+//        });
+//    }
 
     private void levelChange() throws SlickException {
         Game.curLevelID++;

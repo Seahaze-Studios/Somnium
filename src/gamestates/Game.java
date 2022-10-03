@@ -80,6 +80,7 @@ public class Game extends AdvancedGameState {
         plrL = new Player();
         plrR = new Player();
         mapMan = new MapManager(curLevelID);
+        MapManager.mapL.setLeft(true);
         plrL.setRefSprite(new Image("res/player/1a.png").getScaledCopy(54,54));
         plrR.setRefSprite(new Image("res/player/2.png").getScaledCopy(54,54));
         System.out.println("[VERBOSE] MapManager initialized");
@@ -112,8 +113,11 @@ public class Game extends AdvancedGameState {
             debugRender(gc);
             DrawUtilities.drawStringCentered(g, String.valueOf(curLevelID), 900,100);
         }
+        mapMan.deathRender(g);
+        mapMan.levelCompleteRender(g);
     }
 
+    @Override
     public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
         super.update(gc, sbg, delta);
         keyInput();
@@ -128,6 +132,7 @@ public class Game extends AdvancedGameState {
             } catch (IOException e) {}
         }
     }
+
 
     public void enter(GameContainer gc, StateBasedGame sbg) throws SlickException {
         // This code happens when you enter a gameState.
