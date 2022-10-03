@@ -9,6 +9,9 @@
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
+        "C:/Users/APH040/Documents/GitHub/Somnium/res/maps/temp2.tsx": {
+            "scaleInDock": 1
+        },
         "lvl0left.tmx": {
             "scale": 0.7951851851851851,
             "selectedLayer": 0,
@@ -93,8 +96,24 @@
             "scale": 0.788148148148148,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 460.5733082706768,
-                "y": 541.7763157894739
+                "x": 458.0357142857144,
+                "y": 539.8731203007519
+            }
+        },
+        "lvl7left.tmx": {
+            "scale": 0.5462499999999999,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 406.4073226544623,
+                "y": 792.6773455377577
+            }
+        },
+        "lvl7right.tmx": {
+            "scale": 0.5462499999999999,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 406.4073226544623,
+                "y": 792.6773455377577
             }
         },
         "temp.tsx": {
@@ -122,6 +141,7 @@
             "scaleInEditor": 1
         }
     },
+    "last.externalTilesetPath": "C:/Users/ah112/Documents/Program Files/School Projects/GT C++/Somnium/res/maps",
     "last.imagePath": "C:/Users/AH458/Pictures",
     "map.lastUsedFormat": "tmx",
     "map.layerDataFormat": null,
