@@ -33,6 +33,10 @@ public class MapManager {
     public static GameMap mapR;
     private Random R = new Random();
 
+    private int portalTemp1 = -1;
+    private int portalTemp2 = -1;
+    private int portalTemp3 = -1;
+
 
 
 
@@ -87,6 +91,9 @@ public class MapManager {
 
     }
     private void generateHitboxes(GameMap map) {
+        portalTemp1 = -1;
+        portalTemp2 = -1;
+        portalTemp3 = -1;
         for (int i = 0; i < Constants.MAP_WIDTH; i++)    {
             for (int j = 0; j < Constants.MAP_HEIGHT; j++)    {
                 generateTile(i,j,map);
@@ -95,9 +102,6 @@ public class MapManager {
     }
 
     private void generateTile(int i, int j, GameMap map) {
-        int temp1 = -1;
-        int temp2 = -1;
-        int temp3 = -1;
         if(map.getTileId(i,j,0) != 0)   {
             switch(map.getTileProperty(map.getTileId(i,j,0),"type","block"))    {
                 case "block" -> map.getTileList().add(new Block(i * Constants.TILE_SIZE, j * Constants.TILE_SIZE));
@@ -105,34 +109,34 @@ public class MapManager {
                 case "goal" -> map.getTileList().add(new Goal(i * Constants.TILE_SIZE, j * Constants.TILE_SIZE));
                 case "lava" ->  map.getTileList().add(new Lava(i*Constants.TILE_SIZE,j * Constants.TILE_SIZE));
                 case "ice" -> map.getTileList().add(new Ice(i * Constants.TILE_SIZE, j * Constants.TILE_SIZE));
-                case "por" -> {
+                case "portal" -> {
                     map.getTileList().add(new Portal(i * Constants.TILE_SIZE, j * Constants.TILE_SIZE));
                     switch(map.getTileProperty(map.getTileId(i,j,0),"id", "0"))   {
                         case "0" -> {
-                            if(temp1 < 0) {
-                                temp1 = map.getTileList().size()-1;
+                            if(portalTemp1 < 0) {
+                                portalTemp1 = map.getTileList().size()-1;
                             }
                             else  {
-                                ((Portal)map.getTileList().get(temp1)).setPair((Portal)map.getTileList().get(map.getTileList().size()-1));
-                                ((Portal)map.getTileList().get(map.getTileList().size()-1)).setPair((Portal)map.getTileList().get(temp1));
+                                ((Portal)map.getTileList().get(portalTemp1)).setPair((Portal)map.getTileList().get(map.getTileList().size()-1));
+                                ((Portal)map.getTileList().get(map.getTileList().size()-1)).setPair((Portal)map.getTileList().get(portalTemp1));
                             }
                         }
                         case "1" ->  {
-                            if(temp2 < 0)   {
-                                temp2 = map.getTileList().size()-1;
+                            if(portalTemp2 < 0)   {
+                                portalTemp2 = map.getTileList().size()-1;
                             }
                             else  {
-                                ((Portal)map.getTileList().get(temp2)).setPair((Portal)map.getTileList().get(map.getTileList().size()-1));
-                                ((Portal)map.getTileList().get(map.getTileList().size()-1)).setPair((Portal)map.getTileList().get(temp2));
+                                ((Portal)map.getTileList().get(portalTemp2)).setPair((Portal)map.getTileList().get(map.getTileList().size()-1));
+                                ((Portal)map.getTileList().get(map.getTileList().size()-1)).setPair((Portal)map.getTileList().get(portalTemp2));
                             }
                         }
                         case "2" ->  {
-                            if(temp3 < 0)   {
-                                temp3 = map.getTileList().size()-1;
+                            if(portalTemp3 < 0)   {
+                                portalTemp3 = map.getTileList().size()-1;
                             }
                             else  {
-                                ((Portal)map.getTileList().get(temp2)).setPair((Portal)map.getTileList().get(map.getTileList().size()-1));
-                                ((Portal)map.getTileList().get(map.getTileList().size()-1)).setPair((Portal)map.getTileList().get(temp2));
+                                ((Portal)map.getTileList().get(portalTemp3)).setPair((Portal)map.getTileList().get(map.getTileList().size()-1));
+                                ((Portal)map.getTileList().get(map.getTileList().size()-1)).setPair((Portal)map.getTileList().get(portalTemp3));
                             }
                         }
                     }
@@ -232,7 +236,7 @@ public class MapManager {
 
     public void colorMap(GameMap gm, Graphics g)  {
         g.setColor(new Color(gm.getColor().getRed(), gm.getColor().getBlue(),gm.getColor().getGreen(),0.95f));
-        gm.getTileList().forEach(t -> {if((t instanceof Obstacle)  ){g.fill(t.getHitbox());}});
+        gm.getTileList().forEach(t -> {if((t instanceof Block)  ){g.fill(t.getHitbox());}});
     }
 
     private void levelChange() throws SlickException {

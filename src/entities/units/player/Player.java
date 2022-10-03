@@ -129,13 +129,13 @@ public class  Player extends Unit {
         this.speed = new Vector2f(0,0);
         immobile = false;
         map.getTileList().forEach(tile -> {
-            if(this.hitbox.intersects(tile.getHitbox())) {
+            if(hitbox.intersects(tile.getHitbox())) {
                 if (tile instanceof Hazard) {
                     kill = true;
                 }
                 if (tile instanceof Interactable) {
                     if (tile instanceof Portal && !portaled) {
-                        setPos(new Vector2f(((Portal) tile).getPair().getHitbox().getX(), ((Portal) tile).getPair().getHitbox().getY()));
+                        setPos(new Vector2f(((Portal) tile).getPair().getHitbox().getX() + width/2, ((Portal) tile).getPair().getHitbox().getY() + height/2));
                         portaled = true;
                     }
                     else {
@@ -145,16 +145,16 @@ public class  Player extends Unit {
                         immobile = true;
                         switch (dir) {
                             case UP -> {
-                                this.speed = new Vector2f(0, -Constants.PLAYER_MAX_SPEED* Constants.SCALING_FACTOR());
+                                speed = new Vector2f(0, -Constants.PLAYER_MAX_SPEED* Constants.SCALING_FACTOR());
                             }
                             case DOWN -> {
-                                this.speed = new Vector2f(0, Constants.PLAYER_MAX_SPEED * Constants.SCALING_FACTOR());
+                                speed = new Vector2f(0, Constants.PLAYER_MAX_SPEED * Constants.SCALING_FACTOR());
                             }
                             case LEFT -> {
-                                this.speed = new Vector2f(-Constants.PLAYER_MAX_SPEED * Constants.SCALING_FACTOR(), 0);
+                                speed = new Vector2f(-Constants.PLAYER_MAX_SPEED * Constants.SCALING_FACTOR(), 0);
                             }
                             case RIGHT -> {
-                                this.speed = new Vector2f(Constants.PLAYER_MAX_SPEED * Constants.SCALING_FACTOR(), 0);
+                                speed = new Vector2f(Constants.PLAYER_MAX_SPEED * Constants.SCALING_FACTOR(), 0);
                             }
                         }
                     }
