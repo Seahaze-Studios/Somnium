@@ -17,8 +17,8 @@ import java.util.ArrayList;
 import static org.newdawn.slick.Graphics.*;
 
 public class GameBackground {
-    private static Image image;
-    private static ArrayList<BackgroundEffect> particles = new ArrayList<BackgroundEffect>();
+    private Image image;
+    private ArrayList<BackgroundEffect> particles = new ArrayList<BackgroundEffect>();
 
     public GameBackground() {
         //image = ImageManager.getImage("glow");  //this doesn't work.
@@ -29,10 +29,10 @@ public class GameBackground {
         }
 
     }
-    public static void update(){
+    public void update(){
        particles.forEach(p -> p.update());
     }
-    public static void render(Graphics g){
+    public void render(Graphics g){
 
         particles.forEach(p -> p.render());
         //GL11.glBlendFunc(GL11.GL_DST_COLOR,GL11.GL_SRC_COLOR);

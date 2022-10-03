@@ -29,6 +29,7 @@ public class LevelSelectScreen extends AdvancedGameState {
     public final int id;
     private int counter = 0;
     private int level = 1;
+    private boolean generated = false;
     private HashMap<Integer, Shape> shapes;
     private ArrayList<IntroCredit.PathBundle> paths = new ArrayList<>();
     private ArrayList<GlowEffect> glows = new ArrayList<>();
@@ -42,9 +43,13 @@ public class LevelSelectScreen extends AdvancedGameState {
     {
         return id;
     } // R
+    private Color white;
+    private Color black;
 
     @Override
     public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
+        white = new Color(1.0F, 1.0F, 1.0F, 1.0F);
+        black = new Color(0.0F, 0.0F, 0.0F, 1.0F);
         this.sbg = sbg;
         shapes = new HashMap<>();
         shapes.put(1, new Circle(Main.width() / 2, Main.height() / 2, 400));
@@ -65,8 +70,11 @@ public class LevelSelectScreen extends AdvancedGameState {
     public void enter(GameContainer gc, StateBasedGame sbg) throws SlickException {
         super.enter(gc, sbg);
         gc.getGraphics().setColor(Color.white);
-        for (var i = 0; i < 1000; i++) {
-            glows.add(new GlowEffect(new Vector2f(R.nextInt(0, Main.width()), R.nextInt(0, Main.height())), new Vector2f(R.nextInt(-2, 2), R.nextInt(-2, 2)), Color.white));
+        if (!generated) {
+            generated = true;
+            for (var i = 0; i < 1000; i++) {
+                glows.add(new GlowEffect(new Vector2f(R.nextInt(0, Main.width()), R.nextInt(0, Main.height())), new Vector2f(R.nextInt(-2, 2), R.nextInt(-2, 2)), Color.white));
+            }
         }
     }
 
@@ -75,9 +83,9 @@ public class LevelSelectScreen extends AdvancedGameState {
         super.update(gc, sbg, delta);
         counter++;
         if (R.nextInt(0, 15) == 4) glows.get(R.nextInt(0, glows.size() - 1)).inMotion = true;
-        if (gc.getInput().isKeyDown(Input.KEY_UP)) level++;
+        if (gc.getInput().isKeyDown(Input.KEY_UP) && level < shapes.size()) level++;
         if (gc.getInput().isKeyDown(Input.KEY_DOWN) && level > 1) level--;
-        if (gc.getInput().isMousePressed(0) && shapes.get(level).contains(gc.getInput().getMouseX(), gc.getInput().getMouseY())) {
+        if (gc.getInput().isMousePressed(0) && shapes.get(level).contains(gc.getInput().getMouseX(), gc.getInput().getMouseY()) && level <= Main.highestLevel) {
             Game.curLevelID = level;
             sbg.enterState(Main.GAME_ID, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
         }
@@ -86,29 +94,41 @@ public class LevelSelectScreen extends AdvancedGameState {
     @Override
     public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
         super.render(gc, sbg, g);
-        g.setBackground(Color.black);
-        if (level < Constants.COLOR_L.size()) g.setColor(Constants.COLOR_L.get(level));
-        glows.stream().filter(p -> p.inMotion).forEach(GlowEffect::motion);
+        g.setBackground(black);
+        if (Main.highestLevel >= level) {
+            if (level < Constants.COLOR_L.size()) {
+                g.setColor(Constants.COLOR_L.get(level));
+                g.fill(shapes.get(level));
+            }
+            else g.setColor(white);
+        } else g.setColor(white);
+        glows.stream().filter(p -> p.inMotion).forEach(gl -> {
+            gl.setColor(g.getColor());
+            gl.motion();
+        });
         g.draw(shapes.get(level));
-        g.fill(shapes.get(level));
         var scaledShape = shapes.get(level).transform(Transform.createScaleTransform(0.7f, 0.7f));
         scaledShape.setCenterX(Main.width() / 2);
         scaledShape.setCenterY(Main.height() / 2);
         if (level != 1) {
-            if (level < Constants.COLOR_R.size()) g.setColor(Constants.COLOR_R.get(level));
-            g.draw(scaledShape);
-            g.fill(scaledShape);
-            g.setColor(Color.white);
+            if (Main.highestLevel >= level) {
+                if (level < Constants.COLOR_R.size()) g.setColor(Constants.COLOR_R.get(level));
+                g.draw(scaledShape);
+                g.fill(scaledShape);
+                g.setColor(white);
+            } else {
+                g.draw(scaledShape);
+                g.setColor(white);
+            }
         }
-        if (level == 1) g.setColor(Color.black);
-        DrawUtilities.drawStringCentered(g, RomanNumber.toRoman(level), Main.fonts.VariableWidth.P60, Main.width() / 2, Main.height() / 2);
-        g.drawString(level + "", 400, 400);
+        if (level == 1) g.setColor(black);
+        DrawUtilities.drawStringCentered(g, RomanNumber.toRoman(level), Main.fonts.ROMAN_NUMERAL, Main.width() / 2, Main.height() / 2);
     }
 
     @Override
     public void keyPressed(int key, char c) {
         super.keyPressed(key, c);
-        if (key == Input.KEY_RIGHT) level++;
+        if (key == Input.KEY_RIGHT && level < shapes.size() - 1) level++;
         if (key == Input.KEY_LEFT && level > 1) level--;
         if(key == Input.KEY_0) {
             Game.curLevelID = 0;

@@ -25,6 +25,7 @@ public class TitleScreen extends AdvancedGameState {
     private Button settingsButton;
 
     private GameBackground bg;
+    private boolean generated = false;
 
     public TitleScreen(int id)
     {
@@ -48,7 +49,10 @@ public class TitleScreen extends AdvancedGameState {
         settingsButton = new Button(Main.width() / 4 * 3, Main.height() / 4 * 3 + 50, "Settings", () -> Main.sbg.enterState(Main.SETTINGS_ID, new FadeOutTransition(), new FadeInTransition()));
         quitButton = new Button(Main.width() / 4 * 3, Main.height() / 4 * 3 + 100, "Quit", () -> sbg.enterState(Main.QUIT_ID, new FadeOutTransition(), new FadeInTransition()));
         if (!SoundManager.isMusicPlaying()) SoundManager.playBackgroundMusic("title");
-        bg = new GameBackground();
+        if (!generated) {
+            generated = true;
+            bg = new GameBackground();
+        }
     }
 
     @Override

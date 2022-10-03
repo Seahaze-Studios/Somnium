@@ -29,4 +29,22 @@ public class GlowEffect extends ImageParticle {
         lifetime++;
         render();
     }
+
+    public void setColor(int r, int g, int b) {
+        this.r = r / 255f;
+        this.g = g / 255f;
+        this.b = b / 255f;
+    }
+
+    public void setColor(float r, float g, float b) {
+        this.r = r;
+        this.g = g;
+        this.b = b;
+    }
+
+    public void setColor(Color color) {
+        r = color.getRed() / 255f;
+        g = color.getGreen() / 255f;
+        b = color.getBlue() / 255f;
+    }
 }

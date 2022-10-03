@@ -10,6 +10,8 @@ import org.newdawn.slick.state.StateBasedGame;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 public class Main extends StateBasedGame 
 {
@@ -43,6 +45,9 @@ public class Main extends StateBasedGame
 
 	public static Configuration config = new Configuration();
 
+
+	public static int highestLevel = 1;
+
 	public static int width() {
 		return config.RESOLUTION_X;
 	}
@@ -50,6 +55,7 @@ public class Main extends StateBasedGame
 	public static int height() {
 		return config.RESOLUTION_Y;
 	}
+
 
     
 	public Main(String name) 
@@ -96,6 +102,12 @@ public class Main extends StateBasedGame
 			ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("res/font/Aileron-Light.otf")));
 		} catch (IOException | FontFormatException e) {
 			//Handle exception
+		}
+
+		try {
+			highestLevel = Integer.parseInt(new String(Files.readAllBytes(Paths.get("saves/level.txt"))));
+		} catch (IOException e) {
+			highestLevel = 1;
 		}
 
 		try 

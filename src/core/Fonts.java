@@ -7,13 +7,15 @@ import java.io.File;
 import java.io.IOException;
 
 public final class Fonts {
-    public TrueTypeFont MAIN;
+    public TrueTypeFont MAIN, ROMAN_NUMERAL;
     public VariableWidthFonts VariableWidth;
     public final Font generator = java.awt.Font.createFont(java.awt.Font.TRUETYPE_FONT, new File("res/font/Aileron-Light.otf"));
+    public final Font obcecada = java.awt.Font.createFont(java.awt.Font.TRUETYPE_FONT, new File("res/font/obcecada-serif-ffp.ttf"));
 
     public Fonts() throws IOException, FontFormatException {
         Main.font = new TrueTypeFont(generator.deriveFont(java.awt.Font.PLAIN, 20), true);
         MAIN = new TrueTypeFont(generator.deriveFont(java.awt.Font.PLAIN, 20), true);
+        ROMAN_NUMERAL = new TrueTypeFont(obcecada.deriveFont(java.awt.Font.PLAIN, 65), true);
 
         VariableWidth = new VariableWidthFonts();
     }

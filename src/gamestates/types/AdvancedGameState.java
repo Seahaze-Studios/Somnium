@@ -17,13 +17,17 @@ public abstract class AdvancedGameState extends BasicGameState {
 
     @Override
     public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
-        Main.getAppgc().setTargetFrameRate(Main.config.UNLIMITED_FPS ? Integer.MAX_VALUE : Main.config.FRAMES_PER_SECOND);
-        gc.setTargetFrameRate(Main.config.UNLIMITED_FPS ? Integer.MAX_VALUE : Main.config.FRAMES_PER_SECOND);
-        sbg.getContainer().setTargetFrameRate(Main.config.UNLIMITED_FPS ? Integer.MAX_VALUE : Main.config.FRAMES_PER_SECOND);
+        frameRate(gc, sbg);
         Main.UI.getElements().forEach(m -> {
             m.update(gc);
             m.render(gc);
         });
+    }
+
+    private void frameRate(GameContainer gc, StateBasedGame sbg) {
+        Main.getAppgc().setTargetFrameRate(Main.config.UNLIMITED_FPS ? Integer.MAX_VALUE : Main.config.FRAMES_PER_SECOND);
+        gc.setTargetFrameRate(Main.config.UNLIMITED_FPS ? Integer.MAX_VALUE : Main.config.FRAMES_PER_SECOND);
+        sbg.getContainer().setTargetFrameRate(Main.config.UNLIMITED_FPS ? Integer.MAX_VALUE : Main.config.FRAMES_PER_SECOND);
     }
 
     @Override
@@ -36,9 +40,7 @@ public abstract class AdvancedGameState extends BasicGameState {
 
     @Override
     public void enter(GameContainer gc, StateBasedGame sbg) throws SlickException {
-        Main.getAppgc().setTargetFrameRate(Main.config.UNLIMITED_FPS ? Integer.MAX_VALUE : Main.config.FRAMES_PER_SECOND);
-        gc.setTargetFrameRate(Main.config.UNLIMITED_FPS ? Integer.MAX_VALUE : Main.config.FRAMES_PER_SECOND);
-        sbg.getContainer().setTargetFrameRate(Main.config.UNLIMITED_FPS ? Integer.MAX_VALUE : Main.config.FRAMES_PER_SECOND);
+        frameRate(gc, sbg);
     }
 
     public void debugRender(GameContainer gc){

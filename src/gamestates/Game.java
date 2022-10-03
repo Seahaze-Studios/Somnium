@@ -21,12 +21,17 @@ import org.newdawn.slick.tiled.TiledMap;
 import util.DrawUtilities;
 import util.Vector2f;
 
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Queue;
 import java.util.Random;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 import static core.Main.debug;
+import static core.Main.highestLevel;
 
 public class Game extends AdvancedGameState {
     private final int id;
@@ -116,6 +121,12 @@ public class Game extends AdvancedGameState {
         plrR.update(MapManager.mapR);
         // This is where you put your game's logic that executes each frame that isn't about drawing
         entities.forEach(Entity::update);
+        if (curLevelID > highestLevel) {
+            highestLevel = curLevelID;
+            try {
+                Files.writeString(Paths.get("saves/level.txt"), curLevelID + "", StandardCharsets.UTF_8);
+            } catch (IOException e) {}
+        }
     }
 
     public void enter(GameContainer gc, StateBasedGame sbg) throws SlickException {
