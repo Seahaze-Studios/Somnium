@@ -28,11 +28,12 @@ public final class Constants {
         add(Color.white);
         add(Color.orange);
         add(Color.red);
-        add(Color.yellow);
+        add(Color.pink);
         add(Color.lightGray);
         add(Color.cyan);
+        add(Color.magenta);
     }};
-    public static final ArrayList<Color> COLOR_R = new ArrayList<>()    {{
+    /*public static final ArrayList<Color> COLOR_R = new ArrayList<>()    {{
         add(Color.cyan);
         add(Color.black);
         add(Color.blue);
@@ -40,7 +41,10 @@ public final class Constants {
         add(new Color(143,0,255));//violet
         add(Color.darkGray);
         add(Color.pink);
-    }};
+        add(Color.darkGray);
+    }};*/
+
+    public static ArrayList<Color> COLOR_R = new ArrayList<>();
 
 //    public static final SimpleDiagramRenderer SVG_L;
 //    public static final SimpleDiagramRenderer SVG_R;
