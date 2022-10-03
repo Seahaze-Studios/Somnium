@@ -99,19 +99,27 @@ public class  Player extends Unit {
 
     public boolean collides(GameMap gm, Vector2f pos) {
         //testHitbox.setBounds(pos.x - width / 2, pos.y - height / 2, width, height);
-        AtomicBoolean returning = new AtomicBoolean(false);
-        gm.getTileList().forEach(t -> {
+        //AtomicBoolean returning = new AtomicBoolean(false);\
+        boolean ret = false;
+        if (!gm.getTileList().stream().filter(t -> t instanceof Block && new Rectangle(pos.x - width / 2, pos.y - height / 2, width, height).intersects(t.getHitbox())).toList().isEmpty()) ret = true;
+        /*for (Tile t : gm.getTileList()) {
+            if (!(t instanceof Block)) continue;
             if(t instanceof Block && new Rectangle(pos.x - width / 2, pos.y - height / 2, width, height).intersects(t.getHitbox())) {
                 returning.set(true);
             }
-        });
+        }*/
+        /*gm.getTileList().forEach(t -> {
+            if(t instanceof Block && new Rectangle(pos.x - width / 2, pos.y - height / 2, width, height).intersects(t.getHitbox())) {
+                returning.set(true);
+            }
+        });*/
         if(pos.getX() + width/2 > Main.width()/2 + Constants.MAP_WIDTH*Constants.TILE_SIZE ||
                 pos.getX() - width/2 < Main.width()/2 - Constants.MAP_WIDTH*Constants.TILE_SIZE ||
                 pos.getY() + height/2 > Main.height() ||
                 pos.getY() - height/2 < 0) {
-            returning.set(true);
+            ret = true;
         }
-        return returning.get();
+        return ret;
     }
 
     public boolean enterGoal(GameMap gm)  {
@@ -130,25 +138,28 @@ public class  Player extends Unit {
             if (e.getHitbox().intersects(this.hitbox)) collide(e);
         });
         tileSpecialCollisions(gm);
-        boolean portaledCheck = false;
-        for (Tile p : portals) {
-            if (this.hitbox.intersects(p.getHitbox())) {
-                portaledCheck = true;
-                break;
-            }
-        }
-        this.portaled = portaledCheck;
+//        boolean portaledCheck = false;
+//        for (Tile p : portals) {
+//            if (this.hitbox.intersects(p.getHitbox())) {
+//                portaledCheck = true;
+//                break;
+//            }
+//        }
+//        this.portaled = portaledCheck;
     }
 
     public void move(GameMap gm)    {
-        move(gm, speed);
+        //if (lastPortal != null && lastPortal.intersects(this.hitbox)) return;
+        move(gm, speed, 0);
     }
 
-    public void move(GameMap gm, Vector2f disp)    {
+    public void move(GameMap gm, Vector2f disp, int n)    {
+        //if (lastPortal != null && lastPortal.intersects(this.hitbox)) return;
         if(!(collides(gm, pos.copy().add(disp)))) {
             move(disp);
         } else {
-            move(gm, disp.scale(0.99f));
+            n++;
+            if (n < 20) move(gm, disp.scale(0.95f), n);
         }
     }
 
@@ -159,6 +170,7 @@ public class  Player extends Unit {
     public void tileSpecialCollisions(GameMap map)    {
         this.speed = new Vector2f(0,0);
         immobile = false;
+        if (lastPortal != null && !lastPortal.intersects(this.hitbox)) lastPortal = null;
         map.getTileList().forEach(tile -> {
             if(hitbox.intersects(tile.getHitbox())) {
                 if (tile instanceof Hazard) {
@@ -167,7 +179,7 @@ public class  Player extends Unit {
                 if (tile instanceof Interactable) {
                     if (tile instanceof Portal portal) {
                         if (lastPortal == null || !lastPortal.intersects(this.hitbox)) {
-                            lastPortal = portal.getHitbox();
+                            lastPortal = portal.getPair().getHitbox();
                             setPos(new Vector2f((portal).getPair().getHitbox().getX() + width / 2, (portal).getPair().getHitbox().getY() + height / 2));
                             setHitbox(pos.x - width / 2, pos.y - height / 2);
                         }
