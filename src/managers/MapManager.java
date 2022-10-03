@@ -279,10 +279,14 @@ public class MapManager {
             }
     }
 
-    public void colorMap(GameMap gm, Graphics g)  {
-        g.setColor(new Color(gm.getColor().getRed(), gm.getColor().getBlue(),gm.getColor().getGreen(),0.95f));
-        gm.getTileList().forEach(t -> {if((t instanceof Block)  ){g.fill(t.getHitbox());}});
-    }
+//    public void colorMap(GameMap gm, Graphics g)  {
+//        g.setColor(new Color(gm.getColor().getRed(), gm.getColor().getBlue(),gm.getColor().getGreen(),0.95f));
+//        gm.getTileList().forEach(t -> {
+//            if((t instanceof Ice)  ){
+//                g.fill(t.getHitbox());
+//            }
+//        });
+//    }
 
     private void levelChange() throws SlickException {
         Game.curLevelID++;
