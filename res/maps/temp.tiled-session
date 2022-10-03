@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "temp2.tmx",
+    "activeFile": "lvl6left.tmx",
     "expandedProjectPaths": [
         "."
     ],
@@ -45,8 +45,8 @@
             "scale": 0.788148148148148,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 459.3045112781956,
-                "y": 540.5075187969926
+                "x": 458.0357142857144,
+                "y": 538.6043233082708
             }
         },
         "lvl4left.tmx": {
@@ -77,8 +77,8 @@
             "scale": 0.7951851851851851,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 406.19469026548666,
-                "y": 540.7545412203074
+                "x": 457.75500698649284,
+                "y": 538.8681881695389
             }
         },
         "lvl6left.tmx": {
@@ -93,8 +93,8 @@
             "scale": 0.788148148148148,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 459.3045112781956,
-                "y": 540.5075187969926
+                "x": 460.5733082706768,
+                "y": 541.7763157894739
             }
         },
         "temp.tsx": {
@@ -129,16 +129,22 @@
     "map.tileWidth": 54,
     "map.width": 17,
     "openFiles": [
-        "temp1.tmx",
-        "temp2.tmx",
-        "temp2.tsx"
+        "temp2.tsx",
+        "lvl3right.tmx",
+        "lvl5right.tmx",
+        "lvl6left.tmx",
+        "lvl6right.tmx"
     ],
     "project": "temp.tiled-project",
     "property.type": "int",
     "recentFiles": [
+        "temp2.tsx",
+        "lvl3right.tmx",
+        "lvl5right.tmx",
+        "lvl6right.tmx",
+        "lvl6left.tmx",
         "lvl1left.tmx",
         "temp1.tmx",
-        "temp2.tsx",
         "temp2.tmx",
         "temp.tsx"
     ],
