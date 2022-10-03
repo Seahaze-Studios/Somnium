@@ -84,6 +84,14 @@ public class Main extends StateBasedGame
 
 	public void initStatesList(GameContainer gc) throws SlickException 
 	{
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+		addState(test);
+>>>>>>> Stashed changes
+=======
+		addState(test);
+>>>>>>> Stashed changes
 		addState(loading);
 		addState(test);
 		addState(intro);
