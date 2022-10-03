@@ -133,6 +133,7 @@ public class Game extends AdvancedGameState {
         }
     }
 
+
     public void enter(GameContainer gc, StateBasedGame sbg) throws SlickException {
         // This code happens when you enter a gameState.
         //entity.setPos(400, 400);
