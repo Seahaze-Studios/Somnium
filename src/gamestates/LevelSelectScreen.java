@@ -85,9 +85,14 @@ public class LevelSelectScreen extends AdvancedGameState {
         if (R.nextInt(0, 15) == 4) glows.get(R.nextInt(0, glows.size() - 1)).inMotion = true;
         if (gc.getInput().isKeyDown(Input.KEY_UP) && level < shapes.size()) level++;
         if (gc.getInput().isKeyDown(Input.KEY_DOWN) && level > 1) level--;
-        if (gc.getInput().isMousePressed(0) && shapes.get(level).contains(gc.getInput().getMouseX(), gc.getInput().getMouseY()) && level <= Main.highestLevel) {
-            Game.curLevelID = level;
-            sbg.enterState(Main.GAME_ID, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
+        if (gc.getInput().isMousePressed(0) && shapes.get(level).contains(gc.getInput().getMouseX(), gc.getInput().getMouseY())) {
+            if (level <= Main.highestLevel) {
+                Game.curLevelID = level;
+                sbg.enterState(Main.GAME_ID, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
+                SoundManager.playSoundEffect("unlocked");
+            } else {
+                SoundManager.playSoundEffect("locked");
+            }
         }
     }
 

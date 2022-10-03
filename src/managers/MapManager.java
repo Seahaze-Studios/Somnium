@@ -200,6 +200,7 @@ public class MapManager {
             Game.getPlayerL().setKill(true);
             Game.getPlayerR().setKill(true);
             if (deathAnimCounter == -1) {
+                SoundManager.playSoundEffect("death");
                 deathAnimCounter = 120;
                 return;
             }
