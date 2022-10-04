@@ -25,4 +25,6 @@ public class ImageParticle extends Particle {
     public void render() {
         image.draw(this.pos.x, this.pos.y);
     }
+
+    public void update() {}
 }

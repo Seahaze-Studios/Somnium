@@ -5,6 +5,7 @@ import core.Main;
 import entities.units.Unit;
 import gamestates.Game;
 import managers.MapManager;
+import managers.SoundManager;
 import map.GameMap;
 import map.tile.Tile;
 import map.tile.interactable.Ice;
@@ -154,6 +155,7 @@ public class  Player extends Unit {
     }
 
     public void move(GameMap gm, Vector2f disp, int n)    {
+        if (immobile) return;
         //if (lastPortal != null && lastPortal.intersects(this.hitbox)) return;
         if(!(collides(gm, pos.copy().add(disp)))) {
             move(disp);
@@ -179,6 +181,7 @@ public class  Player extends Unit {
                 if (tile instanceof Interactable) {
                     if (tile instanceof Portal portal) {
                         if (lastPortal == null || !lastPortal.intersects(this.hitbox)) {
+                            SoundManager.playSoundEffect("portal");
                             lastPortal = portal.getPair().getHitbox();
                             setPos(new Vector2f((portal).getPair().getHitbox().getX() + width / 2, (portal).getPair().getHitbox().getY() + height / 2));
                             setHitbox(pos.x - width / 2, pos.y - height / 2);
@@ -231,5 +234,9 @@ public class  Player extends Unit {
 
     public void setKill(boolean kill) {
         this.kill = kill;
+    }
+
+    public void setImmobile(boolean immobile) {
+        this.immobile = immobile;
     }
 }

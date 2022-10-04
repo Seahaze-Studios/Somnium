@@ -189,6 +189,8 @@ public class MapManager {
         g.fill(new Rectangle(Main.getScreenWidth()/2,0, Main.getScreenWidth()/2 - 42,Main.getScreenHeight()));
         mapL.render(Main.getScreenWidth()/2 - Constants.MAP_WIDTH*Constants.TILE_SIZE ,0, g);
         mapR.render(Main.getScreenWidth()/2, 0, g);
+        Game.getPlayerL().setImmobile(win());
+        Game.getPlayerR().setImmobile(win());
 //        Game.getPlayerL().tileSpecialCollisions(mapL);
 //        Game.getPlayerR().tileSpecialCollisions(mapR);
 //        colorMap(mapL, g);
@@ -200,7 +202,7 @@ public class MapManager {
             Game.getPlayerL().setKill(true);
             Game.getPlayerR().setKill(true);
             if (deathAnimCounter == -1) {
-                SoundManager.playSoundEffect("death");
+                SoundManager.playSoundEffect("deathsound");
                 deathAnimCounter = 120;
                 return;
             }

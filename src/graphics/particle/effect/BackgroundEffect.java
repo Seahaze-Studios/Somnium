@@ -1,7 +1,5 @@
 package graphics.particle.effect;
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
 import core.Main;
 import graphics.particle.ImageParticle;
 import org.lwjgl.opengl.GL11;
@@ -22,21 +20,21 @@ public class BackgroundEffect extends ImageParticle {
     }
 
     public void update() {
-        if(pos.getX() < -image.getWidth()){
+        if (pos.getX() < -image.getWidth()) {
             this.setX(Main.getScreenWidth());
         }
-        if(pos.getX()>Main.getScreenWidth()){
+        if (pos.getX() > Main.getScreenWidth()) {
             this.setX(-image.getWidth());
         }
-        if(pos.getX() < -image.getHeight()){
+        if (pos.getX() < -image.getHeight()) {
             this.setX(Main.getScreenHeight());
         }
-        if(pos.getY()>Main.getScreenHeight()){
+        if (pos.getY() > Main.getScreenHeight()) {
             this.setY(-image.getHeight());
         }
         //applyForce(new Vector2f(1f,1f));
         move();
-=======
+/*=======
 =======
 >>>>>>> Stashed changes
 import graphics.particle.ImageParticle;
@@ -77,9 +75,6 @@ public class BackgroundEffect extends ImageParticle {
     public void update() {
         lifetime++;
         render();
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
+    }*/
     }
 }
