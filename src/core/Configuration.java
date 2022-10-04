@@ -13,6 +13,8 @@ public final class Configuration {
     public boolean VSYNC = false;
     public boolean GSYNC_FREESYNC = false;
     public boolean UNLIMITED_FPS = false;
+    public int GLOW_MAX = 100;
+    public float GLOW_SIZE = 0.25f;
     public enum GraphicsQuality {
         LOW("Low"),
         MEDIUM("Medium"),
@@ -42,5 +44,6 @@ public final class Configuration {
         GRAPHICS_QUALITY = GraphicsQuality.MEDIUM;
         UNLIMITED_FPS = false;
         GSYNC_FREESYNC = false;
+        GLOW_MAX = 100;
     }
 }

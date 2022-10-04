@@ -105,7 +105,27 @@ public class Settings extends AdvancedGameState {
                                 new Bundle<>("NVIDIA G-Sync / AMD FreeSync", new ToggleBar(
                                         new Bundle<>("O", () -> Main.config.GSYNC_FREESYNC = false),
                                         new Bundle<>("I", () -> Main.config.GSYNC_FREESYNC = true)
-                                ).setToggledIndex(Main.config.GSYNC_FREESYNC ? 1 : 0))
+                                ).setToggledIndex(Main.config.GSYNC_FREESYNC ? 1 : 0)),
+                                new Bundle<>("Maximum Glow Count Per Tile", new ToggleBar(
+                                        new Bundle<>("0", () -> Main.config.GLOW_MAX = 0),
+                                        new Bundle<>("100", () -> Main.config.GLOW_MAX = 100),
+                                        new Bundle<>("200", () -> Main.config.GLOW_MAX = 200),
+                                        new Bundle<>("300", () -> Main.config.GLOW_MAX = 300),
+                                        new Bundle<>("400", () -> Main.config.GLOW_MAX = 400),
+                                        new Bundle<>("500", () -> Main.config.GLOW_MAX = 500)
+                                ).setToggledIndex(Main.config.GLOW_MAX/100)),
+                                new Bundle<>("Glow Size", new ToggleBar(
+                                        new Bundle<>("0.0", () -> Main.config.GLOW_SIZE = 0.00f),
+                                        new Bundle<>("0.5", () -> Main.config.GLOW_SIZE = 0.05f),
+                                        new Bundle<>("1.0", () -> Main.config.GLOW_SIZE = 0.10f),
+                                        new Bundle<>("1.5", () -> Main.config.GLOW_SIZE = 0.15f),
+                                        new Bundle<>("2.0", () -> Main.config.GLOW_SIZE = 0.20f),
+                                        new Bundle<>("2.5", () -> Main.config.GLOW_SIZE = 0.25f),
+                                        new Bundle<>("3.0", () -> Main.config.GLOW_SIZE = 0.30f),
+                                        new Bundle<>("3.5", () -> Main.config.GLOW_SIZE = 0.35f),
+                                        new Bundle<>("4.0", () -> Main.config.GLOW_SIZE = 0.40f),
+                                        new Bundle<>("4.5", () -> Main.config.GLOW_SIZE = 0.45f)
+                                ).setToggledIndex((int) (Main.config.GLOW_SIZE/0.05f)))
                         )
                         ).setActive(true),
                 new Tab(
