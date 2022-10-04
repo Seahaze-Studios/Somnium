@@ -16,6 +16,7 @@ import util.Vector2f;
 
 import java.util.ArrayList;
 
+import static core.Constants.SCALING_FACTOR;
 import static org.newdawn.slick.Graphics.*;
 
 public class GameBackground {
@@ -28,7 +29,7 @@ public class GameBackground {
         image.setImageColor(0f,0.5f,1f);
         for(int i = 0; i < 99; i++){
             //particles.add(new BackgroundEffect(new Vector2f((float) (Math.random()* Main.getScreenWidth()), (float) (Math.random()* Main.getScreenHeight())),new Vector2f(0,0),image.getScaledCopy((float) (1+Math.random()))));
-            particles.add(new MultiplyEffect(new Vector2f((float) (Math.random()* Main.getScreenWidth()), (float) (Math.random()* Main.getScreenHeight())),new Vector2f(0,0),image.getScaledCopy((float) (1+Math.random()))));
+            particles.add(new MultiplyEffect(new Vector2f((float) (Math.random()* Main.getScreenWidth() * (SCALING_FACTOR())), (float) (Math.random()* Main.getScreenHeight() * (SCALING_FACTOR()))),new Vector2f(0,0),image.getScaledCopy((float) (1+Math.random()))));
         }
 
     }
