@@ -8,6 +8,8 @@ import org.newdawn.slick.Color;
 import org.newdawn.slick.Image;
 import util.Vector2f;
 
+import static core.Constants.SCALING_FACTOR;
+
 public class GlowEffect extends ImageParticle {
     protected int lifetime;
     public boolean inMotion;
@@ -21,7 +23,7 @@ public class GlowEffect extends ImageParticle {
     }
 
     public void render() {
-        image.setImageColor(r, g, b, lifetime > 240 ? 1f - ((lifetime - 240)/240f) : (lifetime/240f));
+        image.setImageColor(r, g, b, lifetime > (240 * (1/SCALING_FACTOR())) ? 1f - ((lifetime - (240 * (1/SCALING_FACTOR())))/(240 * (1/SCALING_FACTOR()))) : (lifetime/(240 * (1/SCALING_FACTOR()))));
         image.draw(pos.x, pos.y);
     }
 

@@ -23,6 +23,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 
+import static core.Constants.SCALING_FACTOR;
+
 public class LevelSelectScreen extends AdvancedGameState {
     private StateBasedGame sbg;
 
@@ -82,7 +84,7 @@ public class LevelSelectScreen extends AdvancedGameState {
     public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
         super.update(gc, sbg, delta);
         counter++;
-        if (R.nextInt(0, 15) == 4) glows.get(R.nextInt(0, glows.size() - 1)).inMotion = true;
+    if (R.nextInt(0, (int) (15 * (1/SCALING_FACTOR()))) == 4) glows.get(R.nextInt(0, glows.size() - 1)).inMotion = true;
         if (gc.getInput().isKeyDown(Input.KEY_UP) && level < shapes.size()) level++;
         if (gc.getInput().isKeyDown(Input.KEY_DOWN) && level > 1) level--;
         if (gc.getInput().isMousePressed(0) && shapes.get(level).contains(gc.getInput().getMouseX(), gc.getInput().getMouseY())) {
