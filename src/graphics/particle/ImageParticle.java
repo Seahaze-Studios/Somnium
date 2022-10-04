@@ -22,6 +22,9 @@ public class ImageParticle extends Particle {
         this.image = image;
     }
 
+    public void resize(float scale) {
+        this.image = this.image.getScaledCopy(scale);
+    }
     public void render() {
         image.draw(this.pos.x, this.pos.y);
     }

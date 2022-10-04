@@ -1,6 +1,7 @@
 package map;
 
 import map.tile.Tile;
+import map.tile.cosmetic.Glow;
 import map.tile.interactable.utility.Goal;
 import map.tile.obstacle.Obstacle;
 import org.newdawn.slick.SlickException;
@@ -48,13 +49,15 @@ public class GameMap extends TiledMap {
     }
 
     public void render(int x, int y, Graphics g)    {
-        super.render(x,y);
+        super.render(x,y,0);
         g.setColor(new Color(color.r,color.g, color.b, 0.95f));
         tiles.forEach(t -> {if((t instanceof Obstacle)  )g.fill(t.getHitbox());});
     }
 
     public void cosmeticRender(int x, int y, Graphics g)    {
-
+        cosmeticTiles.forEach(t -> {
+            if(t instanceof Glow) {((Glow) t).glowRender();}
+        });
     }
 
     public boolean isLeft() {

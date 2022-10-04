@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "lvl6left.tmx",
+    "activeFile": "temp2.tsx",
     "expandedProjectPaths": [
         "."
     ],
@@ -14,79 +14,103 @@
         },
         "lvl0left.tmx": {
             "scale": 0.7951851851851851,
-            "selectedLayer": 0,
+            "selectedLayer": 1,
             "viewCenter": {
-                "x": 406.19469026548666,
-                "y": 540.7545412203075
+                "x": 404.9371215649743,
+                "y": 540.7545412203074
             }
         },
         "lvl0right.tmx": {
             "scale": 0.7951851851851851,
-            "selectedLayer": 0,
+            "selectedLayer": 1,
             "viewCenter": {
-                "x": 403.679552864462,
-                "y": 539.4969725197951
+                "x": 403.6795528644619,
+                "y": 539.496972519795
             }
         },
         "lvl1left.tmx": {
             "scale": 0.7951851851851851,
-            "selectedLayer": 0,
+            "selectedLayer": 1,
             "viewCenter": {
-                "x": 459.0125756870052,
-                "y": 540.7545412203075
+                "x": 460.27014438751746,
+                "y": 540.7545412203074
             }
         },
         "lvl1right.tmx": {
             "scale": 0.7951851851851851,
-            "selectedLayer": 0,
+            "selectedLayer": 1,
             "viewCenter": {
-                "x": 459.0125756870052,
-                "y": 540.7545412203075
+                "x": 460.27014438751746,
+                "y": 540.7545412203074
+            }
+        },
+        "lvl2left.tmx": {
+            "scale": 0.788148148148148,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 459.3045112781956,
+                "y": 540.5075187969926
+            }
+        },
+        "lvl2right.tmx": {
+            "scale": 0.788148148148148,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 459.3045112781956,
+                "y": 540.5075187969926
+            }
+        },
+        "lvl3left.tmx": {
+            "scale": 0.788148148148148,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 459.3045112781956,
+                "y": 540.5075187969926
             }
         },
         "lvl3right.tmx": {
             "scale": 0.788148148148148,
-            "selectedLayer": 0,
+            "selectedLayer": 1,
             "viewCenter": {
-                "x": 458.0357142857144,
-                "y": 538.6043233082708
+                "x": 459.3045112781956,
+                "y": 537.9699248120301
             }
         },
         "lvl4left.tmx": {
             "scale": 0.7951851851851851,
-            "selectedLayer": 0,
+            "selectedLayer": 1,
             "viewCenter": {
                 "x": 406.19469026548666,
-                "y": 540.7545412203075
+                "y": 540.7545412203074
             }
         },
         "lvl4right.tmx": {
             "scale": 0.7951851851851851,
-            "selectedLayer": 0,
+            "selectedLayer": 1,
             "viewCenter": {
                 "x": 406.19469026548666,
-                "y": 540.7545412203075
+                "y": 540.7545412203074
             }
         },
         "lvl5left.tmx": {
             "scale": 0.7951851851851851,
-            "selectedLayer": 0,
+            "selectedLayer": 1,
             "viewCenter": {
                 "x": 404.9371215649743,
-                "y": 540.7545412203075
+                "y": 540.7545412203074
             }
         },
         "lvl5right.tmx": {
             "scale": 0.7951851851851851,
-            "selectedLayer": 0,
+            "selectedLayer": 1,
             "viewCenter": {
                 "x": 457.75500698649284,
-                "y": 538.8681881695389
+                "y": 539.496972519795
             }
         },
         "lvl6left.tmx": {
             "scale": 0.5,
-            "selectedLayer": 0,
+            "selectedLayer": 1,
             "viewCenter": {
                 "x": 524,
                 "y": 528
@@ -94,26 +118,26 @@
         },
         "lvl6right.tmx": {
             "scale": 0.788148148148148,
-            "selectedLayer": 0,
+            "selectedLayer": 1,
             "viewCenter": {
-                "x": 458.0357142857144,
-                "y": 539.8731203007519
+                "x": 459.3045112781956,
+                "y": 540.5075187969926
             }
         },
         "lvl7left.tmx": {
             "scale": 0.5462499999999999,
-            "selectedLayer": 0,
+            "selectedLayer": 1,
             "viewCenter": {
-                "x": 404.57665903890177,
+                "x": 406.4073226544623,
                 "y": 790.8466819221969
             }
         },
         "lvl7right.tmx": {
             "scale": 0.5462499999999999,
-            "selectedLayer": 0,
+            "selectedLayer": 1,
             "viewCenter": {
-                "x": 400.9153318077805,
-                "y": 545.5377574370711
+                "x": 402.745995423341,
+                "y": 547.3684210526317
             }
         },
         "temp.tsx": {
@@ -153,20 +177,26 @@
         "lvl3right.tmx",
         "lvl5right.tmx",
         "lvl6left.tmx",
-        "lvl6right.tmx"
+        "lvl6right.tmx",
+        "lvl7left.tmx",
+        "lvl7right.tmx",
+        "lvl0left.tmx"
     ],
     "project": "temp.tiled-project",
     "property.type": "int",
     "recentFiles": [
-        "temp2.tsx",
-        "lvl3right.tmx",
-        "lvl5right.tmx",
+        "lvl0left.tmx",
+        "lvl0right.tmx",
+        "lvl7right.tmx",
+        "lvl7left.tmx",
         "lvl6right.tmx",
         "lvl6left.tmx",
+        "lvl5right.tmx",
+        "lvl3right.tmx",
+        "temp2.tsx",
         "lvl1left.tmx",
         "temp1.tmx",
-        "temp2.tmx",
-        "temp.tsx"
+        "temp2.tmx"
     ],
     "tileset.lastUsedFormat": "tsx",
     "tileset.tileSize": {

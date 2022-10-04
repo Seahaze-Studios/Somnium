@@ -7,6 +7,7 @@ import graphics.particle.effect.GlowBlackEffect;
 import graphics.particle.effect.GlowEffect;
 import map.GameMap;
 import map.tile.Tile;
+import map.tile.cosmetic.Glow;
 import map.tile.interactable.Ice;
 import map.tile.interactable.Portal;
 import map.tile.interactable.hazard.Hazard;
@@ -97,6 +98,8 @@ public class MapManager {
         generateHitboxes(mapR);
         mapL.getTileList().forEach(t -> t.getHitbox().setX(t.getHitbox().getX() + Main.getScreenWidth()/2-(Constants.TILE_SIZE*mapR.getWidth())));
         mapR.getTileList().forEach(t -> t.getHitbox().setX(t.getHitbox().getX() + Main.getScreenWidth()/2));
+        mapL.getCosmeticTiles().forEach(t -> t.getHitbox().setX(t.getHitbox().getX() + Main.getScreenWidth()/2-(Constants.TILE_SIZE*mapR.getWidth())));
+        mapR.getCosmeticTiles().forEach(t -> t.getHitbox().setX(t.getHitbox().getX() + Main.getScreenWidth()/2));
         mapL.plrPos.add(new Vector2f((Main.getScreenWidth()/2)-(Constants.TILE_SIZE*mapR.getWidth()),0));
         mapR.plrPos.add(new Vector2f(Main.getScreenWidth()/2,0));
 
@@ -154,10 +157,15 @@ public class MapManager {
 
                 }
             }
-            /*if(map.getTileProperty(map.getTileId(i,j, 0), "type", "false").equals("block"))  {
-                map.getTileList().add(new Block(i * Constants.TILE_SIZE, j * Constants.TILE_SIZE));
-            }*/
-
+            if(map.getLayerCount() > 1) {
+                if (map.getTileProperty(map.getTileId(i, j, 1), "type", " ").equals("cosmetic")) {
+                    switch (map.getTileProperty(map.getTileId(i, j, 1), "id", " ")) {
+                        case "glow" -> {
+                            map.getCosmeticTiles().add(new Glow(i * Constants.TILE_SIZE, j * Constants.TILE_SIZE, map.getColor()));
+                        }
+                    }
+                }
+            }
         }
     }
 
@@ -187,6 +195,8 @@ public class MapManager {
         g.fill(new Rectangle(Main.getScreenWidth()/2 - (Constants.MAP_WIDTH* Constants.TILE_SIZE),0,Main.getScreenWidth()/2,Main.getScreenHeight()));
         g.setColor(mapL.getColor());
         g.fill(new Rectangle(Main.getScreenWidth()/2,0, Main.getScreenWidth()/2 - 42,Main.getScreenHeight()));
+        mapL.cosmeticRender(Main.getScreenWidth()/2 - Constants.MAP_WIDTH*Constants.TILE_SIZE ,0, g);
+        mapR.cosmeticRender(Main.getScreenWidth()/2, 0, g);
         mapL.render(Main.getScreenWidth()/2 - Constants.MAP_WIDTH*Constants.TILE_SIZE ,0, g);
         mapR.render(Main.getScreenWidth()/2, 0, g);
         Game.getPlayerL().setImmobile(win());
@@ -280,6 +290,20 @@ public class MapManager {
             } else {
                 g.fill(t.getHitbox());
             }
+        for(Tile t: mapL.getCosmeticTiles())    {
+            if(t instanceof Glow) {
+                g.setColor(new Color(255, 255, 0, 0.7f));
+                g.fill(t.getHitbox());
+                g.setColor(temp);
+            }
+        }
+        for(Tile t: mapR.getCosmeticTiles())    {
+            if(t instanceof Glow) {
+                g.setColor(new Color(255, 255, 0, 0.7f));
+                g.fill(t.getHitbox());
+                g.setColor(temp);
+            }
+        }
     }
 
 //    public void colorMap(GameMap gm, Graphics g)  {

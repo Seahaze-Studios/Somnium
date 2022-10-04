@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.9" tiledversion="1.9.0" orientation="orthogonal" renderorder="right-down" width="17" height="20" tilewidth="54" tileheight="54" infinite="0" nextlayerid="4" nextobjectid="4">
+<map version="1.9" tiledversion="1.9.0" orientation="orthogonal" renderorder="right-down" width="17" height="20" tilewidth="54" tileheight="54" infinite="0" nextlayerid="5" nextobjectid="4">
  <tileset firstgid="1" source="temp2.tsx"/>
  <layer id="1" name="Tile Layer 1" width="17" height="20">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAACmNgoA5QorEZCkhsJiq4g1gz8KkjxgwmCswgVs2oGaSbQYkdSkgYH1CEYmLtQ8bo5hCrF5cYPjOITaP4/ENMnBByCylxT2y4goA8FcwgFgAAStgWMFAFAAA=
+  </data>
+ </layer>
+ <layer id="4" name="Tile Layer 2" width="17" height="20" visible="0">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAACmNgGAX4gCoV9FPDDErBqBmjYBTQHgAAEOr8Y1AFAAA=
   </data>
  </layer>
 </map>
