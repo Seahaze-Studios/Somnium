@@ -49,4 +49,8 @@ public class GlowEffect extends ImageParticle {
         g = color.getGreen() / 255f;
         b = color.getBlue() / 255f;
     }
+
+    public int getLifetime()    {
+        return lifetime;
+    }
 }

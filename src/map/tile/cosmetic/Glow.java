@@ -1,8 +1,7 @@
 package map.tile.cosmetic;
 
 
-import core.Constants;
-import core.Main;
+
 import graphics.particle.effect.GlowEffect;
 import util.Vector2f;
 
@@ -22,20 +21,25 @@ public class Glow extends Cosmetic{
         glows = new ArrayList<>();
         for(int i = 0; i < 5; i++) {
             glows.add(new GlowEffect(new Vector2f((float) ((Math.random() * getHitbox().getMaxX()) + getHitbox().getX())- 42,
-                                                  (float) ((Math.random() * getHitbox().getMaxY()) + getHitbox().getY())-42),
+                                                  (float) ((Math.random() * getHitbox().getMaxY()) + getHitbox().getY())-21),
                     new Vector2f(r.nextInt(-2, 2), r.nextInt(-2, 2)), color));
-            glows.get(i).resize(0.3f);
+            glows.get(i).resize(0.25f);
         }
     }
 
     public void glowRender()    {
-        if(Math.random() < 0.3) {
+        if(Math.random() < 0.3 && glows.size() < 100) {
             glows.add(new GlowEffect(new Vector2f((float) (r.nextInt((int)this.getHitbox().getX(),(int)this.getHitbox().getMaxX()) - 42),
-                                                (float)(r.nextInt((int)this.getHitbox().getY(),(int)this.getHitbox().getMaxY()))-42),
+                                                (float)(r.nextInt((int)this.getHitbox().getY(),(int)this.getHitbox().getMaxY()))-21),
                     new Vector2f(r.nextInt(-2, 2), r.nextInt(-2, 2)), color));
-            glows.get(glows.size()-1).resize(0.3f);
+            glows.get(glows.size()-1).resize(0.25f);
         }
         glows.forEach(GlowEffect::motion);
+        for(int i = glows.size()-1; i >0;i--)    {
+            if(glows.get(i).getLifetime() > 750)    {
+                glows.remove(i);
+            }
+        }
 
     }
 
