@@ -183,7 +183,7 @@ public class  Player extends Unit {
                         if (lastPortal == null || !lastPortal.intersects(this.hitbox)) {
                             SoundManager.playSoundEffect("portal");
                             lastPortal = portal.getPair().getHitbox();
-                            setPos(new Vector2f((portal).getPair().getHitbox().getX() + width / 2, (portal).getPair().getHitbox().getY() + height / 2));
+                            setPos(new Vector2f((portal).getPair().getHitbox().getX() + (width / 2) + 1, (portal).getPair().getHitbox().getY() + (height / 2)+1));
                             setHitbox(pos.x - width / 2, pos.y - height / 2);
                         }
                     }

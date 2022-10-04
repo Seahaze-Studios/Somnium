@@ -23,6 +23,7 @@ public final class Constants {
     public static final int LEVEL_4_ID = 4;
     public static final int LEVEL_5_ID = 5;
     public static final int LEVEL_6_ID = 6;
+    public static final int LEVEL_7_ID = 7;
     public static final ArrayList<Color> COLOR_L = new ArrayList<>()    {{
         add(Color.gray);
         add(Color.white);
@@ -30,10 +31,10 @@ public final class Constants {
         add(Color.red);
         add(Color.pink);
         add(Color.lightGray);
-        add(Color.cyan);
+        add(new Color(1f,.498f,.314f));//coral
         add(Color.magenta);
     }};
-    /*public static final ArrayList<Color> COLOR_R = new ArrayList<>()    {{
+    public static final ArrayList<Color> COLOR_R = new ArrayList<>()    {{
         add(Color.cyan);
         add(Color.black);
         add(Color.blue);
@@ -41,10 +42,11 @@ public final class Constants {
         add(new Color(143,0,255));//violet
         add(Color.darkGray);
         add(Color.pink);
-        add(Color.darkGray);
-    }};*/
+        add(new Color(48,213,200));//Turquoise
+        add(Color.cyan);
+    }};
 
-    public static ArrayList<Color> COLOR_R = new ArrayList<>();
+    //public static ArrayList<Color> COLOR_R = new ArrayList<>();
 
 //    public static final SimpleDiagramRenderer SVG_L;
 //    public static final SimpleDiagramRenderer SVG_R;

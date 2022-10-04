@@ -110,9 +110,9 @@ public class Main extends StateBasedGame
 			highestLevel = 1;
 		}
 
-		Constants.COLOR_L.forEach(c -> {
-			Constants.COLOR_R.add(new org.newdawn.slick.Color(255 - c.getRed(), 255 - c.getGreen(), 255 - c.getBlue()));
-		});
+//		Constants.COLOR_L.forEach(c -> {
+//			Constants.COLOR_R.add(new org.newdawn.slick.Color(255 - c.getRed(), 255 - c.getGreen(), 255 - c.getBlue()));
+//		});
 
 
 		try 
