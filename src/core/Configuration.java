@@ -13,8 +13,8 @@ public final class Configuration {
     public boolean VSYNC = false;
     public boolean GSYNC_FREESYNC = false;
     public boolean UNLIMITED_FPS = false;
-    public int GLOW_MAX = 100;
-    public float GLOW_SIZE = 0.25f;
+    public int GLOW_MAX = 5;
+    public float GLOW_SIZE = 0.3f;
     public enum GraphicsQuality {
         LOW("Low"),
         MEDIUM("Medium"),
