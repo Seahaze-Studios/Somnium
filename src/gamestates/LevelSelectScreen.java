@@ -131,6 +131,7 @@ public class LevelSelectScreen extends AdvancedGameState {
         if (level == 1) g.setColor(black);
         DrawUtilities.drawStringCentered(g, RomanNumber.toRoman(level), Main.fonts.ROMAN_NUMERAL, Main.width() / 2, Main.height() / 2);
         if (Main.highestLevel < level) ImageManager.getImage("lock").getScaledCopy(0.1f).drawCentered(Main.width() / 2, Main.height() / 2 + 100);
+        if(Main.debug) debugRender(gc);
     }
 
     @Override
@@ -138,9 +139,13 @@ public class LevelSelectScreen extends AdvancedGameState {
         super.keyPressed(key, c);
         if (key == Input.KEY_RIGHT && level < Constants.COLOR_L.size() - 1) level++;
         if (key == Input.KEY_LEFT && level > 1) level--;
-        if(key == Input.KEY_0) {
+        if(key == Input.KEY_0 && Main.debug) {
             Game.curLevelID = 0;
             sbg.enterState(Main.GAME_ID, new FadeOutTransition(Color.white), new FadeInTransition(Color.white));
         }
+    }
+    public void debugRender(GameContainer gc)   {
+        gc.getGraphics().setColor(Color.green);
+        gc.getGraphics().drawString("DEBUG MODE ON", 100, 100);
     }
 }
