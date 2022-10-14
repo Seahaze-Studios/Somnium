@@ -183,7 +183,7 @@
         "lvl0left.tmx"
     ],
     "project": "temp.tiled-project",
-    "property.type": "int",
+    "property.type": "string",
     "recentFiles": [
         "lvl0left.tmx",
         "lvl0right.tmx",

@@ -191,4 +191,9 @@
    <property name="type" value="cosmetic"/>
   </properties>
  </tile>
+ <tile id="37">
+  <properties>
+   <property name="type" value="wind"/>
+  </properties>
+ </tile>
 </tileset>
