@@ -85,7 +85,7 @@ public class LevelSelectScreen extends AdvancedGameState {
         super.update(gc, sbg, delta);
         counter++;
     if (R.nextInt(0, (int) (15 * (1/SCALING_FACTOR()))) == 4) glows.get(R.nextInt(0, glows.size() - 1)).inMotion = true;
-        if (gc.getInput().isKeyDown(Input.KEY_UP) && level < shapes.size()) level++;
+        if (gc.getInput().isKeyDown(Input.KEY_UP) && level < Constants.COLOR_L.size() - 1) level++;
         if (gc.getInput().isKeyDown(Input.KEY_DOWN) && level > 1) level--;
         if (gc.getInput().isMousePressed(0) && shapes.get(level).contains(gc.getInput().getMouseX(), gc.getInput().getMouseY())) {
             if (level <= Main.highestLevel) {
@@ -136,7 +136,7 @@ public class LevelSelectScreen extends AdvancedGameState {
     @Override
     public void keyPressed(int key, char c) {
         super.keyPressed(key, c);
-        if (key == Input.KEY_RIGHT && level < shapes.size() - 1) level++;
+        if (key == Input.KEY_RIGHT && level < Constants.COLOR_L.size() - 1) level++;
         if (key == Input.KEY_LEFT && level > 1) level--;
         if(key == Input.KEY_0) {
             Game.curLevelID = 0;
