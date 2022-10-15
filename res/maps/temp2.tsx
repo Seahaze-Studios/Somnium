@@ -193,6 +193,25 @@
  </tile>
  <tile id="37">
   <properties>
+   <property name="direction" value="left"/>
+   <property name="type" value="wind"/>
+  </properties>
+ </tile>
+ <tile id="38">
+  <properties>
+   <property name="direction" value="right"/>
+   <property name="type" value="wind"/>
+  </properties>
+ </tile>
+ <tile id="39">
+  <properties>
+   <property name="direction" value="down"/>
+   <property name="type" value="wind"/>
+  </properties>
+ </tile>
+ <tile id="40">
+  <properties>
+   <property name="direction" value="up"/>
    <property name="type" value="wind"/>
   </properties>
  </tile>
