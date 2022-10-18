@@ -16,8 +16,8 @@
             "scale": 0.7951851851851851,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 885.3283651606893,
-                "y": 736.9352585002329
+                "x": 886.5859338612016,
+                "y": 738.1928272007451
             }
         },
         "lvl0right.tmx": {
@@ -28,20 +28,28 @@
                 "y": 539.496972519795
             }
         },
+        "lvl11.tmx": {
+            "scale": 0.7951851851851851,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 459.0125756870052,
+                "y": 540.7545412203075
+            }
+        },
         "lvl1left.tmx": {
             "scale": 0.7951851851851851,
-            "selectedLayer": 1,
+            "selectedLayer": 2,
             "viewCenter": {
-                "x": 460.27014438751746,
-                "y": 540.7545412203074
+                "x": 460.2701443875175,
+                "y": 540.7545412203075
             }
         },
         "lvl1right.tmx": {
             "scale": 0.7951851851851851,
-            "selectedLayer": 1,
+            "selectedLayer": 0,
             "viewCenter": {
-                "x": 460.27014438751746,
-                "y": 540.7545412203074
+                "x": 460.2701443875175,
+                "y": 706.7536096879367
             }
         },
         "lvl2left.tmx": {
@@ -72,8 +80,8 @@
             "scale": 0.788148148148148,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 460.5733082706768,
-                "y": 537.9699248120301
+                "x": 458.0357142857144,
+                "y": 538.6043233082708
             }
         },
         "lvl4left.tmx": {
@@ -105,7 +113,7 @@
             "selectedLayer": 1,
             "viewCenter": {
                 "x": 457.75500698649284,
-                "y": 538.8681881695389
+                "y": 539.4969725197951
             }
         },
         "lvl6left.tmx": {
@@ -120,8 +128,8 @@
             "scale": 0.788148148148148,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 458.0357142857144,
-                "y": 539.8731203007519
+                "x": 458.03571428571433,
+                "y": 539.873120300752
             }
         },
         "lvl7left.tmx": {
@@ -129,7 +137,7 @@
             "selectedLayer": 0,
             "viewCenter": {
                 "x": 457.6659038901603,
-                "y": 540.9610983981695
+                "y": 539.1304347826087
             }
         },
         "lvl7right.tmx": {
@@ -137,7 +145,23 @@
             "selectedLayer": 0,
             "viewCenter": {
                 "x": 457.6659038901603,
-                "y": 540.9610983981695
+                "y": 539.1304347826087
+            }
+        },
+        "lvl8left.tmx": {
+            "scale": 0.553287037037037,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 404.8531503639864,
+                "y": 788.0177391013304
+            }
+        },
+        "lvl8right.tmx": {
+            "scale": 0.553287037037037,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 404.8531503639864,
+                "y": 788.0177391013304
             }
         },
         "temp.tsx": {
@@ -165,7 +189,7 @@
             "scaleInEditor": 1
         }
     },
-    "last.externalTilesetPath": "C:/Users/ah112/Documents/Program Files/School Projects/GT C++/Somnium/res/maps",
+    "last.externalTilesetPath": "C:/Users/AH458/Documents/Somnium/res/maps",
     "last.imagePath": "C:/Users/AH458/Pictures",
     "map.lastUsedFormat": "tmx",
     "map.layerDataFormat": null,
@@ -185,6 +209,8 @@
     "project": "temp.tiled-project",
     "property.type": "string",
     "recentFiles": [
+        "lvl11.tmx",
+        "lvl5left.tmx",
         "lvl0left.tmx",
         "lvl0right.tmx",
         "lvl7right.tmx",
@@ -194,9 +220,7 @@
         "lvl5right.tmx",
         "lvl3right.tmx",
         "temp2.tsx",
-        "lvl1left.tmx",
-        "temp1.tmx",
-        "temp2.tmx"
+        "lvl1left.tmx"
     ],
     "tileset.lastUsedFormat": "tsx",
     "tileset.tileSize": {

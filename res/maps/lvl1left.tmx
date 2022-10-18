@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.9" tiledversion="1.9.0" orientation="orthogonal" renderorder="right-down" width="17" height="20" tilewidth="54" tileheight="54" infinite="0" nextlayerid="3" nextobjectid="1">
+<map version="1.9" tiledversion="1.9.0" orientation="orthogonal" renderorder="right-down" width="17" height="20" tilewidth="54" tileheight="54" infinite="0" nextlayerid="4" nextobjectid="1">
  <tileset firstgid="1" source="temp2.tsx"/>
  <layer id="1" name="Tile Layer 1" width="17" height="20">
   <data encoding="base64" compression="gzip">
@@ -11,4 +11,7 @@
    H4sIAAAAAAAACmNgIA6oQjE5YDDrVUXD5OilxF5KADXMoKVZ1DSTGgDdXUMpXVLiZlrG7WBPg/Q2CwA5XzU+UAUAAA==
   </data>
  </layer>
+ <imagelayer id="3" name="Image Layer 1" offsetx="796.041" offsety="256.544">
+  <image source="lvl1imageL.png" width="100" height="100"/>
+ </imagelayer>
 </map>

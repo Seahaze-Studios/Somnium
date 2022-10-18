@@ -60,6 +60,12 @@ public class GameMap extends TiledMap {
         });
     }
 
+    public void imageRender(int x, int y, Graphics g)   {
+        if(this.getLayerCount() > 2)    {
+            this.render(x,y,2);
+        }
+    }
+
     public boolean isLeft() {
         return left;
     }
