@@ -51,7 +51,34 @@ public class Main extends StateBasedGame
 
 	public static int highestLevel = 1;
 
-	public static List<Bundle<String, Vector2f>> hints = new ArrayList<>();
+	public static List<Bundle<String, Vector2f>> hints = new ArrayList<>() {{
+		add(new Bundle<>("""
+							 Use WASD to move.
+							 All your movements on the left
+							 will be mirrored on the right.""", new Vector2f(400, 800)));
+		add(new Bundle<>("""
+							 Sometimes, you might need to back up
+							 one side into a wall in order to
+							 independently move another.""", new Vector2f(700, 900)));
+		add(new Bundle<>("""
+							 """, new Vector2f(400, 400)));
+		add(new Bundle<>("""
+							 [Ice] is very slippery.
+							 Upon contact, you will instantly slide
+							 in the direction of approach until you
+							 are off of the ice.""", new Vector2f(400, 600)));
+		add(new Bundle<>("""
+							 [Lava] will instantly kill you upon contact.
+							 [Wind] will always push you in a fixed direction.
+							 Pushing the button to move in the opposite direction
+							 will freeze you in place, while the other two directions
+							 are free for you to move in.
+							 Get into tight 1-block spaces with this technique.""", new Vector2f(400, 520)));
+		add(new Bundle<>("""
+							 Mysterious portals...
+							 [Portals] come in pairs and will teleport
+							 you to the opposing portal upon contact.""", new Vector2f(700, 700)));
+	}};
 
 	public static int width() {
 		return config.RESOLUTION[0];
@@ -88,8 +115,7 @@ public class Main extends StateBasedGame
 
 	public static void main(String[] args) {
 		try {
-			GraphicsEnvironment ge =
-					GraphicsEnvironment.getLocalGraphicsEnvironment();
+			GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
 			ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("res/font/Aileron-Light.otf")));
 		} catch (IOException | FontFormatException ignored) {}
 

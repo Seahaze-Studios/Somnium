@@ -19,6 +19,7 @@ import org.newdawn.slick.state.transition.FadeInTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
 import org.newdawn.slick.tiled.TiledMap;
 import util.DrawUtilities;
+import util.SomniumFont;
 import util.Vector2f;
 
 import java.io.IOException;
@@ -99,20 +100,19 @@ public class Game extends AdvancedGameState {
         glows.stream().filter(p -> p.inMotion).forEach(GlowEffect::motion);
         entities.forEach(Entity::render);
 
-        //g.drawLine(Main.width() / 2, 0, Main.width() / 2, Main.height());
         mapMan.render(g);
         g.setColor(Color.white);
         g.drawLine(42, 0, 42, Main.height());
         g.drawLine(Main.width() / 2, 0, Main.width() / 2, Main.height());
         g.drawLine(Main.width() - 42, 0, Main.width() - 42, Main.height());
-//        plrL.getSpriteSVG().render(g);
-//        plrR.getSpriteSVG().render(g);
         plrL.render();
         plrR.render();
-        if(debug) {
+        if (debug) {
             debugRender(gc);
             DrawUtilities.drawStringCentered(g, String.valueOf(curLevelID), 900,100);
         }
+
+        if (Main.hints.size() < curLevelID) Main.fonts.HINTS.drawString(Main.hints.get(curLevelID - 1).element.x, Main.hints.get(curLevelID - 1).element.y, Main.hints.get(curLevelID - 1).object, org.newdawn.slick.Color.white, SomniumFont.ALIGN_CENTER);
         mapMan.deathRender(g);
         mapMan.levelCompleteRender(g);
         Main.UI.render(gc);
