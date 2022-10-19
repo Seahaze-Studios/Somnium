@@ -8,9 +8,11 @@ import managers.SoundManager;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.TrueTypeFont;
 import util.DrawUtilities;
 import util.SomniumFont;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -62,22 +64,14 @@ public class DialogBox extends Menu implements UIElement {
     @Override
     public void initializeFonts() {
         this.fonts = new HashMap<>();
-        fonts.put("title", new SomniumFont(new java.awt.Font("Bahnschrift", java.awt.Font.PLAIN, 50), true));
-        fonts.put("body", new SomniumFont(new java.awt.Font("Bahnschrift", java.awt.Font.PLAIN, 30), true));
+        try {
+            fonts.put("title", new SomniumFont(java.awt.Font.createFont(java.awt.Font.TRUETYPE_FONT, new File("res/font/Aileron-Light.otf")).deriveFont(java.awt.Font.PLAIN, 50), true));
+            fonts.put("body", new SomniumFont(java.awt.Font.createFont(java.awt.Font.TRUETYPE_FONT, new File("res/font/Aileron-Light.otf")).deriveFont(java.awt.Font.PLAIN, 30), true));
+        } catch (Exception ignored) {}
     }
 
     public void formatBody() {
         bodyLines.add(body);
-        /*String temp = "";
-        String clone = body;
-        int lastIndex = 0;
-        for (var i = 0; i < clone.length(); i++) {
-            temp = clone.substring(lastIndex, i);
-            if (fonts.get("body").getWidth(temp) > this.width) {
-                bodyLines.add(clone.substring(lastIndex, i));
-                lastIndex = i;
-            }
-        }*/
     }
 
     @Override
@@ -85,7 +79,6 @@ public class DialogBox extends Menu implements UIElement {
         g.setColor(Color.white);
         DrawUtilities.drawStringCentered(g, title, fonts.get("title"), x, y - height / 2 + 40);
         for (var i = 0; i < bodyLines.size(); i++) {
-            //DrawUtilities.drawStringCenteredByFont(g, bodyLines.get(i), (ThrenodyFont) fonts.get("body"), Color.white, x, y/* + (height / bodyLines.size() * (i + 1))*/);
             ((SomniumFont) fonts.get("body")).drawString(x,
                     y - fonts.get("body").getHeight(bodyLines.get(i)), bodyLines.get(i), Color.white, SomniumFont.ALIGN_CENTER);
         }

@@ -34,7 +34,6 @@ public class  Player extends Unit {
         this.refSprite = refSprite;
     }
 
-    //    private SimpleDiagramRenderer spriteSVG;
     private Image refSprite;
 
     private Color color;
@@ -73,28 +72,6 @@ public class  Player extends Unit {
         return immobile;
     }
 
-    public boolean collides(GameMap gm) {
-        AtomicBoolean returning = new AtomicBoolean(false);
-        gm.getTileList().forEach(t -> {
-            if(t instanceof Block && this.getHitbox().intersects(t.getHitbox())) {
-                returning.set(true);
-            }
-        });
-        if(pos.getX() + width/2 > Main.width()/2 + Constants.MAP_WIDTH*Constants.TILE_SIZE) {
-            returning.set(true);
-        }
-        else if(pos.getX() - width/2 < Main.width()/2 - Constants.MAP_WIDTH*Constants.TILE_SIZE) {
-            returning.set(true);
-        }
-        else if(pos.getY() + height/2 > Main.height()) {
-            returning.set(true);
-        }
-        else if(pos.getY() - height/2 < 0) {
-            returning.set(true);
-        }
-        return returning.get();
-    }
-
     public boolean collides(GameMap gm, Vector2f pos) {
         boolean ret = false;
         if (!gm.getTileList().stream().filter(t -> t instanceof Block && new Rectangle(pos.x - width / 2, pos.y - height / 2, width, height).intersects(t.getHitbox())).toList().isEmpty()) ret = true;
@@ -126,7 +103,6 @@ public class  Player extends Unit {
     }
 
     public void move(GameMap gm)    {
-        //if (lastPortal != null && lastPortal.intersects(this.hitbox)) return;
         move(gm, speed, 0);
     }
 

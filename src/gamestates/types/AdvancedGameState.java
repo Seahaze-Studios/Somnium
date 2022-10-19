@@ -64,7 +64,7 @@ public abstract class AdvancedGameState extends BasicGameState {
                 throw new RuntimeException(e);
             }
 
-            Main.UI.menus.add(new DialogBox(700, 400, "Screenshot", "Screenshot saved in screenshots/ folder.", new CloseButton("Got it")));
+            Main.UI.menus.add(new DialogBox(700, 400, "Screenshot", "Screenshot saved in screenshots/ folder.", new CloseButton(Main.width() / 2,  Main.height() / 2 + 200 - 40, "Got it")));
         }
         if (key == Input.KEY_F3) {
             Main.debug = !Main.debug;

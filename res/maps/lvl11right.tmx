@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="17" height="20" tilewidth="54" tileheight="54" infinite="0" nextlayerid="2" nextobjectid="1">
- <tileset firstgid="1" source="../../../../../../APH040/Documents/GitHub/Somnium/res/maps/temp2.tsx"/>
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="17" height="20" tilewidth="54" tileheight="54" infinite="0" nextlayerid="3" nextobjectid="1">
+ <tileset firstgid="1" source="temp2.tsx"/>
  <layer id="1" name="Tile Layer 1" width="17" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACmNgwASMWMRIBbQ2Q34A3UGOmZSYoUJFd6CDkWQGIxWwCoappAPNYWYGpWGKzx2kmIFNHB/AppYUd2MDAM/vV+xQBQAA
+   H4sIAAAAAAAACmNgwASMWMRIBbQ2Q34A3UGOmZSYoUJFd6CDkWQGIxWwCoappAPNYWYGpWGKzx2kmIFNHB9AV6tAoruxAQBE0//9UAUAAA==
+  </data>
+ </layer>
+ <layer id="2" name="Tile Layer 2" width="17" height="20">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAACmNgwASqWMRIBcPZDHLMHCxmEDJzOJuhSgU8CjABLcOUFH2Ums3AgKmHVHcDAImVg8hQBQAA
   </data>
  </layer>
 </map>

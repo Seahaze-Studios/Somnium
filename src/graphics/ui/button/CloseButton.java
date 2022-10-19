@@ -5,8 +5,8 @@ import util.Commandable;
 
 public class CloseButton extends PaddedButton {
     private Commandable secondCommand;
-    public CloseButton(String text) {
-        super(0, 0, 100, 60, text);
+    public CloseButton(int x, int y, String text) {
+        super(x, y, 100, 40, text);
         secondCommand = () -> {};
     }
 

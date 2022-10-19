@@ -123,16 +123,12 @@ public class IntroCredit extends AdvancedGameState {
         if (counter > 200 * Main.config.FRAMES_PER_SECOND / 60) logo.setImageColor(1, 1, 1, 1 * ((float) --counter2 / (100 * Main.config.FRAMES_PER_SECOND / 60)));
         if (counter == 300) SoundManager.playBackgroundMusic("title");
         if (counter > 300 * Main.config.FRAMES_PER_SECOND / 60) {
-            //sbg.enterState(Main.LOADING_ID, new FadeOutTransition(), new FadeInTransition());
             fade -= 3;
             g.setBackground(new Color(fade, fade, fade));
-//            g.setColor(paths.get(((counter - 300) / 60)).color);
-//            g.draw(paths.get(((counter - 300) / 60)).path);
             if (R.nextInt(0, 15) == 4) glows.get(R.nextInt(0, glows.size() - 1)).inMotion = true;
             glows.stream().filter(p -> p.inMotion).forEach(GlowEffect::motion);
         }
         if (counter > 860 * Main.config.FRAMES_PER_SECOND / 60) {
-            //titleLogo.setImageColor(1, 1, 1, 1 * ((float) counter / (100 * Main.config.FRAMES_PER_SECOND / 60)));
             titleLogo.setImageColor(1f, 1f, 1f, 1 * ((float) (counter - 860) / (2f * Main.config.FRAMES_PER_SECOND / 60)));
             titleLogo.drawCentered(Main.width() / 2, Main.height() / 2);
         }
@@ -140,7 +136,6 @@ public class IntroCredit extends AdvancedGameState {
             g.setColor(new Color(255, 255, 255, (float) (counter - 960) / 20));
             DrawUtilities.drawStringCentered(g, "Press any key to start", Main.width() / 2, Main.height() / 2 + 200);
         }
-        //if (counter > 960) sbg.enterState(Main.TITLE_ID);
 
         logo.drawCentered(Main.width() / 2, Main.height() / 2);
         Main.UI.render(gc);

@@ -31,8 +31,7 @@ import java.util.Queue;
 import java.util.Random;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
-import static core.Main.debug;
-import static core.Main.highestLevel;
+import static core.Main.*;
 
 public class Game extends AdvancedGameState {
     private final int id;
@@ -51,7 +50,6 @@ public class Game extends AdvancedGameState {
 
     public static int curLevelID;
 
-    private Entity entity;
     // Managers
     private KeyManager keyDown; // Key Manager
     public static final Queue<Entity> entities = new ConcurrentLinkedQueue<>();
@@ -86,9 +84,6 @@ public class Game extends AdvancedGameState {
         plrR.setRefSprite(new Image("res/player/2.png").getScaledCopy(54,54));
         System.out.println("[VERBOSE] MapManager initialized");
 
-//        plrL.setSpriteSVG(Constants.SVG_L);
-//        plrR.setSpriteSVG(Constants.SVG_R);
-
         // Initialize Managers
         keyDown = new KeyManager(gc.getInput(), this);
         System.out.println("[VERBOSE] KeyManager initialized");
@@ -112,7 +107,7 @@ public class Game extends AdvancedGameState {
             DrawUtilities.drawStringCentered(g, String.valueOf(curLevelID), 900,100);
         }
 
-        if (Main.hints.size() < curLevelID) Main.fonts.HINTS.drawString(Main.hints.get(curLevelID - 1).element.x, Main.hints.get(curLevelID - 1).element.y, Main.hints.get(curLevelID - 1).object, org.newdawn.slick.Color.white, SomniumFont.ALIGN_CENTER);
+        if (Main.hints.size() > curLevelID) Main.fonts.HINTS.drawString(Main.hints.get(curLevelID - 1).element.x, Main.hints.get(curLevelID - 1).element.y, Main.hints.get(curLevelID - 1).object, org.newdawn.slick.Color.white, SomniumFont.ALIGN_CENTER);
         mapMan.deathRender(g);
         mapMan.levelCompleteRender(g);
         Main.UI.render(gc);
@@ -137,7 +132,6 @@ public class Game extends AdvancedGameState {
 
     public void enter(GameContainer gc, StateBasedGame sbg) throws SlickException {
         // This code happens when you enter a gameState.
-        //entity.setPos(400, 400);
         super.enter(gc, sbg);
         for (var i = 0; i < 10000; i++) {
             glows.add(new GlowEffect(new Vector2f(R.nextInt(0, 42), R.nextInt(0, Main.height())), new Vector2f(R.nextInt(-2, 2), R.nextInt(-2, 2)), Color.white));

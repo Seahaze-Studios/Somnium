@@ -74,7 +74,6 @@ public class LoadingScreen extends AdvancedGameState {
     @Override // Begin file loading upon entering the gamestate
     public void enter(GameContainer gc, StateBasedGame sbg) throws SlickException {
         super.enter(gc, sbg);
-        //SoundManager.overrideBackgroundMusic(music);
 
         // Set Loading List to Deferred
         LoadingList.setDeferredLoading(true);
@@ -105,7 +104,6 @@ public class LoadingScreen extends AdvancedGameState {
         }
         // When loading is completed, automatically move to start menu
         else {
-            // TextManager.initialize();
             sbg.enterState(Main.testMode ? Main.TEST_ID : Main.INTRO_ID);
             System.out.println("Leaving Loading");
         }
@@ -128,12 +126,7 @@ public class LoadingScreen extends AdvancedGameState {
 
         final float PERCENT_LOADED = (float) tasksDone / (float) totalTasks;
 
-       // background.renderPre(g, PERCENT_LOADED);
-
-        //DrawUtilities.drawImageCentered(g, logo, Main.width() / 2, Main.height() / 3);
-        //DrawUtilities.drawStringCentered(g, "Version " + Constants.VERSION, Main.width() / 2, Main.height() / 3 - 200);
         g.setBackground(Color.black);
-        //g.setBackground(new Color((int) (167 * PERCENT_LOADED), (int) (231 * PERCENT_LOADED), (int) (255 * PERCENT_LOADED)));
 
         // max loading bar
         g.setColor(new Color(0, 0, 0));

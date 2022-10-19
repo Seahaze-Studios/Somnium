@@ -40,7 +40,6 @@ public class Settings extends AdvancedGameState {
     private Tabber tabber;
     private Button saveButton;
     private String customFPS = "1000";
-    private int counter = 0;
 
     public Settings(int id)
     {
@@ -60,7 +59,6 @@ public class Settings extends AdvancedGameState {
     @Override
     public void enter(GameContainer gc, StateBasedGame sbg) throws SlickException {
         super.enter(gc, sbg);
-        counter = 0;
         saveButton = new PaddedButton(Main.width() - 50 - 120, Main.height() - 50 - 40, Main.fonts.VariableWidth.P35.getWidth("Save and Exit") + 20, Main.fonts.VariableWidth.P35.getHeight() + 10, "Save and Exit", () -> sbg.enterState(Main.TITLE_ID, new FadeOutTransition(), new FadeInTransition()));
         tabber = new Tabber(
                 new Tab(
@@ -76,7 +74,7 @@ public class Settings extends AdvancedGameState {
                                     new Bundle<>(Configuration.GraphicsQuality.HIGH.name(), () -> Main.config.GRAPHICS_QUALITY = Configuration.GraphicsQuality.HIGH),
                                     new Bundle<>(Configuration.GraphicsQuality.ULTRA.name(), () -> Main.config.GRAPHICS_QUALITY = Configuration.GraphicsQuality.ULTRA)
                                 ).setToggledIndex(Arrays.asList(Configuration.GraphicsQuality.values()).indexOf(Main.config.GRAPHICS_QUALITY))),
-                                new Bundle<>("Resolution", new ToggleBar(
+                                new Bundle<>("Resolution (don't touch)", new ToggleBar(
                                         new Bundle<>("1920x1080", () -> { Main.config.RESOLUTION = new int[] {1920, 1080}; try { enter(gc, sbg); } catch (Exception ignored) {} }),
                                         new Bundle<>("1600x900", () -> { Main.config.RESOLUTION = new int[] {1600, 900}; try { enter(gc, sbg); } catch (Exception ignored) {} }),
                                         new Bundle<>("1280x720", () -> { Main.config.RESOLUTION = new int[] {1280, 720}; try { enter(gc, sbg); } catch (Exception ignored) {} }),
@@ -143,7 +141,7 @@ public class Settings extends AdvancedGameState {
                         new Rectangle(50, 100, Main.width() / 7 - 50, 50),
                         "Audio",
                         new TabBody(
-                                new Bundle<>("Volume", new ToggleBar(
+                                new Bundle<>("SFX Volume", new ToggleBar(
                                 new Bundle<>("0", () -> gc.setSoundVolume(0f)),
                                 new Bundle<>("1", () -> gc.setSoundVolume(0.1f)),
                                 new Bundle<>("2", () -> gc.setSoundVolume(0.2f)),
@@ -156,6 +154,15 @@ public class Settings extends AdvancedGameState {
                                 new Bundle<>("9", () -> gc.setSoundVolume(0.9f)),
                                 new Bundle<>("10", () -> gc.setSoundVolume(1f)))
                         ))
+                ).setActive(false),
+                new Tab(
+                        new Rectangle(50, 150, Main.width() / 7 - 50, 50),
+                        "Language",
+                        new TabBody(
+                                new Bundle<>("Game Language", new ToggleBar(
+                                        new Bundle<>("English", () -> {})
+                                ))
+                        )
                 ).setActive(false)
         );
     }
@@ -163,7 +170,6 @@ public class Settings extends AdvancedGameState {
     @Override
     public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
         super.update(gc, sbg, delta);
-        counter++;
         saveButton.update(gc);
         tabber.update(gc);
     }

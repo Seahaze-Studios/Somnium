@@ -34,8 +34,6 @@ public class Tabber {
                 t.setActive(true);
             }
         }
-        //tabs.forEach(t -> t.update(gc));
-        //if (tabs.stream().filter(Tab::isActive).count() > 1) tabs.stream().filter(Tab::isActive).findFirst().ifPresent(t -> t.setActive(false)); // No reuse of consumed Stream<>
     }
 
     public void render(GameContainer gc) {

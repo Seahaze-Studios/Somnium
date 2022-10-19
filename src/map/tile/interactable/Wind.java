@@ -2,7 +2,7 @@ package map.tile.interactable;
 
 import entities.Direction;
 
-public class Wind extends Interactable{
+public class Wind extends Interactable {
     Direction direction;
     public Wind(int x, int y, String direction) {
         super(x, y);

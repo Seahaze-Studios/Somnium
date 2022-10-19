@@ -57,10 +57,6 @@ public abstract class Menu implements UIElement {
     public void render(GameContainer gc) {
         Graphics g = gc.getGraphics();
         if (!show) return;
-//        if (!initialPlay) {
-//            SoundManager.playSoundEffect("ping");
-//            this.initialPlay = true;
-//        }
         g.setColor(new Color(0, 0, 0, 170));
         DrawUtilities.fillShapeCentered(g, new RoundedRectangle(0, 0, width, height, RoundedRectangle.ALL), x, y);
         g.setColor(new Color(219, 202, 106));

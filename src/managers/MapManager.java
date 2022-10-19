@@ -44,9 +44,7 @@ public class MapManager {
     private int portalTemp3 = -1;
 
 
-
-
-    public MapManager(GameMap m1, GameMap m2)   {
+    public MapManager(GameMap m1, GameMap m2) {
         loadMaps(m1, m2);
 
     }
@@ -68,8 +66,8 @@ public class MapManager {
                 Game.getPlayerR().setPos(mapR.plrPos);
                 Game.getPlayerR().color(Constants.COLOR_R.get(id));
                 Game.getPlayerR().setHitbox(mapR.plrPos.x - Game.getPlayerR().getHitbox().getWidth() / 2, mapR.plrPos.y - Game.getPlayerR().getHitbox().getWidth() / 2);
-           } else {
-               Game.curLevelID = 1;
+            } else {
+                Game.curLevelID = 1;
                 var idd = 1;
                 loadMaps(new GameMap("res/maps/lvl" + idd + "left.tmx", Constants.COLOR_L.get(idd)),
                         new GameMap("res/maps/lvl" + idd + "right.tmx", Constants.COLOR_R.get(idd)));
@@ -86,79 +84,79 @@ public class MapManager {
         }
     }
 
-    public void loadMaps(GameMap m1, GameMap m2)    {
+    public void loadMaps(GameMap m1, GameMap m2) {
         mapL = m1;
         mapR = m2;
         generateHitboxes(mapL);
         generateHitboxes(mapR);
-        mapL.getTileList().forEach(t -> t.getHitbox().setX(t.getHitbox().getX() + Main.width()/2-(Constants.TILE_SIZE*mapR.getWidth())));
-        mapR.getTileList().forEach(t -> t.getHitbox().setX(t.getHitbox().getX() + Main.width()/2));
-        mapL.getCosmeticTiles().forEach(t -> t.getHitbox().setX(t.getHitbox().getX() + Main.width()/2-(Constants.TILE_SIZE*mapR.getWidth())));
-        mapR.getCosmeticTiles().forEach(t -> t.getHitbox().setX(t.getHitbox().getX() + Main.width()/2));
-        mapL.plrPos.add(new Vector2f((Main.width()/2)-(Constants.TILE_SIZE*mapR.getWidth()),0));
-        mapR.plrPos.add(new Vector2f(Main.width()/2,0));
+        mapL.getTileList().forEach(t -> t.getHitbox().setX(t.getHitbox().getX() + Main.width() / 2 - (Constants.TILE_SIZE * mapR.getWidth())));
+        mapR.getTileList().forEach(t -> t.getHitbox().setX(t.getHitbox().getX() + Main.width() / 2));
+        mapL.getCosmeticTiles().forEach(t -> t.getHitbox().setX(t.getHitbox().getX() + Main.width() / 2 - (Constants.TILE_SIZE * mapR.getWidth())));
+        mapR.getCosmeticTiles().forEach(t -> t.getHitbox().setX(t.getHitbox().getX() + Main.width() / 2));
+        mapL.plrPos.add(new Vector2f((Main.width() / 2) - (Constants.TILE_SIZE * mapR.getWidth()), 0));
+        mapR.plrPos.add(new Vector2f(Main.width() / 2, 0));
 
     }
+
     private void generateHitboxes(GameMap map) {
         portalTemp1 = -1;
         portalTemp2 = -1;
         portalTemp3 = -1;
-        for (int i = 0; i < Constants.MAP_WIDTH; i++)    {
-            for (int j = 0; j < Constants.MAP_HEIGHT; j++)    {
-                generateTile(i,j,map);
+        for (int i = 0; i < Constants.MAP_WIDTH; i++) {
+            for (int j = 0; j < Constants.MAP_HEIGHT; j++) {
+                generateTile(i, j, map);
             }
         }
     }
 
     private void generateTile(int i, int j, GameMap map) {
-        if(map.getTileId(i,j,0) != 0)   {
-            switch(map.getTileProperty(map.getTileId(i,j,0),"type","block"))    {
+        if (map.getTileId(i, j, 0) != 0) {
+            switch (map.getTileProperty(map.getTileId(i, j, 0), "type", "block")) {
                 case "block" -> map.getTileList().add(new Block(i * Constants.TILE_SIZE, j * Constants.TILE_SIZE));
-                case "player" -> map.plrPos = new Vector2f((i + 0.5f) * Constants.TILE_SIZE, (j + 0.5f) * Constants.TILE_SIZE);
+                case "player" ->
+                        map.plrPos = new Vector2f((i + 0.5f) * Constants.TILE_SIZE, (j + 0.5f) * Constants.TILE_SIZE);
                 case "goal" -> map.getTileList().add(new Goal(i * Constants.TILE_SIZE, j * Constants.TILE_SIZE));
-                case "lava" ->  map.getTileList().add(new Lava(i*Constants.TILE_SIZE,j * Constants.TILE_SIZE));
+                case "lava" -> map.getTileList().add(new Lava(i * Constants.TILE_SIZE, j * Constants.TILE_SIZE));
                 case "ice" -> map.getTileList().add(new Ice(i * Constants.TILE_SIZE, j * Constants.TILE_SIZE));
-                case "wind" -> map.getTileList().add(new Wind(i * Constants.TILE_SIZE, j * Constants.TILE_SIZE, map.getTileProperty(map.getTileId(i,j,0), "direction", "up")));
+                case "wind" ->
+                        map.getTileList().add(new Wind(i * Constants.TILE_SIZE, j * Constants.TILE_SIZE, map.getTileProperty(map.getTileId(i, j, 0), "direction", "up")));
                 case "portal" -> {
                     map.getTileList().add(new Portal(i * Constants.TILE_SIZE, j * Constants.TILE_SIZE));
-                    switch(map.getTileProperty(map.getTileId(i,j,0),"id", "0"))   {
+                    switch (map.getTileProperty(map.getTileId(i, j, 0), "id", "0")) {
                         case "0" -> {
-                            if(portalTemp1 < 0) {
-                                portalTemp1 = map.getTileList().size()-1;
-                            }
-                            else  {
-                                ((Portal)map.getTileList().get(portalTemp1)).setPair((Portal)map.getTileList().get(map.getTileList().size()-1));
-                                ((Portal)map.getTileList().get(map.getTileList().size()-1)).setPair((Portal)map.getTileList().get(portalTemp1));
-                            }
-                        }
-                        case "1" ->  {
-                            if(portalTemp2 < 0)   {
-                                portalTemp2 = map.getTileList().size()-1;
-                            }
-                            else  {
-                                ((Portal)map.getTileList().get(portalTemp2)).setPair((Portal)map.getTileList().get(map.getTileList().size()-1));
-                                ((Portal)map.getTileList().get(map.getTileList().size()-1)).setPair((Portal)map.getTileList().get(portalTemp2));
+                            if (portalTemp1 < 0) {
+                                portalTemp1 = map.getTileList().size() - 1;
+                            } else {
+                                ((Portal) map.getTileList().get(portalTemp1)).setPair((Portal) map.getTileList().get(map.getTileList().size() - 1));
+                                ((Portal) map.getTileList().get(map.getTileList().size() - 1)).setPair((Portal) map.getTileList().get(portalTemp1));
                             }
                         }
-                        case "2" ->  {
-                            if(portalTemp3 < 0)   {
-                                portalTemp3 = map.getTileList().size()-1;
+                        case "1" -> {
+                            if (portalTemp2 < 0) {
+                                portalTemp2 = map.getTileList().size() - 1;
+                            } else {
+                                ((Portal) map.getTileList().get(portalTemp2)).setPair((Portal) map.getTileList().get(map.getTileList().size() - 1));
+                                ((Portal) map.getTileList().get(map.getTileList().size() - 1)).setPair((Portal) map.getTileList().get(portalTemp2));
                             }
-                            else  {
-                                ((Portal)map.getTileList().get(portalTemp3)).setPair((Portal)map.getTileList().get(map.getTileList().size()-1));
-                                ((Portal)map.getTileList().get(map.getTileList().size()-1)).setPair((Portal)map.getTileList().get(portalTemp3));
+                        }
+                        case "2" -> {
+                            if (portalTemp3 < 0) {
+                                portalTemp3 = map.getTileList().size() - 1;
+                            } else {
+                                ((Portal) map.getTileList().get(portalTemp3)).setPair((Portal) map.getTileList().get(map.getTileList().size() - 1));
+                                ((Portal) map.getTileList().get(map.getTileList().size() - 1)).setPair((Portal) map.getTileList().get(portalTemp3));
                             }
                         }
                     }
 
                 }
             }
-            if(map.getLayerCount() > 1) {
+            if (map.getLayerCount() > 1) {
                 if (map.getTileProperty(map.getTileId(i, j, 1), "type", " ").equals("cosmetic")) {
                     switch (map.getTileProperty(map.getTileId(i, j, 1), "id", " ")) {
-                        case "glow" -> {
-                            map.getCosmeticTiles().add(new Glow(i * Constants.TILE_SIZE, j * Constants.TILE_SIZE, map.getColor()));
-                        }
+                        case "glow" -> map.getCosmeticTiles().add(new Glow(i * Constants.TILE_SIZE, j * Constants.TILE_SIZE, map.getColor()));
+                        // Extensible...
+                        default -> {}
                     }
                 }
             }
@@ -166,7 +164,7 @@ public class MapManager {
     }
 
 
-    public boolean win()    {
+    public boolean win() {
         if (Game.getPlayerL().enterGoal(mapL)) {
             var prevColor = Main.sbg.getContainer().getGraphics().getColor();
             Main.sbg.getContainer().getGraphics().setColor(new Color(0, 0, 0, 100));
@@ -188,25 +186,21 @@ public class MapManager {
         if (R.nextInt(0, 15) == 4) Game.getGlowsR().get(R.nextInt(0, Game.getGlowsR().size() - 1)).inMotion = true;
         Game.getGlowsR().stream().filter(p -> p.inMotion).forEach(GlowEffect::motion);
         g.setColor(mapR.getColor());
-        g.fill(new Rectangle(Main.width()/2 - (Constants.MAP_WIDTH* Constants.TILE_SIZE),0,Main.width()/2,Main.height()));
+        g.fill(new Rectangle(Main.width() / 2 - (Constants.MAP_WIDTH * Constants.TILE_SIZE), 0, Main.width() / 2, Main.height()));
         g.setColor(mapL.getColor());
-        g.fill(new Rectangle(Main.width()/2,0, Main.width()/2 - 42,Main.height()));
-        mapL.cosmeticRender(Main.width()/2 - Constants.MAP_WIDTH*Constants.TILE_SIZE ,0, g);
-        mapR.cosmeticRender(Main.width()/2, 0, g);
-        mapL.render(Main.width()/2 - Constants.MAP_WIDTH*Constants.TILE_SIZE ,0, g);
-        mapR.render(Main.width()/2, 0, g);
-        mapL.imageRender(Main.width()/2 - Constants.MAP_WIDTH*Constants.TILE_SIZE ,0, g);
-        mapR.imageRender(Main.width()/2, 0, g);
+        g.fill(new Rectangle(Main.width() / 2, 0, Main.width() / 2 - 42, Main.height()));
+        mapL.cosmeticRender(Main.width() / 2 - Constants.MAP_WIDTH * Constants.TILE_SIZE, 0, g);
+        mapR.cosmeticRender(Main.width() / 2, 0, g);
+        mapL.render(Main.width() / 2 - Constants.MAP_WIDTH * Constants.TILE_SIZE, 0, g);
+        mapR.render(Main.width() / 2, 0, g);
+        mapL.imageRender(Main.width() / 2 - Constants.MAP_WIDTH * Constants.TILE_SIZE, 0, g);
+        mapR.imageRender(Main.width() / 2, 0, g);
         Game.getPlayerL().setImmobile(win());
         Game.getPlayerR().setImmobile(win());
-//        Game.getPlayerL().tileSpecialCollisions(mapL);
-//        Game.getPlayerR().tileSpecialCollisions(mapR);
-//        colorMap(mapL, g);
-//        colorMap(mapR, g);
     }
 
     public void deathRender(Graphics g) throws SlickException {
-        if(Game.getPlayerL().dead() || Game.getPlayerR().dead())   {
+        if (Game.getPlayerL().dead() || Game.getPlayerR().dead()) {
             Game.getPlayerL().setKill(true);
             Game.getPlayerR().setKill(true);
             if (deathAnimCounter == -1) {
@@ -232,13 +226,14 @@ public class MapManager {
             levelChangeCounter = 120;
             levelChange = true;
         }
-        if(levelChange) {
+        if (levelChange) {
             if (levelChangeCounter == 60) levelChange();
             if (levelChangeCounter == 0) {
                 levelChangeCounter = -1;
                 levelChange = false;
             } else {
-                if (levelChangeCounter > 60) g.setColor(new Color(0, 0, 0, (int) (Math.abs(levelChangeCounter - 120) / 60d * 255d)));
+                if (levelChangeCounter > 60)
+                    g.setColor(new Color(0, 0, 0, (int) (Math.abs(levelChangeCounter - 120) / 60d * 255d)));
                 else g.setColor(new Color(0, 0, 0, (int) (((levelChangeCounter) / 60d) * 255d)));
                 g.fillRect(0, 0, Main.width(), Main.height());
                 levelChangeCounter--;
@@ -253,15 +248,15 @@ public class MapManager {
                 g.setColor(new Color(0, 255, 255, 0.5f));
                 g.fill(tile.getHitbox());
                 g.setColor(temp);
-            } else if(tile instanceof Hazard)  {
+            } else if (tile instanceof Hazard) {
                 g.setColor(new Color(255, 0, 0, 0.5f));
                 g.fill(tile.getHitbox());
                 g.setColor(temp);
-            } else if(tile instanceof Ice)  {
+            } else if (tile instanceof Ice) {
                 g.setColor(new Color(0, 0, 255, 0.5f));
                 g.fill(tile.getHitbox());
                 g.setColor(temp);
-            } else if(tile instanceof Portal)  {
+            } else if (tile instanceof Portal) {
                 g.setColor(new Color(0, 255, 0, 0.5f));
                 g.fill(tile.getHitbox());
                 g.setColor(temp);
@@ -273,45 +268,36 @@ public class MapManager {
                 g.setColor(new Color(0, 255, 255, 0.5f));
                 g.fill(t.getHitbox());
                 g.setColor(temp);
-            } else if(t instanceof Hazard)  {
+            } else if (t instanceof Hazard) {
                 g.setColor(new Color(255, 0, 0, 0.5f));
                 g.fill(t.getHitbox());
                 g.setColor(temp);
-            } else if(t instanceof Ice)  {
+            } else if (t instanceof Ice) {
                 g.setColor(new Color(0, 0, 255, 0.5f));
                 g.fill(t.getHitbox());
                 g.setColor(temp);
-            } else if(t instanceof Portal)  {
+            } else if (t instanceof Portal) {
                 g.setColor(new Color(0, 255, 0, 0.5f));
                 g.fill(t.getHitbox());
                 g.setColor(temp);
             } else {
                 g.fill(t.getHitbox());
             }
-        for(Tile t: mapL.getCosmeticTiles())    {
-            if(t instanceof Glow) {
+        for (Tile t : mapL.getCosmeticTiles()) {
+            if (t instanceof Glow) {
                 g.setColor(new Color(255, 255, 0, 0.7f));
                 g.fill(t.getHitbox());
                 g.setColor(temp);
             }
         }
-        for(Tile t: mapR.getCosmeticTiles())    {
-            if(t instanceof Glow) {
+        for (Tile t : mapR.getCosmeticTiles()) {
+            if (t instanceof Glow) {
                 g.setColor(new Color(255, 255, 0, 0.7f));
                 g.fill(t.getHitbox());
                 g.setColor(temp);
             }
         }
     }
-
-//    public void colorMap(GameMap gm, Graphics g)  {
-//        g.setColor(new Color(gm.getColor().getRed(), gm.getColor().getBlue(),gm.getColor().getGreen(),0.95f));
-//        gm.getTileList().forEach(t -> {
-//            if((t instanceof Ice)  ){
-//                g.fill(t.getHitbox());
-//            }
-//        });
-//    }
 
     private void levelChange() throws SlickException {
         Game.curLevelID++;

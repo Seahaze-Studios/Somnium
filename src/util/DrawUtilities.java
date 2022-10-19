@@ -124,11 +124,4 @@ public final class DrawUtilities {
         centerShape(shape, x, y);
         g.fill(shape);
     }
-
-    public static void animateLines(Graphics g, ArrayList<Line> lines, int counter, double speed) {
-        for (var i = 0; i < lines.size() && i < counter; i++) {
-            //var line = lines.get(i).getEnd().equals(lines.get(i).getEnd().scale(0.001f * counter)) ? lines.get(i) : new Line(lines.get(i).getStart(), lines.get(i).getEnd().scale(0.001f * counter));
-            //g.draw(line);
-        }
-    }
 }

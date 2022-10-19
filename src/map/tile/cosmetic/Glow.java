@@ -22,12 +22,6 @@ public class Glow extends Cosmetic{
         color = c;
         r = new Random();
         glows = new ArrayList<>();
-//        for(int i = 0; i < 10; i++) {
-//            glows.add(new GlowEffect(new Vector2f((float) ((Math.random() * getHitbox().getMaxX()) + getHitbox().getX())- 42,
-//                                                  (float) ((Math.random() * getHitbox().getMaxY()) + getHitbox().getY())-32),
-//                    new Vector2f(r.nextInt(-2, 5), r.nextInt(-2, 5)), color));
-//            glows.get(i).resize(Main.config.GLOW_SIZE);
-//        }
     }
 
     public void glowRender()    {

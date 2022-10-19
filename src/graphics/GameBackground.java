@@ -24,27 +24,21 @@ public class GameBackground {
     private ArrayList<ImageParticle> particles = new ArrayList<>();
 
     public GameBackground() {
-        //image = ImageManager.getImage("glow");  //this doesn't work.
         image = ImageManager.getImage("spot");
         image.setImageColor(0f,0.5f,1f);
         for(int i = 0; i < 99; i++){
-            //particles.add(new BackgroundEffect(new Vector2f((float) (Math.random()* Main.width()), (float) (Math.random()* Main.height())),new Vector2f(0,0),image.getScaledCopy((float) (1+Math.random()))));
             particles.add(new MultiplyEffect(new Vector2f((float) (Math.random()* Main.width() * (SCALING_FACTOR())), (float) (Math.random()* Main.height() * (SCALING_FACTOR()))),new Vector2f(0,0),image.getScaledCopy((float) (1+Math.random()))));
         }
 
     }
-    public void update(){
-       particles.forEach(p -> p.update());
+    public void update() {
+        particles.forEach(ImageParticle::update);
     }
     public void render(Graphics g){
-
-        particles.forEach(p -> p.render());
-        //GL11.glBlendFunc(GL11.GL_DST_COLOR,GL11.GL_SRC_COLOR);
+        particles.forEach(ImageParticle::render);
         g.setDrawMode(MODE_ADD);
         g.setColor(new Color(0.3f,0.0f,0.5f));
-        //g.fillRect(0,0,Main.width(),Main.height());
         g.setDrawMode(MODE_NORMAL);
-
     }
 
 

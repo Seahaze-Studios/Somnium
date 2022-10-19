@@ -13,6 +13,12 @@ import util.Vector2f;
 
 import java.util.ArrayList;
 
+/* ===========================================
+DEBUG - TESTING CLASS
+EXPERIMENTATION ONLY
+NOT USED IN GAME
+==============================================
+ */
 public class TestState extends AdvancedGameState {
     public final int id;
     private static GameBackground b;

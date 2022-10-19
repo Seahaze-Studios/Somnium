@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 
+import static core.Constants.COLOR_L;
 import static core.Constants.SCALING_FACTOR;
 
 public class LevelSelectScreen extends AdvancedGameState {
@@ -128,7 +129,12 @@ public class LevelSelectScreen extends AdvancedGameState {
                 g.setColor(white);
             }
         }
+        DrawUtilities.drawStringCentered(g, ">", Main.fonts.VariableWidth.B60, Main.width() / 12 * 11, Main.height() / 2);
+        DrawUtilities.drawStringCentered(g, "Right Arrow", Main.fonts.VariableWidth.P10, Main.width() / 12 * 11, Main.height() / 2 + 50);
+        DrawUtilities.drawStringCentered(g, "<", Main.fonts.VariableWidth.B60, Main.width() / 12 * 1, Main.height() / 2);
+        DrawUtilities.drawStringCentered(g, "Left Arrow", Main.fonts.VariableWidth.P10, Main.width() / 11 * 1 - 15, Main.height() / 2 + 50);
         if (level == 1) g.setColor(black);
+        if (level >= COLOR_L.size()) DrawUtilities.drawStringCentered(g, "Coming Soon", Main.fonts.VariableWidth.P40, Main.width() / 2, Main.height() / 9 * 8);
         DrawUtilities.drawStringCentered(g, RomanNumber.toRoman(level), Main.fonts.ROMAN_NUMERAL, Main.width() / 2, Main.height() / 2);
         if (Main.highestLevel < level) ImageManager.getImage("lock").getScaledCopy(0.1f).drawCentered(Main.width() / 2, Main.height() / 2 + 100);
         if(Main.debug) debugRender(gc);
@@ -138,6 +144,7 @@ public class LevelSelectScreen extends AdvancedGameState {
     @Override
     public void keyPressed(int key, char c) {
         super.keyPressed(key, c);
+        if (key == Input.KEY_ESCAPE) sbg.enterState(Main.TITLE_ID, new FadeOutTransition(), new FadeInTransition());
         if (key == Input.KEY_RIGHT) level++;
         if (key == Input.KEY_LEFT && level > 1) level--;
         if(key == Input.KEY_0 && Main.debug) {
