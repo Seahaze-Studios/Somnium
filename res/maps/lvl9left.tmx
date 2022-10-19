@@ -3,7 +3,7 @@
  <tileset firstgid="1" source="temp2.tsx"/>
  <layer id="1" name="Tile Layer 1" width="17" height="20">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFAwUYoZhUoI6E5ck0AwSUKHQHshmUgMFkBrnhgAzINQM5Hsg1QxGKsZmLjIkxgxQ92IAmAXlizNTE4g5s7lKnAiZkjwIRagArggT4
+   eJxjYBgFwxUwEsDUMJ9UIA/EakgYZIY6ERifGzTJcAe5ZuALT00G7GFLbHgj+5eS+KE0PAabGZSmYZAZakRgStyhAFUHAMucBXM=
   </data>
  </layer>
 </map>

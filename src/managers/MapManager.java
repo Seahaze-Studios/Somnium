@@ -193,6 +193,8 @@ public class MapManager {
         mapR.cosmeticRender(Main.width()/2, 0, g);
         mapL.render(Main.width()/2 - Constants.MAP_WIDTH*Constants.TILE_SIZE ,0, g);
         mapR.render(Main.width()/2, 0, g);
+        mapL.imageRender(Main.width()/2 - Constants.MAP_WIDTH*Constants.TILE_SIZE ,0, g);
+        mapR.imageRender(Main.width()/2, 0, g);
         Game.getPlayerL().setImmobile(win());
         Game.getPlayerR().setImmobile(win());
 //        Game.getPlayerL().tileSpecialCollisions(mapL);
