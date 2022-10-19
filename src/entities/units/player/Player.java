@@ -40,10 +40,7 @@ public class  Player extends Unit {
 
     private boolean immobile;
     private boolean kill;
-    private boolean portaled;
-    private Rectangle testHitbox = new Rectangle(0, 0, 0,0);
     private Shape lastPortal;
-    private List<Tile> portals;
 
     public Player(int x, int y) throws SlickException {
         super(x,y);
@@ -69,7 +66,6 @@ public class  Player extends Unit {
         this.color = new Color(Color.gray);
         this.immobile = false;
         this.kill = false;
-        this.portaled = false;
     }
 
     public boolean isImmobile() {
@@ -83,13 +79,13 @@ public class  Player extends Unit {
                 returning.set(true);
             }
         });
-        if(pos.getX() + width/2 > Main.getScreenWidth()/2 + Constants.MAP_WIDTH*Constants.TILE_SIZE) {
+        if(pos.getX() + width/2 > Main.width()/2 + Constants.MAP_WIDTH*Constants.TILE_SIZE) {
             returning.set(true);
         }
-        else if(pos.getX() - width/2 < Main.getScreenWidth()/2 - Constants.MAP_WIDTH*Constants.TILE_SIZE) {
+        else if(pos.getX() - width/2 < Main.width()/2 - Constants.MAP_WIDTH*Constants.TILE_SIZE) {
             returning.set(true);
         }
-        else if(pos.getY() + height/2 > Main.getScreenHeight()) {
+        else if(pos.getY() + height/2 > Main.height()) {
             returning.set(true);
         }
         else if(pos.getY() - height/2 < 0) {
@@ -99,21 +95,8 @@ public class  Player extends Unit {
     }
 
     public boolean collides(GameMap gm, Vector2f pos) {
-        //testHitbox.setBounds(pos.x - width / 2, pos.y - height / 2, width, height);
-        //AtomicBoolean returning = new AtomicBoolean(false);\
         boolean ret = false;
         if (!gm.getTileList().stream().filter(t -> t instanceof Block && new Rectangle(pos.x - width / 2, pos.y - height / 2, width, height).intersects(t.getHitbox())).toList().isEmpty()) ret = true;
-        /*for (Tile t : gm.getTileList()) {
-            if (!(t instanceof Block)) continue;
-            if(t instanceof Block && new Rectangle(pos.x - width / 2, pos.y - height / 2, width, height).intersects(t.getHitbox())) {
-                returning.set(true);
-            }
-        }*/
-        /*gm.getTileList().forEach(t -> {
-            if(t instanceof Block && new Rectangle(pos.x - width / 2, pos.y - height / 2, width, height).intersects(t.getHitbox())) {
-                returning.set(true);
-            }
-        });*/
         if(pos.getX() + width/2 > Main.width()/2 + Constants.MAP_WIDTH*Constants.TILE_SIZE ||
                 pos.getX() - width/2 < Main.width()/2 - Constants.MAP_WIDTH*Constants.TILE_SIZE ||
                 pos.getY() + height/2 > Main.height() ||
@@ -139,14 +122,6 @@ public class  Player extends Unit {
             if (e.getHitbox().intersects(this.hitbox)) collide(e);
         });
         tileSpecialCollisions(gm);
-//        boolean portaledCheck = false;
-//        for (Tile p : portals) {
-//            if (this.hitbox.intersects(p.getHitbox())) {
-//                portaledCheck = true;
-//                break;
-//            }
-//        }
-//        this.portaled = portaledCheck;
     }
 
     public void move(GameMap gm)    {
@@ -156,13 +131,8 @@ public class  Player extends Unit {
 
     public void move(GameMap gm, Vector2f disp, int n)    {
         if (immobile) return;
-        //if (lastPortal != null && lastPortal.intersects(this.hitbox)) return;
-        if(!(collides(gm, pos.copy().add(disp)))) {
-            move(disp);
-        } else {
-            n++;
-            if (n < 20) move(gm, disp.scale(0.95f), n);
-        }
+        if (!(collides(gm, pos.copy().add(disp)))) move(disp);
+        else if (n < 20) move(gm, disp.scale(0.95f), n++);
     }
 
     public void accelerate(GameMap gm, Vector2f dv) {
@@ -216,20 +186,9 @@ public class  Player extends Unit {
 
     }
 
-
-//    public void setSpriteSVG(SimpleDiagramRenderer svg)  {
-//        this.spriteSVG = svg;
-//    }
-//    public SimpleDiagramRenderer getSpriteSVG() {
-//        return spriteSVG;
-//    }
     public void color(Color color)  {
         sprite = refSprite;
         if(color != Color.black) this.color = color;
-    }
-
-    public void setPortals(List<Tile> portals) {
-        this.portals = portals;
     }
 
     public void setKill(boolean kill) {

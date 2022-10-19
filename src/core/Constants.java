@@ -71,5 +71,7 @@ public final class Constants {
 
     public static final float PLAYER_MAX_SPEED = 5;
     public static final float SCALING_FACTOR() { return Main.config.UNLIMITED_FPS ? 60f / (float) Main.getRealFPS() : 60f / Main.config.FRAMES_PER_SECOND; }
+    public static final float RES_X_FACTOR() { return Main.config.RESOLUTION[0] / 1920f; }
+    public static final float RES_Y_FACTOR() { return Main.config.RESOLUTION[1] / 1080f; }
 
 }

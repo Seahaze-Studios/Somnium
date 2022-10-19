@@ -28,121 +28,17 @@ public final class KeyManager implements Predicate<Integer> {
 
 	private MapManager mapMan;
 	private final Input input;
-	//private final GameMap map;
 	
 	public KeyManager(Input input, Game game) {
 		this.input = input;
 		playerL = game.getPlayerL();
 		playerR = game.getPlayerR();
 		this.mapMan = game.getMapMan();
-		//this.map = new GameMap("lol");
-		/*this.player = game.getPlayer();
-		this.map = game.getOverworld();*/
 	}
 	
 	public boolean test(Integer i) {
 		return input.isKeyDown(i);
 	}
-
-	/*public void keyDown(int key) {
-		boolean temp1 = false;
-		boolean temp2 = false;
-		switch(key)	{
-			case Input.KEY_W ->	{
-				for(int i = 0; i < Constants.PLAYER_MAX_SPEED; i++)	{
-					if(!temp1 && !playerL.isImmobile()) {
-						temp1 = playerMove(MapManager.mapL, playerL, new Vector2f(0,-1 * SCALING_FACTOR()),true);
-						playerL.setDir(Direction.UP);
-//						playerL.move(new Vector2f(0, -1));
-//						if(playerL.collides(MapManager.mapL))	{
-//							playerL.move(new Vector2f(0, 1));
-//							temp1 = true;
-//							break;
-//						}
-					}
-					if(!temp2 && !playerR.isImmobile()) {
-						temp2 = playerMove(MapManager.mapR, playerR, new Vector2f(0,-1 * SCALING_FACTOR()),false);
-						playerR.setDir(Direction.UP);
-//						playerR.move(new Vector2f(0, -1));
-//						if(playerR.collides(MapManager.mapR))	{
-//							playerR.move(new Vector2f(0, 1));
-//							temp2 = true;
-//							break;
-//						}
-					}
-				}
-
-			}
-			case Input.KEY_A ->	{
-				for(int i = 0; i < Constants.PLAYER_MAX_SPEED; i++)	{
-					if(!temp1 && !playerL.isImmobile()) {
-						temp1 = playerMove(MapManager.mapL, playerL, new Vector2f(-1 * SCALING_FACTOR(),0),true);
-						playerL.setDir(Direction.LEFT);
-//						playerL.move(new Vector2f(-1, 0));
-//						if(playerL.collides(MapManager.mapL))	{
-//							playerL.move(new Vector2f(1, 0));
-//							temp1 = true;
-//						}
-
-					}
-					if(!temp2 && !playerR.isImmobile()) {
-						temp2 = playerMove(MapManager.mapR, playerR, new Vector2f(1 * SCALING_FACTOR(),0),false);
-						playerR.setDir(Direction.RIGHT);
-//						playerR.move(new Vector2f(1, 0));
-//						if(playerR.collides(MapManager.mapR))	{
-//							playerR.move(new Vector2f(-1, 0));
-//							temp2 = true;
-//						}
-					}
-				}
-			}
-			case Input.KEY_S -> {
-				for(int i = 0; i < Constants.PLAYER_MAX_SPEED; i++)	{
-					if(!temp1 && !playerL.isImmobile()) {
-						temp1 = playerMove(MapManager.mapL, playerL, new Vector2f(0,1 * SCALING_FACTOR()),true);
-						playerL.setDir(Direction.DOWN);
-//						playerL.move(new Vector2f(0, 1));
-//						if(playerL.collides(MapManager.mapL))	{
-//							playerL.move(new Vector2f(0, -1));
-//							temp1 = true;
-						}
-					if(!temp2 && !playerR.isImmobile()) {
-						temp2 = playerMove(MapManager.mapR, playerR, new Vector2f(0,1 * SCALING_FACTOR()),false);
-						playerR.setDir(Direction.DOWN);
-//						playerR.move(new Vector2f(0, 1));
-//						if(playerR.collides(MapManager.mapR))	{
-//							playerR.move(new Vector2f(0, -1));
-//							temp2 = true;
-//						}
-					}
-				}
-			}
-
-			case Input.KEY_D -> {
-				for(int i = 0; i < Constants.PLAYER_MAX_SPEED; i++)	{
-					if(!temp1 && !playerL.isImmobile()) {
-						temp1 = playerMove(MapManager.mapL, playerL, new Vector2f(1 * SCALING_FACTOR(),0),true);
-						playerL.setDir(Direction.RIGHT);
-//						playerL.move(new Vector2f(1, 0));
-////						if(playerL.collides(MapManager.mapL))	{
-////							playerL.move(new Vector2f(-1, 0));
-////							temp1 = true;
-////						}
-
-					}
-					if(!temp2 && !playerR.isImmobile()) {
-						temp2 = playerMove(MapManager.mapR, playerR, new Vector2f(-1 * SCALING_FACTOR(),0),false);
-						playerR.setDir(Direction.LEFT);
-//						playerR.move(new Vector2f(-1, 0));
-//						if(playerR.collides(MapManager.mapR))	{
-//							playerR.move(new Vector2f(1, 0));
-//							temp2 = true;
-//						}
-					}
-				}
-			}
-		}
-	}*/
 
 	public void keyDown(int key) {
 		switch (key) {
@@ -175,71 +71,11 @@ public final class KeyManager implements Predicate<Integer> {
 
 	private boolean playerMove(GameMap gm, Player plr, Vector2f disp, boolean left)	{
 		plr.move(gm, disp, 0);
-		if(plr.collides(gm) || ((left)?plr.getPos().getX()+(plr.getHitbox().getWidth()/2) > Main.getScreenWidth()/2:
-				plr.getPos().getX()-(plr.getHitbox().getWidth()/2) < Main.getScreenWidth()/2))	{
+		if(plr.collides(gm) || ((left)?plr.getPos().getX()+(plr.getHitbox().getWidth()/2) > Main.width()/2:
+				plr.getPos().getX()-(plr.getHitbox().getWidth()/2) < Main.width()/2))	{
 			plr.move(gm, disp.negate(), 0);
 			return true;
 		}
 		return false;
 	}
-
-	/*public void keyDown(int key) {
-		boolean temp = false;
-		switch (key) {
-			case Input.KEY_W -> {
-				for (Shape[] sa : map.getHitboxes()) for (Shape s : sa) if(s != null) {
-					player.accelerateY(PLAYER_ACCELERATION);
-					map.updateHitboxes(0, player.getSpeedY() * 0.5f);
-					if (player.getHitBox().intersects(s)) temp = true;
-					//if(temp){player.accelerateY(-PLAYER_ACCELERATION);map.updateHitboxes(0, player.getSpeedY() * -0.5f);}
-					player.accelerateY(-PLAYER_ACCELERATION);map.updateHitboxes(0, player.getSpeedY() * -0.5f);
-				}
-				if(!temp)	{player.accelerateY(PLAYER_ACCELERATION);map.updateHitboxes(0, player.getSpeedY()*0.5f);}
-
-				//player.accelerateY(PLAYER_ACCELERATION);
-				//map.updateHitboxes(0, player.getSpeedY()*0.5f);
-			}
-			case Input.KEY_A -> {
-				for (Shape[] sa : map.getHitboxes()) for (Shape s : sa) if(s != null)	{
-					player.accelerateX(-PLAYER_ACCELERATION);map.updateHitboxes(player.getSpeedX(), 0);
-					if (player.getHitBox().intersects(s)) temp = true;
-					//if(temp){player.accelerateX(PLAYER_ACCELERATION);map.updateHitboxes(player.getSpeedX()*-1, 0);}
-					player.accelerateX(PLAYER_ACCELERATION);map.updateHitboxes(player.getSpeedX()*-1, 0);
-				}
-				if(!temp)	{player.accelerateX(-PLAYER_ACCELERATION);map.updateHitboxes(player.getSpeedX(), 0);}
-
-				//player.accelerateX(-PLAYER_ACCELERATION);
-				//map.updateHitboxes(player.getSpeedX(), 0);
-			}
-			case Input.KEY_S -> {
-				for (Shape[] sa : map.getHitboxes()) for (Shape s : sa) if(s != null)	{
-					player.accelerateY(-PLAYER_ACCELERATION);map.updateHitboxes(0, player.getSpeedY()*-0.5f);
-					if (player.getHitBox().intersects(s))	temp = true;
-					//if(temp){player.accelerateY(PLAYER_ACCELERATION);map.updateHitboxes(0, player.getSpeedY() * 0.5f);}
-					player.accelerateY(PLAYER_ACCELERATION);map.updateHitboxes(0, player.getSpeedY() * 0.5f);
-				}
-				if(!temp)	{player.accelerateY(-PLAYER_ACCELERATION);map.updateHitboxes(0, player.getSpeedY()*-0.5f);}
-
-				//player.accelerateY(-PLAYER_ACCELERATION);
-				//map.updateHitboxes(0, player.getSpeedY()*-0.5f);
-			}
-			case Input.KEY_D -> {
-				for (Shape[] sa : map.getHitboxes()) for (Shape s : sa) if(s != null)	{
-					player.accelerateX(PLAYER_ACCELERATION);map.updateHitboxes(player.getSpeedX()*-1, 0);
-					if (player.getHitBox().intersects(s))	temp = true;
-					//if(temp){player.accelerateX(-PLAYER_ACCELERATION);map.updateHitboxes(player.getSpeedX(), 0);}
-					player.accelerateX(-PLAYER_ACCELERATION);map.updateHitboxes(player.getSpeedX(), 0);
-				}
-				if(!temp)	{player.accelerateX(PLAYER_ACCELERATION);map.updateHitboxes(player.getSpeedX()*-1, 0);}
-
-				//player.accelerateX(PLAYER_ACCELERATION);
-				//map.updateHitboxes(player.getSpeedX()*-1, 0);
-			}
-		}
-	}*/
-
-	/*public boolean amogus(List<Integer> keys) {
-		if (new HashSet<>(keys).containsAll(AMOGUS_LIST)) return true;
-		return false;
-	}*/
 }

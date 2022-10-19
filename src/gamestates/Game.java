@@ -115,6 +115,7 @@ public class Game extends AdvancedGameState {
         }
         mapMan.deathRender(g);
         mapMan.levelCompleteRender(g);
+        Main.UI.render(gc);
     }
 
     @Override

@@ -143,6 +143,7 @@ public class IntroCredit extends AdvancedGameState {
         //if (counter > 960) sbg.enterState(Main.TITLE_ID);
 
         logo.drawCentered(Main.width() / 2, Main.height() / 2);
+        Main.UI.render(gc);
     }
 
     @Override

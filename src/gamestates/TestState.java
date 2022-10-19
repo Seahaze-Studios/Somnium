@@ -34,7 +34,7 @@ public class TestState extends AdvancedGameState {
     }
     public void enter(GameContainer gc, StateBasedGame sbg) throws SlickException {
         for(int i = 0; i < 30; i++){
-            bg.add(new GlowEffect(new Vector2f((float) (Math.random()* Main.getScreenWidth()), (float) (Math.random()*Main.getScreenHeight())),new Vector2f(0,0), new Color(1f,1f,1f)));
+            bg.add(new GlowEffect(new Vector2f((float) (Math.random()* Main.width()), (float) (Math.random()*Main.height())),new Vector2f(0,0), new Color(1f,1f,1f)));
         }
     }
 

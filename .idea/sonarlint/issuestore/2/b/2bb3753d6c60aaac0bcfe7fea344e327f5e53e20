@@ -1,13 +1,0 @@
-
-Š
-java:S1319"mThe type of "elements" should be an interface such as "Queue" rather than the implementation "AbstractQueue".(Óùô°8òÎ¨¶0
-†
-java:S1319"jThe type of "menus" should be an interface such as "Queue" rather than the implementation "AbstractQueue".(ˆØÈg8”òÎ¨¶0
-’
-java:S1319"uThe return type of this method should be an interface such as "Queue" rather than the implementation "AbstractQueue".(¬‹şÜ8•òÎ¨¶0
-q
-java:S1104"TMake elements a static final constant or non-public and provide accessors if needed.(Óùô°8¤òÎ¨¶0
-m
-java:S1104"QMake menus a static final constant or non-public and provide accessors if needed.(ˆØÈg8´òÎ¨¶0
-£
-java:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Ã´Ùèøÿÿÿÿ8ÃòÎ¨¶0

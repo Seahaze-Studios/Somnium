@@ -148,6 +148,7 @@ public final class Fonts {
             B60 = new TrueTypeFont(generator.deriveFont(java.awt.Font.BOLD, 60), true);
         }
 
+        // Not a map because it's easier to use this way & no need for unnecessary object creation
         public TrueTypeFont plainFont(int size) {
             return switch (size) {
                 case 1 -> P1; case 2 -> P2; case 3 -> P3; case 4 -> P4; case 5 -> P5; case 6 -> P6; case 7 -> P7; case 8 -> P8; case 9 -> P9; case 10 -> P10;
@@ -160,6 +161,7 @@ public final class Fonts {
             };
         }
 
+        // Not a map because it's easier to use this way & no need for unnecessary object creation
         public TrueTypeFont boldFont(int size) {
             return switch (size) {
                 case 1 -> B1; case 2 -> B2; case 3 -> B3; case 4 -> B4; case 5 -> B5; case 6 -> B6; case 7 -> B7; case 8 -> B8; case 9 -> B9; case 10 -> B10;

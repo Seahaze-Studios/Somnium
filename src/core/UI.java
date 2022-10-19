@@ -1,8 +1,9 @@
 package core;
 
 import graphics.ui.UIElement;
+import graphics.ui.menu.Menu;
+import org.newdawn.slick.GameContainer;
 
-import java.awt.*;
 import java.util.AbstractQueue;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
@@ -21,5 +22,16 @@ public final class UI {
 
     public Queue<UIElement> getElements() {
         return elements;
+    }
+
+    public void render(GameContainer gc) {
+        this.getElements().forEach(m -> {
+            m.update(gc);
+            m.render(gc);
+        });
+        this.getMenus().forEach(m -> {
+            m.update(gc);
+            m.render(gc);
+        });
     }
 }

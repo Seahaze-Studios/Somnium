@@ -2,6 +2,8 @@ package gamestates.types;
 
 import core.Main;
 import gamestates.Game;
+import graphics.ui.button.CloseButton;
+import graphics.ui.menu.DialogBox;
 import org.newdawn.slick.*;
 import org.newdawn.slick.imageout.ImageOut;
 import org.newdawn.slick.state.BasicGameState;
@@ -17,11 +19,9 @@ public abstract class AdvancedGameState extends BasicGameState {
 
     @Override
     public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
+        Main.getAppgc().setDisplayMode(Main.config.RESOLUTION[0], Main.config.RESOLUTION[1], false);
         frameRate(gc, sbg);
-        Main.UI.getElements().forEach(m -> {
-            m.update(gc);
-            m.render(gc);
-        });
+
     }
 
     private void frameRate(GameContainer gc, StateBasedGame sbg) {
@@ -39,6 +39,7 @@ public abstract class AdvancedGameState extends BasicGameState {
 
     @Override
     public void enter(GameContainer gc, StateBasedGame sbg) throws SlickException {
+        Main.getAppgc().setDisplayMode(Main.config.RESOLUTION[0], Main.config.RESOLUTION[1], false);
         frameRate(gc, sbg);
     }
 
@@ -63,7 +64,7 @@ public abstract class AdvancedGameState extends BasicGameState {
                 throw new RuntimeException(e);
             }
 
-            //Main.menus.add(new DialogBox(700, 400, "Screenshot", "Screenshot saved in screenshots/ folder.", new CloseButton("Got it")));
+            Main.UI.menus.add(new DialogBox(700, 400, "Screenshot", "Screenshot saved in screenshots/ folder.", new CloseButton("Got it")));
         }
         if (key == Input.KEY_F3) {
             Main.debug = !Main.debug;

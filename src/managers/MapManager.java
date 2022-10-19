@@ -67,11 +67,7 @@ public class MapManager {
                 Game.getPlayerR().setPos(mapR.plrPos);
                 Game.getPlayerR().color(Constants.COLOR_R.get(id));
                 Game.getPlayerR().setHitbox(mapR.plrPos.x - Game.getPlayerR().getHitbox().getWidth() / 2, mapR.plrPos.y - Game.getPlayerR().getHitbox().getWidth() / 2);
-
-                Game.getPlayerL().setPortals(mapL.getTileList().stream().filter(Portal.class::isInstance).toList());
-                Game.getPlayerR().setPortals(mapR.getTileList().stream().filter(Portal.class::isInstance).toList());
-
-           }else {
+           } else {
                Game.curLevelID = 1;
                 var idd = 1;
                 loadMaps(new GameMap("res/maps/lvl" + idd + "left.tmx", Constants.COLOR_L.get(idd)),
@@ -82,8 +78,6 @@ public class MapManager {
                 Game.getPlayerR().setPos(mapR.plrPos);
                 Game.getPlayerR().color(Constants.COLOR_R.get(idd));
                 Game.getPlayerR().setHitbox(mapR.plrPos.x - Game.getPlayerR().getHitbox().getWidth() / 2, mapR.plrPos.y - Game.getPlayerR().getHitbox().getWidth() / 2);
-                Game.getPlayerL().setPortals(mapL.getTileList().stream().filter(Portal.class::isInstance).toList());
-                Game.getPlayerR().setPortals(mapR.getTileList().stream().filter(Portal.class::isInstance).toList());
                 Game.getSbg().enterState(Main.TITLE_ID);
             }
         } catch (Exception e) {
@@ -96,12 +90,12 @@ public class MapManager {
         mapR = m2;
         generateHitboxes(mapL);
         generateHitboxes(mapR);
-        mapL.getTileList().forEach(t -> t.getHitbox().setX(t.getHitbox().getX() + Main.getScreenWidth()/2-(Constants.TILE_SIZE*mapR.getWidth())));
-        mapR.getTileList().forEach(t -> t.getHitbox().setX(t.getHitbox().getX() + Main.getScreenWidth()/2));
-        mapL.getCosmeticTiles().forEach(t -> t.getHitbox().setX(t.getHitbox().getX() + Main.getScreenWidth()/2-(Constants.TILE_SIZE*mapR.getWidth())));
-        mapR.getCosmeticTiles().forEach(t -> t.getHitbox().setX(t.getHitbox().getX() + Main.getScreenWidth()/2));
-        mapL.plrPos.add(new Vector2f((Main.getScreenWidth()/2)-(Constants.TILE_SIZE*mapR.getWidth()),0));
-        mapR.plrPos.add(new Vector2f(Main.getScreenWidth()/2,0));
+        mapL.getTileList().forEach(t -> t.getHitbox().setX(t.getHitbox().getX() + Main.width()/2-(Constants.TILE_SIZE*mapR.getWidth())));
+        mapR.getTileList().forEach(t -> t.getHitbox().setX(t.getHitbox().getX() + Main.width()/2));
+        mapL.getCosmeticTiles().forEach(t -> t.getHitbox().setX(t.getHitbox().getX() + Main.width()/2-(Constants.TILE_SIZE*mapR.getWidth())));
+        mapR.getCosmeticTiles().forEach(t -> t.getHitbox().setX(t.getHitbox().getX() + Main.width()/2));
+        mapL.plrPos.add(new Vector2f((Main.width()/2)-(Constants.TILE_SIZE*mapR.getWidth()),0));
+        mapR.plrPos.add(new Vector2f(Main.width()/2,0));
 
     }
     private void generateHitboxes(GameMap map) {
@@ -192,13 +186,13 @@ public class MapManager {
         if (R.nextInt(0, 15) == 4) Game.getGlowsR().get(R.nextInt(0, Game.getGlowsR().size() - 1)).inMotion = true;
         Game.getGlowsR().stream().filter(p -> p.inMotion).forEach(GlowEffect::motion);
         g.setColor(mapR.getColor());
-        g.fill(new Rectangle(Main.getScreenWidth()/2 - (Constants.MAP_WIDTH* Constants.TILE_SIZE),0,Main.getScreenWidth()/2,Main.getScreenHeight()));
+        g.fill(new Rectangle(Main.width()/2 - (Constants.MAP_WIDTH* Constants.TILE_SIZE),0,Main.width()/2,Main.height()));
         g.setColor(mapL.getColor());
-        g.fill(new Rectangle(Main.getScreenWidth()/2,0, Main.getScreenWidth()/2 - 42,Main.getScreenHeight()));
-        mapL.cosmeticRender(Main.getScreenWidth()/2 - Constants.MAP_WIDTH*Constants.TILE_SIZE ,0, g);
-        mapR.cosmeticRender(Main.getScreenWidth()/2, 0, g);
-        mapL.render(Main.getScreenWidth()/2 - Constants.MAP_WIDTH*Constants.TILE_SIZE ,0, g);
-        mapR.render(Main.getScreenWidth()/2, 0, g);
+        g.fill(new Rectangle(Main.width()/2,0, Main.width()/2 - 42,Main.height()));
+        mapL.cosmeticRender(Main.width()/2 - Constants.MAP_WIDTH*Constants.TILE_SIZE ,0, g);
+        mapR.cosmeticRender(Main.width()/2, 0, g);
+        mapL.render(Main.width()/2 - Constants.MAP_WIDTH*Constants.TILE_SIZE ,0, g);
+        mapR.render(Main.width()/2, 0, g);
         Game.getPlayerL().setImmobile(win());
         Game.getPlayerR().setImmobile(win());
 //        Game.getPlayerL().tileSpecialCollisions(mapL);

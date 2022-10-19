@@ -49,11 +49,11 @@ public class Main extends StateBasedGame
 	public static int highestLevel = 1;
 
 	public static int width() {
-		return config.RESOLUTION_X;
+		return config.RESOLUTION[0];
 	}
 
 	public static int height() {
-		return config.RESOLUTION_Y;
+		return config.RESOLUTION[1];
 	}
 
 
@@ -122,7 +122,7 @@ public class Main extends StateBasedGame
 			config.init(appgc);
 			System.setProperty("org.lwjgl.opengl.Window.undecorated", "true");
 		
-			appgc.setDisplayMode(config.RESOLUTION_X, config.RESOLUTION_Y, false);
+			appgc.setDisplayMode(config.RESOLUTION[0], config.RESOLUTION[1], false);
 			appgc.setTargetFrameRate(config.FRAMES_PER_SECOND);
 			appgc.setVSync(config.VSYNC);
 			appgc.start();

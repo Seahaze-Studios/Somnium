@@ -8,6 +8,7 @@ import java.util.List;
 public final class Configuration {
     public int RESOLUTION_X = 1920;
     public int RESOLUTION_Y = 1080;
+    public int[] RESOLUTION = {1920, 1080};
     public int FRAMES_PER_SECOND = 60;
     public GraphicsQuality GRAPHICS_QUALITY = GraphicsQuality.MEDIUM;
     public boolean VSYNC = false;

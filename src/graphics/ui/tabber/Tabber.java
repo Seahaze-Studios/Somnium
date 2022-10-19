@@ -11,13 +11,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static core.Constants.RES_X_FACTOR;
+import static core.Constants.RES_Y_FACTOR;
+
 public class Tabber {
     private Rectangle box;
     private ArrayList<Tab> tabs;
 
     public Tabber(Tab... tabs) {
         this.tabs = new ArrayList<>(List.of(tabs)); // First tab: tleft rounded, all 3 others straight - last tab: bleft rounded
-        this.box = new RoundedRectangle(0, 0, Main.width() - 100, Main.height() - 100, 20);
+        this.box = new RoundedRectangle(0, 0, Main.width() - 100 * RES_X_FACTOR(), Main.height() - 100 * RES_Y_FACTOR(), 20);
         box.setCenterX(Main.width() / 2);
         box.setCenterY(Main.height() / 2);
     }

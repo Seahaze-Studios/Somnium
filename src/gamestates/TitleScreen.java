@@ -75,5 +75,6 @@ public class TitleScreen extends AdvancedGameState {
         settingsButton.render(gc);
         quitButton.render(gc);
         bg.render(g);
+        Main.UI.render(gc);
     }
 }

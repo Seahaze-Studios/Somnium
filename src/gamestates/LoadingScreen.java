@@ -130,8 +130,8 @@ public class LoadingScreen extends AdvancedGameState {
 
        // background.renderPre(g, PERCENT_LOADED);
 
-        //DrawUtilities.drawImageCentered(g, logo, Main.getScreenWidth() / 2, Main.getScreenHeight() / 3);
-        //DrawUtilities.drawStringCentered(g, "Version " + Constants.VERSION, Main.getScreenWidth() / 2, Main.getScreenHeight() / 3 - 200);
+        //DrawUtilities.drawImageCentered(g, logo, Main.width() / 2, Main.height() / 3);
+        //DrawUtilities.drawStringCentered(g, "Version " + Constants.VERSION, Main.width() / 2, Main.height() / 3 - 200);
         g.setBackground(Color.black);
         //g.setBackground(new Color((int) (167 * PERCENT_LOADED), (int) (231 * PERCENT_LOADED), (int) (255 * PERCENT_LOADED)));
 
@@ -148,5 +148,6 @@ public class LoadingScreen extends AdvancedGameState {
         g.draw(new RoundedRectangle(BAR_X, BAR_Y, BAR_WIDTH, BAR_HEIGHT, RoundedRectangle.ALL));
 
         DrawUtilities.drawStringCentered(g, "Loading resource: " + lastResource + "...", Main.width() / 2, BAR_Y + BAR_HEIGHT + 25f);
+        Main.UI.render(gc);
     }
 }

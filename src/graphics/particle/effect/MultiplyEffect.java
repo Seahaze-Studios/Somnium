@@ -26,15 +26,15 @@ public class MultiplyEffect extends ImageParticle {
 
     public void update() {
         if(pos.getX() < -image.getWidth()){
-            this.setX(Main.getScreenWidth());
+            this.setX(Main.width());
         }
-        if(pos.getX()>Main.getScreenWidth()){
+        if(pos.getX()>Main.width()){
             this.setX(-image.getWidth());
         }
         if(pos.getX() < -image.getHeight()){
-            this.setX(Main.getScreenHeight());
+            this.setX(Main.height());
         }
-        if(pos.getY()>Main.getScreenHeight()){
+        if(pos.getY()>Main.height()){
             this.setY(-image.getHeight());
         }
         //applyForce(new Vector2f(1f,1f));

@@ -132,6 +132,7 @@ public class LevelSelectScreen extends AdvancedGameState {
         DrawUtilities.drawStringCentered(g, RomanNumber.toRoman(level), Main.fonts.ROMAN_NUMERAL, Main.width() / 2, Main.height() / 2);
         if (Main.highestLevel < level) ImageManager.getImage("lock").getScaledCopy(0.1f).drawCentered(Main.width() / 2, Main.height() / 2 + 100);
         if(Main.debug) debugRender(gc);
+        Main.UI.render(gc);
     }
 
     @Override

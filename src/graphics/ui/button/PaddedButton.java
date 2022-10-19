@@ -15,6 +15,17 @@ import util.DrawUtilities;
 public class PaddedButton extends Button implements UIElement {
     private RoundedRectangle rect;
 
+    public PaddedButton(String text) {
+        super(100, 60, text);
+        rect = new RoundedRectangle(x, y, width, height, 5);
+    }
+
+    public PaddedButton(float x, float y, float width, float height, String text) {
+        super(x, y, width, height, text);
+        rect = new RoundedRectangle(x, y, width, height, RoundedRectangle.ALL);
+        DrawUtilities.centerShape(rect, x, y);
+    }
+
     public PaddedButton(float width, String text, Commandable command) {
         super(width, 60, text);
         this.command = command;
