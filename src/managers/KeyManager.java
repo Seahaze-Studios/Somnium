@@ -71,7 +71,7 @@ public final class KeyManager implements Predicate<Integer> {
 
 	private boolean playerMove(GameMap gm, Player plr, Vector2f disp, boolean left)	{
 		plr.move(gm, disp, 0);
-		if(plr.collides(gm) || ((left)?plr.getPos().getX()+(plr.getHitbox().getWidth()/2) > Main.width()/2:
+		if(plr.collides(gm, plr.getPos()) || ((left)?plr.getPos().getX()+(plr.getHitbox().getWidth()/2) > Main.width()/2:
 				plr.getPos().getX()-(plr.getHitbox().getWidth()/2) < Main.width()/2))	{
 			plr.move(gm, disp.negate(), 0);
 			return true;

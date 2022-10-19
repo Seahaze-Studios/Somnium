@@ -1,28 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.9" tiledversion="1.9.0" orientation="orthogonal" renderorder="right-down" width="17" height="20" tilewidth="54" tileheight="54" infinite="0" nextlayerid="2" nextobjectid="1">
- <tileset firstgid="1" source="C:/Users/APH040/Documents/GitHub/Somnium/res/maps/temp2.tsx"/>
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="17" height="20" tilewidth="54" tileheight="54" infinite="0" nextlayerid="2" nextobjectid="1">
+ <tileset firstgid="1" source="../../../../../../APH040/Documents/GitHub/Somnium/res/maps/temp2.tsx"/>
  <layer id="1" name="Tile Layer 1" width="17" height="20">
-  <data encoding="csv">
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-36,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,32,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
-1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
-1,1,1,1,1,1,1,1,31,1,1,1,1,1,1,1,1,
-1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
-1,0,0,0,0,33,0,0,0,0,0,33,0,0,0,0,1,
-1,0,0,0,0,33,33,0,0,0,33,33,0,0,0,0,1,
-1,0,0,0,0,0,33,33,0,33,33,0,0,0,0,0,1,
-1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
-1,0,0,0,0,0,0,34,0,34,0,0,0,0,0,0,1,
-1,0,0,0,0,0,0,0,36,0,0,0,0,0,0,0,1,
-1,0,0,0,0,0,33,33,33,33,33,0,0,0,0,0,1,
-1,0,0,0,0,33,0,0,0,0,0,33,0,0,0,0,1,
-1,0,0,0,33,0,0,0,0,0,0,0,33,0,0,0,1,
-1,0,33,33,33,0,0,0,0,0,0,0,33,33,33,0,1,
-1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
-1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
-</data>
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAACmNgGBxAhUL9CtRwBBAwDhEsT6Q6aoQFOlDEoR6bOD4z0NVjE8NnBroeXPoJmUEsIGSGEhpNrjsI5QViwgMZk2IGpXGLSz8ueWQzCLmZAYc6asYtpRgAj39WxVAFAAA=
+  </data>
  </layer>
 </map>

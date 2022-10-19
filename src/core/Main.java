@@ -6,12 +6,16 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.TrueTypeFont;
 import org.newdawn.slick.state.StateBasedGame;
+import util.Vector2f;
+import util.bundle.Bundle;
 
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main extends StateBasedGame 
 {
@@ -45,8 +49,9 @@ public class Main extends StateBasedGame
 
 	public static Configuration config = new Configuration();
 
-
 	public static int highestLevel = 1;
+
+	public static List<Bundle<String, Vector2f>> hints = new ArrayList<>();
 
 	public static int width() {
 		return config.RESOLUTION[0];
@@ -58,8 +63,7 @@ public class Main extends StateBasedGame
 
 
     
-	public Main(String name) 
-	{
+	public Main(String name) {
 		super(name);
 		test = new TestState(TEST_ID);
 		loading = new LoadingScreen(LOADING_ID);
@@ -71,19 +75,7 @@ public class Main extends StateBasedGame
 		quit = new QuitState(QUIT_ID);
 	}
 
-	public static int getScreenWidth()
-	{
-		return appgc.getScreenWidth();
-	}
-	
-	public static int getScreenHeight()
-	{
-		return appgc.getScreenHeight();
-	}
-	
-
-	public void initStatesList(GameContainer gc) throws SlickException 
-	{
+	public void initStatesList(GameContainer gc) throws SlickException {
 		addState(loading);
 		addState(test);
 		addState(intro);
@@ -94,29 +86,20 @@ public class Main extends StateBasedGame
 		addState(quit);
 	}
 
-	public static void main(String[] args) 
-	{
+	public static void main(String[] args) {
 		try {
 			GraphicsEnvironment ge =
 					GraphicsEnvironment.getLocalGraphicsEnvironment();
 			ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("res/font/Aileron-Light.otf")));
-		} catch (IOException | FontFormatException e) {
-			//Handle exception
-		}
+		} catch (IOException | FontFormatException ignored) {}
 
 		try {
 			highestLevel = Integer.parseInt(new String(Files.readAllBytes(Paths.get("saves/level.txt"))));
-		} catch (IOException | NumberFormatException e) {
-			highestLevel = 1;
-		}
+		} catch (IOException | NumberFormatException e) { highestLevel = 1; }
 
-//		Constants.COLOR_L.forEach(c -> {
-//			Constants.COLOR_R.add(new org.newdawn.slick.Color(255 - c.getRed(), 255 - c.getGreen(), 255 - c.getBlue()));
-//		});
+		Constants.COLOR_L.forEach(c -> Constants.COLOR_R.add(new org.newdawn.slick.Color(255 - c.getRed(), 255 - c.getGreen(), 255 - c.getBlue())));
 
-
-		try 
-		{
+		try {
 			debug = false;
 			appgc = new AppGameContainer(new Main("Somnium"));
 			config.init(appgc);
@@ -126,13 +109,10 @@ public class Main extends StateBasedGame
 			appgc.setTargetFrameRate(config.FRAMES_PER_SECOND);
 			appgc.setVSync(config.VSYNC);
 			appgc.start();
-
 		} 
-		catch (SlickException e) 
-		{
+		catch (SlickException e) {
 			e.printStackTrace();
 		}
-
 	}
 
 	public static AppGameContainer getAppgc() {

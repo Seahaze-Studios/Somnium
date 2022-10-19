@@ -11,6 +11,7 @@ import map.tile.Tile;
 import map.tile.interactable.Ice;
 import map.tile.interactable.Interactable;
 import map.tile.interactable.Portal;
+import map.tile.interactable.Wind;
 import map.tile.interactable.hazard.Hazard;
 import map.tile.interactable.utility.Goal;
 import map.tile.obstacle.Block;
@@ -166,7 +167,14 @@ public class  Player extends Unit {
                             case RIGHT -> speed = new Vector2f(Constants.PLAYER_MAX_SPEED * Constants.SCALING_FACTOR(), 0);
                         }
                     }
-
+                    if (tile instanceof Wind wind) {
+                        switch (wind.getDirection()) {
+                            case UP -> speed = new Vector2f(0, -Constants.PLAYER_MAX_SPEED* Constants.SCALING_FACTOR());
+                            case DOWN -> speed = new Vector2f(0, Constants.PLAYER_MAX_SPEED * Constants.SCALING_FACTOR());
+                            case LEFT -> speed = new Vector2f(-Constants.PLAYER_MAX_SPEED * Constants.SCALING_FACTOR(), 0);
+                            case RIGHT -> speed = new Vector2f(Constants.PLAYER_MAX_SPEED * Constants.SCALING_FACTOR(), 0);
+                        }
+                    }
                 }
             }
         });

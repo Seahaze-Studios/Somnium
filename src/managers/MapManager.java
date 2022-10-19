@@ -10,6 +10,7 @@ import map.tile.Tile;
 import map.tile.cosmetic.Glow;
 import map.tile.interactable.Ice;
 import map.tile.interactable.Portal;
+import map.tile.interactable.Wind;
 import map.tile.interactable.hazard.Hazard;
 import map.tile.interactable.hazard.Lava;
 import map.tile.interactable.utility.Goal;
@@ -117,6 +118,7 @@ public class MapManager {
                 case "goal" -> map.getTileList().add(new Goal(i * Constants.TILE_SIZE, j * Constants.TILE_SIZE));
                 case "lava" ->  map.getTileList().add(new Lava(i*Constants.TILE_SIZE,j * Constants.TILE_SIZE));
                 case "ice" -> map.getTileList().add(new Ice(i * Constants.TILE_SIZE, j * Constants.TILE_SIZE));
+                case "wind" -> map.getTileList().add(new Wind(i * Constants.TILE_SIZE, j * Constants.TILE_SIZE, map.getTileProperty(map.getTileId(i,j,0), "direction", "up")));
                 case "portal" -> {
                     map.getTileList().add(new Portal(i * Constants.TILE_SIZE, j * Constants.TILE_SIZE));
                     switch(map.getTileProperty(map.getTileId(i,j,0),"id", "0"))   {

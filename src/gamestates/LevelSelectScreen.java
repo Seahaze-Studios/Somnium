@@ -138,7 +138,7 @@ public class LevelSelectScreen extends AdvancedGameState {
     @Override
     public void keyPressed(int key, char c) {
         super.keyPressed(key, c);
-        if (key == Input.KEY_RIGHT && level < Constants.COLOR_L.size() - 1) level++;
+        if (key == Input.KEY_RIGHT) level++;
         if (key == Input.KEY_LEFT && level > 1) level--;
         if(key == Input.KEY_0 && Main.debug) {
             Game.curLevelID = 0;
